@@ -2,4 +2,4 @@
 
           [...Go Paperless, Go Green ]
 
-          Make Offices Digital.
+          Make Offices Digital and Efficient.
