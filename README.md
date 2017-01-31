@@ -4,17 +4,10 @@
 
 	  Make Offices Digital and Efficient
 
-#Abstract :
-
-Most of the organisations have very unorganised structure to deal with loads of written applications which is very time and resource consuming.
-
-Therefore it is important for an organisation to manage their time and resources properly as well as having an efficient communication among their members. 
+eOrg is a free open source software intended to reduce loads of paperwork done inter-organisational office-work.
 
 
-
-
-
-#Objectives :
+# Our Intensions :
 
 
 To reduce paperwork in organisations as far as possible.
