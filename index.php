@@ -11,6 +11,10 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * Thank you.
-*/
+ */
+
+require_once dirname( __FILE__ ).'/includes/PHPVersionCheck.php';
+
+checkEntryPoint( 'index.php' );
 
 ?>
