@@ -21,7 +21,7 @@ function form() {
 
 <form action="includes/installer/MySqlInstaller.php" method="post">
 Database Client : <input type="text" name="dbclient" value="mysql"/> <br/>
-Database Server : <input type="text" name="dbserver" value="localhost" /> <br/>
+Database Server : <input type="text" name="dbserver" value="localhost:3306" /> <br/>
 Database Name   : <input type="text" name="dbname" value="eorgDB" /> <br/>
 MySql Username  : <input type="text" name="mysqlUser" value="root" /> <br/>
 MySql Password  : <input type="password" name="mysqlPasswd" /> <br/>
