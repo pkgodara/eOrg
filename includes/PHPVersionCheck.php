@@ -10,7 +10,7 @@ class PHPVersionCheck {
 	var $eorgVersion = '1.0';
 
 	#Minimum PHP version required.
-	var $minVersionPHP = '5.3';
+	var $minVersionPHP = '5.4.0';
 
 	#entry point.
 	var $entryPoint = null;
@@ -45,14 +45,15 @@ class PHPVersionCheck {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>eOrg {$this->eorgVersion}</title>
-<body>
-<h1>hello</h1>
-<h2>$title</h2>
-<p>$shortInfo</p>
-</body>
+	<meta charset="UTF-8" />
+	<title>eOrg {$this->eorgVersion}</title>
 </head>
+
+<body>
+	<h1>WELCOME!</h1>
+	<h2>$title</h2>
+	<p>$shortInfo</p>
+</body>
 </html>
 HTML;
 
