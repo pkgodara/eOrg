@@ -6,7 +6,7 @@
 $DBtype = $_POST['dbclient'];
 $DBserver = $_POST['dbserver'];
 $DBname = $_POST['dbname'];
-$Uname = $_POST['mysqlUname'];
+$Uname = $_POST['mysqlUser'];
 $passwd = $_POST['mysqlPasswd'];
 
 
