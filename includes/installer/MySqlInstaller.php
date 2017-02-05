@@ -10,8 +10,6 @@ $Uname = $_POST['mysqlUname'];
 $passwd = $_POST['mysqlPasswd'];
 
 
-#function generateLocalSettings($DBtype,$DBserver,$DBname,$Uname,$passwd) {
-
 $file = '../../LocalSettings.php';
 
 	$output = <<<EOT
@@ -26,16 +24,28 @@ $file = '../../LocalSettings.php';
 
 #Database information
 
-\$eorgDBtype = "\$DBtype";
-\$eorgDBserver = "\$DBserver";
-\$eorgDBname = "\$DBname";
-\$eorgDBuser = "\$Uname";
-\$eorgDBpasswd = "\$passwd";
+\$eorgDBtype = "$DBtype";
+\$eorgDBserver = "$DBserver";
+\$eorgDBname = "$DBname";
+\$eorgDBuser = "$Uname";
+\$eorgDBpasswd = "$passwd";
 
 ?>
 EOT;
 
-$page = <<<HTML
+
+$fs = fopen( $file , "x+" ) or die(page("Unable to create/open LocalSettings.php in installation Folder.","Complete Error details : ",error_get_last(), $output ));
+
+
+	fwrite(  $fs , $output );
+	fclose($fs);
+
+page("Bravo! Successfully created LocalSettings.php in installation Folder.","",$output);
+
+
+function page($title,$info,$details,$out) {
+
+$output = <<<HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,16 +53,20 @@ $page = <<<HTML
 </head>
 
 <body>
-<h2>Error creating LocalSettings.php file.</h2>
+<h2>$title</h2>
+<h4>$info</h4>
+<p>$deails</p>
+<h3>********      Manual Installation [Only If error in auto-installation]     ******</h3>
+<h4>To manually create LocalSettings.php file in the installation folder containing index.php file, Paste the output below :</h4>
+
 </body>
+<html>
 
-</html>
+HTML;
 
-$fs = fopen( $file , "x+" ) or die(print_r(error_get_last())."\nUnable to create/open LocalSettings.php , Please make sure you have write permissions in your installation folder");
+echo $output;
 
+}
 
-	fwrite(  $fs , $output );
-	fclose($fs);
-	echo "LocalSettings.php created.";
 
 ?>
