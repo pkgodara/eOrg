@@ -13,19 +13,30 @@ function form() {
 <head>
 <meta charset="UTF-8"/>
 <title>MySql Database settings</title>
+
 </head>
 
-<body>
+<body >
+
 <h2>This Software require MySql access to create and maintain databases.<br/>If you have not installed it, Please do it now.</h2>
+
 <h3>Please Enter MySql Database information.</h3>
 
 <form action="includes/installer/MySqlInstaller.php" method="post">
-Database Client : <input type="text" name="dbclient" value="mysql"/> <br/>
-Database Server : <input type="text" name="dbserver" value="localhost:3306" /> <br/>
-Database Name   : <input type="text" name="dbname" value="eorgDB" /> <br/>
-MySql Username  : <input type="text" name="mysqlUser" value="root" /> <br/>
-MySql Password  : <input type="password" name="mysqlPasswd" /> <br/>
-<input type="submit" name="submit" value="Submit!" />
+
+
+<table border = "15">
+
+<caption style ="color:blue;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
+<tr><th>Database Client :</th> <td><input type="text" name="dbclient" value="mysql"/></td></tr> 
+<tr><th>Database Server :</th><td> <input type="text" name="dbserver" value="localhost:3306" /> </td></tr>
+<tr><th>Database Name   : </th><td><input type="text" name="dbname" value="eorgDB" /></td> </tr>
+<tr><th>MySql Username  :</th><td> <input type="text" name="mysqlUser" value="root" /> </td></tr>
+<tr><th>MySql Password  : </th><td><input type="password" name="mysqlPasswd"/> </td></tr>
+
+</table>
+
+<input  type="submit" name="submit" value="Submit!" />
 </form>
  
 </body>
