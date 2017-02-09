@@ -10,6 +10,33 @@ $Uname = $_POST['mysqlUser'];
 $passwd = $_POST['mysqlPasswd'];
 
 
+if( isset($_POST['dbclient']) && isset($_POST['dbserver']) && isset($_POST['dbname']) && isset($_POST['mysqlUser']) && isset($_POST['mysqlPasswd']) )
+{
+	//check if correct
+	//
+	//using mysqli database driver for executing sql queries
+	//
+	$mysqlConn = new mysqli( $DBserver , $Uname , $passwd , "" );
+
+	if( $mysqlConn->connect_errno )  //if connection failed
+	{
+		echo "Sql credentials does not seem correct.<br>" ;
+		echo "Errno : ". $mysqlConn->connect_errno ."<br>" ;
+		echo "Error : ". $mysqlConn->connect_error ."<br>" ;
+		echo "<br><br>Please check you credentials.<br>";
+
+		die();
+	}
+
+	$mysqlConn->close();
+}
+else
+{
+	echo "You did not fill out the required fields.";
+	die();
+}
+
+
 $file = '../../LocalSettings.php';
 
 	$output = <<<EOT
