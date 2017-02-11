@@ -9,10 +9,16 @@ $DBname = $_POST['dbname'];
 $Uname = $_POST['mysqlUser'];
 $passwd = $_POST['mysqlPasswd'];
 
+// Database name should only contain alphabets.
+if( ! ctype_alpha( $DBname ) )
+{
+	echo "Database name can contain only alphabets<br>";
+	die();
+}
 
 if( isset($_POST['dbclient']) && isset($_POST['dbserver']) && isset($_POST['dbname']) && isset($_POST['mysqlUser']) && isset($_POST['mysqlPasswd']) )
 {
-	//check if correct
+	//check if provided info is correct
 	//
 	//using mysqli database driver for executing sql queries
 	//
@@ -27,6 +33,18 @@ if( isset($_POST['dbclient']) && isset($_POST['dbserver']) && isset($_POST['dbna
 
 		die();
 	}
+	//echo "Creating database $DBname";
+
+	//create database if not exists
+	//
+
+	$stmt = $mysqlConn->prepare( "create database if not exists $DBname" );
+
+	if( ! $stmt->execute() )
+	{
+		echo "Error creating database.";
+		die();
+	}
 
 	$mysqlConn->close();
 }
@@ -39,7 +57,8 @@ else
 
 $file = '../../LocalSettings.php';
 
-	$output = <<<EOT
+// content to write in LocalSettings.php
+$output = <<<EOT
 <?php
 /*
  * This file contain Local configuration/Settings for running this software.
@@ -61,18 +80,45 @@ $file = '../../LocalSettings.php';
 EOT;
 
 
-$fs = fopen( $file , "x+" ) or die(page("Unable to create/open LocalSettings.php in installation Folder.","Complete Error details : ",error_get_last(), $output ));
+// content to display for manual copying.
+$out = <<<EOT
+<?php
+/*
+ * This file contain Local configuration/Settings for running this software.
+ *
+ *        DO NOT ALTER THIS INFO
+ *        until you know what you are doing.
+ *
+ */ 
+
+#Database information
+
+\$eorgDBtype = \"$DBtype\";
+\$eorgDBserver = \"$DBserver\";
+\$eorgDBname = \"$DBname\";
+\$eorgDBuser = \"$Uname\";
+\$eorgDBpasswd = \"$passwd\";
+
+?>
+EOT;
+
+$code = htmlspecialchars($out,ENT_QUOTES);
+
+// Open/Create LocalSettings.php for read & write
+$fs = fopen( $file , "x+" ) or die(page("Unable to create/open LocalSettings.php in installation Folder.","Complete Error details : ",error_get_last() ));
+
+fwrite(  $fs , $output );
+fclose( $fs );
 
 
-	fwrite(  $fs , $output );
-	fclose($fs);
+page("Bravo! Successfully created LocalSettings.php in installation Folder.","");
 
-page("Bravo! Successfully created LocalSettings.php in installation Folder.","",$output);
+// html page generator..
+function page($title,$info,$details) {
 
+	global $code;
 
-function page($title,$info,$details,$out) {
-
-$output = <<<HTML
+	$html = <<<HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,12 +132,17 @@ $output = <<<HTML
 <h3>********      Manual Installation [Only If error in auto-installation]     ******</h3>
 <h4>To manually create LocalSettings.php file in the installation folder containing index.php file, Paste the output below :</h4>
 
+$code
+<br><br>
+
+<button onclick="document.location.href='/eorg'"> Next </button>
+
 </body>
 <html>
 
 HTML;
 
-echo $output;
+	echo $html;
 
 }
 
