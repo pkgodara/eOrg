@@ -54,6 +54,7 @@ HTML;
 	echo $html;
 }
 
+$stmt->close();
 $sqlConn->close();
 
 ?>

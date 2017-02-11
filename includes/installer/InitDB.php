@@ -75,6 +75,7 @@ if( ! $stmt->execute() )
 	echo "Error updating database information";
 }
 
+$stmt->close();
 $sqlConn->close();
 
 
