@@ -14,11 +14,12 @@ if( $sqlConn->connect_errno )
 //
 $stmt = $sqlConn->prepare( "SELECT $UName FROM $loginDB WHERE $UName = 'admin' " );
 
-if( $result = $sqlConn->query($stmt) )
-{
-	echo "$result";
-}
-else // admin not set ; do it and create tables.
+$stmt->execute();
+$result = $stmt->get_result();
+$row = mysqli_fetch_row($result);
+
+
+if( $row[0] != 'admin' ) // admin not set ; do it and create tables.
 {
 	$html = <<<HTML
 <!DOCTYPE html>

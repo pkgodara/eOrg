@@ -15,9 +15,12 @@ if( $user != 'admin' || strlen($user) > 50 )
 	die();
 }
 
+
 // create Admin and database initialisations.
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
+
+
 
 // Connect to DB
 //
@@ -29,34 +32,43 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
+
+// create password hash.
 $hash = password_hash( $passwd , PASSWORD_BCRYPT );
+
+
+
 
 // Create User-Login Credentials storing tables in Database
 //
 $stmt = $sqlConn->prepare( "CREATE TABLE IF NOT EXISTS $loginDB ( $UName VARCHAR(50) NOT NULL, $UPasswd VARCHAR(60) NOT NULL, $FName VARCHAR(60) NOT NULL, $Desig VARCHAR(255) NOT NULL, PRIMARY KEY($UName) )" );
+
 
 if ( ! $stmt->execute() ) // if unsuccessful
 {
 	echo "Error creating user database.";
 	die();
 }
+$stmt->close();
 
 
 // create application tables to store application data
 //
 $stmt = $sqlConn->prepare( "CREATE TABLE IF NOT EXISTS $AppDB ( $AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL , $AppTy VARCHAR(5) , $stat VARCHAR(255) NOT NULL, $AFrom VARCHAR(10) NOT NULL , $AUpto VARCHAR(10) NOT NULL , $AReason VARCHAR(255) NOT NULL , PRIMARY KEY($AppId) )" );
 
+
 if( ! $stmt->execute() )
 {
 	echo "Error creating application database";
 	die();
 }
-
+$stmt->close();
 
 // Store credentials in DB
 //
-$stmt = $sqlConn->prepare( "Insert INTO $loginDB ( ? , ? , ? , ? )" );
-$stmt->bind_param( $user , $hash , $user , 'Admin' );
+$stmt = $sqlConn->prepare( "Insert INTO $loginDB VALUES ( ? , ? , ? , ? )" );
+$stmt->bind_param( 'ssss', $user , $hash , $user , $user );
+
 
 if( ! $stmt->execute() )
 {
