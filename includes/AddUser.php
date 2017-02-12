@@ -23,7 +23,7 @@ $html = <<<HTML
 
 <h2>Please Enter Credentials.</h2>
 
-<form action="includes/UserAdd.php" method="post">
+<form action="UserAdd.php" method="post">
 
 
 <table border = "15">

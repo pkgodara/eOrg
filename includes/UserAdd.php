@@ -6,8 +6,8 @@
 
 if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['design']) )
 {
-	require_once "../../LocalSettings.php";
-	require_once "../Globals.php";
+	require_once "../LocalSettings.php";
+	require_once "Globals.php";
 
 	$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
 
@@ -29,6 +29,9 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	$stmt->close();
 	$sqlConn->close();
+
+	echo "user added successfully";
+	die();
 }
 else
 {
