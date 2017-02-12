@@ -41,7 +41,9 @@ $hash = password_hash( $passwd , PASSWORD_BCRYPT );
 
 // Create User-Login Credentials storing tables in Database
 //
-$stmt = $sqlConn->prepare( "CREATE TABLE IF NOT EXISTS $loginDB ( $UName VARCHAR(50) NOT NULL, $UPasswd VARCHAR(60) NOT NULL, $FName VARCHAR(60) NOT NULL, $Desig VARCHAR(255) NOT NULL, PRIMARY KEY($UName) )" );
+$query = "CREATE TABLE IF NOT EXISTS $loginDB ( $UName VARCHAR(50) NOT NULL, $UPasswd VARCHAR(60) NOT NULL, $FName VARCHAR(60) NOT NULL, $Desig VARCHAR(255) NOT NULL, PRIMARY KEY($UName) )" ;
+
+$stmt = $sqlConn->prepare( $query );
 
 
 if ( ! $stmt->execute() ) // if unsuccessful
@@ -54,7 +56,9 @@ $stmt->close();
 
 // create application tables to store application data
 //
-$stmt = $sqlConn->prepare( "CREATE TABLE IF NOT EXISTS $AppDB ( $AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL , $AppTy VARCHAR(5) , $stat VARCHAR(255) NOT NULL, $AFrom VARCHAR(10) NOT NULL , $AUpto VARCHAR(10) NOT NULL , $AReason VARCHAR(255) NOT NULL , PRIMARY KEY($AppId) )" );
+$query = "CREATE TABLE IF NOT EXISTS $AppDB ( $AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL , $AppTy VARCHAR(5) , $stat VARCHAR(255) NOT NULL, $AFrom VARCHAR(10) NOT NULL , $AUpto VARCHAR(10) NOT NULL , $AReason VARCHAR(255) NOT NULL , PRIMARY KEY($AppId) )" ;
+
+$stmt = $sqlConn->prepare( $query );
 
 
 if( ! $stmt->execute() )
@@ -66,7 +70,8 @@ $stmt->close();
 
 // Store credentials in DB
 //
-$stmt = $sqlConn->prepare( "Insert INTO $loginDB VALUES ( ? , ? , ? , ? )" );
+$query = "Insert INTO $loginDB VALUES ( ? , ? , ? , ? )" ;
+$stmt = $sqlConn->prepare( $query );
 $stmt->bind_param( 'ssss', $user , $hash , $user , $user );
 
 

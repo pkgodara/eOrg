@@ -10,18 +10,8 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
-// check for admin
-//
-$stmt = $sqlConn->prepare( "SELECT $UName FROM $loginDB WHERE $UName = 'admin' " );
 
-$stmt->execute();
-$result = $stmt->get_result();
-$row = mysqli_fetch_row($result);
-
-
-if( $row[0] != 'admin' ) // admin not set ; do it and create tables.
-{
-	$html = <<<HTML
+$html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,15 +36,38 @@ if( $row[0] != 'admin' ) // admin not set ; do it and create tables.
 
 <input  type="submit" name="submit" value="Submit!" />
 </form>
- 
+
 </body>
 </html>
 HTML;
 
-	echo $html;
-}
+// check for admin
+//
 
-$stmt->close();
+$qry = "SELECT $UName FROM $loginDB WHERE $UName = 'admin' ";
+
+$stmt = $sqlConn->prepare($qry);
+
+if( $sqlConn->errno == '1146' ) //table doesn't exist
+{
+	echo $html;
+	die();
+}
+else
+{
+	$stmt->execute();
+
+	$result = $stmt->get_result();
+	$row = mysqli_fetch_row($result);
+
+	if( $row[0] !== 'admin' ) // admin not set ; do it and create tables.
+	{
+		echo $html;
+		die();
+	}
+
+	$stmt->close();
+}
 $sqlConn->close();
 
 ?>

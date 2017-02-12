@@ -25,8 +25,8 @@ if( $sqlConn->connect_errno )
 }
 
 // get and check for credentials
-
-$stmt = $sqlConn->prepare( "SELECT * FROM $loginDB WHERE $UName = ?" );
+$qry = "SELECT * FROM $loginDB WHERE $UName = ?" ;
+$stmt = $sqlConn->prepare( $qry );
 $stmt->bind_param('s',$user);
 $stmt->execute();
 
