@@ -41,13 +41,13 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	$stmt->close();
 
 	// creating user database for storing owned applications
-	//
+	// Since . is not allowed in name , using $
 	$userdb = str_replace('.','$',$user) ;
 	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(5), PRIMARY KEY($UserAppId) )" );
 
 	if( ! $stmt->execute() )
 	{
-		echo "Error : $sqlConn->errno : $sqlConn->error <br>";
+		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
 		echo "Error creating database for user, contact Admin";
 		die();
 	}
