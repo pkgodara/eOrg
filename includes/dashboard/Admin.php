@@ -25,6 +25,8 @@ HTML;
 $html2 = <<<HTML
 </h2>
 
+<a href='../AddUser.php'>Add user</a>
+
 <button onclick="document.location.href='../AddUser.php'"> Add User </button>
 
 <button onclick="document.location.href='../Logout.php'"> Log out ! </button>
