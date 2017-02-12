@@ -33,10 +33,29 @@ $stmt->execute();
 $result = $stmt->get_result();
 $row = mysqli_fetch_row($result);
 
+
 // check password.
 if( password_verify($passwd,$row[1]) ) //if password correct
 {
-	echo "successfully logged in";
+	session_start();
+
+	if( !isset( $_SESSION['Username'] ) || !isset($_SESSION['Name']) )
+	{
+		$_SESSION['Username'] = $user;
+		$_SESSION['Name'] = $row[2];
+	}
+
+	$ipath = dirname( __DIR__ );
+
+	if( $user == 'admin' )
+	{
+		//echo "you are admin ; id: " . session_id();
+		require "$ipath/dashboard/Admin.php";
+	}
+	else
+	{
+		require "$ipath/dashboard/User.php";
+	}
 }
 else
 {

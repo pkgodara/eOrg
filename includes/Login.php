@@ -15,7 +15,7 @@ $html = <<<HTML
 
 <h2>Please Enter your Login credentials.</h2>
 
-<form action="includes/dashboard/login.php" method="post">
+<form action="includes/dashboard/Dashboard.php" method="post">
 
 
 <table border = "15">
