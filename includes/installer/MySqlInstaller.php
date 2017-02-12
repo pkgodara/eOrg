@@ -93,11 +93,11 @@ $out = <<<EOT
 
 #Database information
 
-\$eorgDBtype = \"$DBtype\";
-\$eorgDBserver = \"$DBserver\";
-\$eorgDBname = \"$DBname\";
-\$eorgDBuser = \"$Uname\";
-\$eorgDBpasswd = \"$passwd\";
+\$eorgDBtype = "$DBtype";
+\$eorgDBserver = "$DBserver";
+\$eorgDBname = "$DBname";
+\$eorgDBuser = "$Uname";
+\$eorgDBpasswd = "$passwd";
 
 ?>
 EOT;
