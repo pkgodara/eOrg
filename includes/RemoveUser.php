@@ -7,8 +7,8 @@ session_start();
 
 if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
 {
-			echo "session id :".session_id()." ,You need to login as Admin to change users. Please log in as/contact Admin.";
-						die();
+	echo "session id :".session_id()." ,You need to login as Admin to change users. Please log in as/contact Admin.";
+	die();
 }
 
 $html = <<<HTML
