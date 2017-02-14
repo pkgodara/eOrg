@@ -2,6 +2,7 @@
 /* 
  * Log out user.
  */
+session_start();
 
 session_destroy(); // delete all session data for user.
 
