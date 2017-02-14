@@ -49,12 +49,14 @@ if( password_verify($passwd,$row[1]) ) //if password correct
 
 	if( $user == 'admin' )
 	{
+		header("Location:Admin.php");
 		//echo "you are admin ; id: " . session_id();
-		require "$ipath/dashboard/Admin.php";
+		//require "$ipath/dashboard/Admin.php";
 	}
 	else
 	{
-		require "$ipath/dashboard/User.php";
+		header("Location:User.php");
+		//require "$ipath/dashboard/User.php";
 	}
 }
 else

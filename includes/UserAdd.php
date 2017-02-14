@@ -4,6 +4,14 @@
  * backend for adding user.
  */
 
+session_start();
+
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
+{
+	echo "session id :".session_id()." ,You need to login as Admin to add users. Please log in as/contact Admin.";
+	die();
+}
+
 if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['design']) )
 {
 	require_once "../LocalSettings.php";

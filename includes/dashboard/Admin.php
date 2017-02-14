@@ -3,9 +3,11 @@
 /* 
  * dashboard for admin
  */
+session_start();
+
 if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] === 'admin' ) )
 {
-	echo "you are not logged in. Please log in first.";
+	echo "To access this page you need to login as Admin. Please log in first.";
 	die();
 }
 
