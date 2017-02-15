@@ -9,7 +9,7 @@ session_start();
 
 if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) ) )
 {
-	echo "session id :".session_id()." ,You need to login to generate leave applications. Please log in as/contact Admin.";
+	echo "session id :".session_id()." ,You need to login to generate leave applications. Please log in.";
 	die();
 }
 
@@ -33,7 +33,7 @@ $html = <<<HTML
 <tr><th>Leave Start Date :</th><td> <input type="text" name="from" required/> </td></tr>
 <tr><th>Leave Till Date : </th><td><input type="text" name="upto" required/> </td></tr>
 <tr><th>Reason : </th><td><input type="text" name="reason" required/> </td></tr>
-
+<tr><th>Receiver User : </th><td><input type="text" name="dest" required/> </td></tr>
 </table>
 
 <input  type="submit" name="submit" value="Submit Application !" />
