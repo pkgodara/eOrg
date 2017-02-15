@@ -35,12 +35,43 @@ $html2 = <<<HTML
 
 <button onclick="document.location.href='../Logout.php'"> Log out ! </button>
 
-</body>
-</html>
+
 HTML;
 
 echo $html1;
 echo " ".$_SESSION['Name'];
+
+
+
 echo $html2;
+echo "<br><br><br>The available users are :<br><br>";
+
+require_once "../../LocalSettings.php";
+require_once "../Globals.php";
+
+$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
+
+if( $sqlConn->connect_errno ) 
+{
+		echo "Internal Server Error, Contact Administrator.";
+			die();
+}
+
+$i = 1;
+echo "<pre>	User ID			Name			Designation(s)<br><br></pre>";
+$qry = "SELECT * FROM $loginDB " ;
+$stmt = $sqlConn->prepare ( $qry );
+$stmt->execute ( );
+$result = $stmt->get_result();
+while ( $row = mysqli_fetch_row ( $result ) )
+{
+	echo "<pre>$i.	$row[0]			$row[2]			$row[3]<br></pre>";
+	$i = $i + 1;
+}
+$stmt->close();
+$sqlConn->close();
+
+
+echo "</body> </html>";
 
 ?>
