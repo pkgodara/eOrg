@@ -21,7 +21,7 @@ $html = <<<HTML
 
 </head>
 
-<body >
+<body>
 
 <h2>Please Enter Credentials.</h2>
 
