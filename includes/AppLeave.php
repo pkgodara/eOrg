@@ -44,7 +44,7 @@ else
 
 	// Insert application data into application database
 	//
-	$stmt = $sqlConn->prepare("Insert INTO $AppDB VALUES(NULL,?,?,?,?,?)");
+	$stmt = $sqlConn->prepare("Insert INTO $AppDB VALUES (NULL,?,?,?,?,?)");
 	$stmt->bind_param( 'sssss',$appTy ,$status ,$from ,$upto , $reason ) ;
 
 	if ( ! $stmt->execute() )
@@ -52,13 +52,14 @@ else
 		echo "Error generating application.";
 		die();
 	}
+	
 
 	$id = $stmt->insert_id ;  // auto incremented application id .
 
 	// Add Application id in sender's database
 	//
 	$userDB = str_replace('.','$',$user);
-	$stmt = $sqlConn->prepare("INSERT INTO $userDB (?,?)");
+	$stmt = $sqlConn->prepare("INSERT INTO $userDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$appTy);
 
 	if( ! $stmt->execute() )
@@ -70,7 +71,7 @@ else
 	// Add application id in receiver's database
 	//
 	$destDB = str_replace('.','$',$dest);
-	$stmt = $sqlConn->prepare("INSERT INTO $destDB (?,?)");
+	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$appTy);
 
 	if( ! $stmt->execute() )
