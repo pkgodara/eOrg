@@ -1,7 +1,9 @@
 
 <?php
 /*
- *  remove user details and all data if required from database.
+ * generate html page with info from database to edit user details.
+ *
+ * EditUser.php posts data here.
  */
 
 session_start();
