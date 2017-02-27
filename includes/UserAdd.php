@@ -1,6 +1,7 @@
 <?php
 
 /* 
+ * AddUser.php posts data here.
  * backend for adding user.
  */
 

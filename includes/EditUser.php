@@ -1,6 +1,7 @@
 <?php
 
 /* 
+ * generates form to get username to edit details for.
  * Allows admin to edit user details.
  */
 
