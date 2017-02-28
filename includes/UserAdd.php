@@ -1,6 +1,7 @@
 <?php
 
 /* 
+ * AddUser.php posts data here.
  * backend for adding user.
  */
 
@@ -19,7 +20,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	$user = $_POST['user'];
 
-	if( ! preg_match('/[A-Za-z0-9.]/' , $user ) )
+	if( ! preg_match('#^[A-Za-z0-9\.]+$#' , $user ) )
 	{
 		echo "Username not allowed";
 		die();
