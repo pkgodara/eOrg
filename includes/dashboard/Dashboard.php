@@ -61,8 +61,8 @@ if( password_verify($passwd,$row[1]) ) //if password correct
 }
 else
 {
-	echo "Incorrect credentials.";
-	die();
+	echo "Incorrect credentials.";	
+        die();
 }
 
 

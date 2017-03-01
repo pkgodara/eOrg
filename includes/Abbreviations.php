@@ -11,22 +11,44 @@
 $Abbr['Faculty'] = 'F' ; $DAbbr['F'] = 'Faculty' ;
 $Abbr['Student'] = 'S' ; $DAbbr['S'] = 'Student' ;
 
-$Abbr['Faculty Adviser'] = 'FA' ; $DAbbr['FA'] = 'Faculty Adviser' ;
+//other Acedmic Rank
+
+$AbbrOArnk['Faculty Adviser'] = 'FA' ; $DAbbrOArnk['FA'] = 'Faculty Adviser' ;
+$AbbrOArnk['Head Of Department'] = 'HOD'; $DAbbrOArnk['HOD'] = 'Head Of Department' ;
+
+
+
+
+
 
 $Abbr['Academic'] = 'AC' ; $DAbbr['AC'] = 'Academic' ;
 
 // abbreviations for department
 
-$Abbr['Computer Science And Engineering'] = 'CS' ; $DAbbr['CS'] = 'Computer Science And Engineering' ;
-$Abbr['Electrical Engineering'] = 'EE' ; $DAbbr['EE'] = 'Electrical Engineering' ;
-$Abbr['Mechanical Engineering'] = 'ME' ; $DAbbr['ME'] = 'Mechanical Engineering' ;
-$Abbr['Civil Engineering'] = 'CE' ; $DAbbr['CE'] = 'Civil Engineering' ;
-$Abbr['Chemical Engineering'] = 'CT' ; $DAbbr['CT'] = 'Chemical Engineering' ;
+$AbbrDept['Computer Science And Engineering'] = 'CS' ; $DAbbrDept['CS'] = 'Computer Science And Engineering' ;
+$AbbrDept['Electrical Engineering'] = 'EE' ; $DAbbrDept['EE'] = 'Electrical Engineering' ;
+$AbbrDept['Mechanical Engineering'] = 'ME' ; $DAbbrDept['ME'] = 'Mechanical Engineering' ;
+$AbbrDept['Civil Engineering'] = 'CE' ; $DAbbrDept['CE'] = 'Civil Engineering' ;
+$AbbrDept['Chemical Engineering'] = 'CT' ; $DAbbrDept['CT'] = 'Chemical Engineering' ;
 
 //Application status
 $AppStat['G'] = 'Generated';
 $AppStat['A'] = 'Approved';
 $AppStat['P'] = 'Pending';
 $AppStat['Y'] = 'Accepted';
+
+
+//abbreviations degree
+$AbbrDeg['BTech'] = 'B';  $DAbbrDeg['B'] = 'BTech';
+$AbbrDeg['MTech'] = 'M';  $DAbbrDeg['M'] = 'MTech';
+$AbbrDeg['PhD']   = 'P';  $DAbbrDeg['P'] = 'PhD';
+
+
+//Academic ranks
+$AbbrArnk['professor'] = 'prof'; $DAbbrArnk['prof'] = 'professor';
+$AbbrArnk['Associate Professor'] = 'AsProf'; $DAbbrArnk['AsProf'] = 'Associate Professor';
+$AbbrArnk['Assistant Professor'] = 'AProf' ; $DAbbrArnk['AProf'] = 'Assistant Professor';
+
+
 
 ?>

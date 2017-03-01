@@ -15,10 +15,28 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 
 if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['design']) )
 {
-	require_once "../LocalSettings.php";
+	
+
+require_once "../LocalSettings.php";
 	require_once "Globals.php";
 
-	$user = $_POST['user'];
+
+if($_POST['design'] == 'student')
+{
+$design = 'Student';
+}
+else if(isset($_POST['OArnk']) && $_POST['OArnk'] == yes )
+{
+$design = $_POST['OArank'];
+}
+else
+{
+$design = $_POST['Arnk'];
+}
+
+
+
+$user = $_POST['user'];
 
 	if( ! preg_match('#^[A-Za-z0-9\.]+$#' , $user ) )
 	{
@@ -38,8 +56,11 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	// insert login data into database
 	//
+
+
+
 	$stmt = $sqlConn->prepare("Insert INTO $loginDB VALUES ( ?,?,?,? )" );
-	$stmt->bind_param('ssss',$_POST['user'],$hash,$_POST['fname'],$_POST['design'] );
+	$stmt->bind_param('ssss',$_POST['user'],$hash,$_POST['fname'], $design );
 
 	if( ! $stmt->execute() )
 	{
