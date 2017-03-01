@@ -27,7 +27,7 @@ $html = <<<HTML
 <br><input type ="radio" name = "design" value = "S">Student ::
 Degree:
 <select name ="deg">
-<option value = > </option>
+<option value = 'null' > </option>
 HTML;
 echo"$html";
 
@@ -54,7 +54,7 @@ $html = <<<HTML
 </select>
 Batch:
 <select name = "batch">
-<option value = > </option>
+<option value = 'null' > </option>
 <option value ="05">2005</option>
 <option value ="06">2006</option>
 <option value ="07">2007</option>
@@ -80,7 +80,7 @@ Batch:
 <input type ="radio" name = "design" value = "F">Faculty ::
 Department:
 <select name = "dept">
-<option value = > </option>
+<option value = 'null'> </option>
 HTML;
 
 
@@ -94,14 +94,14 @@ $html = <<<HTML
 </select>
 Acedmic Rank:
 <select name = "Arnk" >
-<option value = > </option>
+<option value = 'null' > </option>
 HTML;
 
 echo "$html";
 
 foreach($AbbrArnk as $a)
 {
-echo"<option value =".$a.">".$DAbbrArnk[$a]."</option>";
+echo"<option value = ".$a.">".$DAbbrArnk[$a]."</option><br>";
 }
 
 $html = <<<HTML
@@ -112,7 +112,7 @@ Other Rank::
 <input type = "radio" name = "OArnk" value = "No" >No <br>
 if yes then select:
 <select name = "OArank" >
-<option value = > </option>
+<option value = 'null'> </option>
 HTML;
 
 echo "$html";
@@ -121,7 +121,7 @@ echo "$html";
 
 foreach($AbbrOArnk as $a )
 {
-echo"<option value =".$a.">".$DAbbrOArnk[$a]."</option>";
+echo"<option value = ".$a.">".$DAbbrOArnk[$a]."</option><br>";
 }
 
 $html = <<<HTML

@@ -30,8 +30,8 @@ if($_POST['design'] == 'S')
 
 {
 
-if(isset($_POST['deg'] ) && isset($_POST['dcpln']) && isset($_POST['batch']) && ($_POST['dcpln'] != 'null') && ($_POST['deg'] != 'null') && ($_POST['batch'] != 'null'))
-$design = $_POST['design'].$a.$_POST['deg'].$a.$_POST['dcpln'].$a.$_POST['batch'].';';
+if(isset($_POST['deg'] ) && isset($_POST['dcpln']) && isset($_POST['batch']) && ($_POST['dcpln'] != 'null') && ($_POST['deg'] != 'null') && ($_POST['batch'] != 'null') )
+$design = $_POST['design'].$a.$_POST['deg'].$a.$_POST['dcpln'].$a.$_POST['batch'];
 else
 {
 echo "Please fill the details first.";
@@ -41,11 +41,11 @@ echo "Please fill the details first.";
 
 
 
-else if(isset($_POST['OArnk']) && $_POST['OArnk'] == yes )
+else if(isset($_POST['OArnk']) && $_POST['OArnk'] == 'yes')
 {
-if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null')
+if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null' && $_POST['OArank'] != 'null')
 
-$design = $_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].$a.$_POST['OArank'].';';
+$design = $_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].';'.$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].$a.$_POST['OArank'];
 else
 {
 echo "Please fill the details first.";
@@ -55,9 +55,10 @@ echo "Please fill the details first.";
 
 else
 {
-if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && isset($_POST['OArnk']) && $_POST['dept'] != 'nuul' && $_POST['Arnk'] != 'null')
+if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && isset($_POST['OArnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null')
 
-$design =$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].';';
+$design =$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'];
+
 else
 {
 echo "Please fill the details first.";
