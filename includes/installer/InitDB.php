@@ -54,6 +54,21 @@ if ( ! $stmt->execute() ) // if unsuccessful
 $stmt->close();
 
 
+// Create [ Database => username ] storing tables in Database
+//
+$query = "CREATE TABLE IF NOT EXISTS $DesigDB ( $DesigD VARCHAR(20) NOT NULL, $UNameD VARCHAR(50) NOT NULL, INDEX idx USING BTREE ($DesigD) )";
+
+$stmt = $sqlConn->prepare( $query );
+
+
+if ( ! $stmt->execute() ) // if unsuccessful
+{
+	echo "Error creating design database.";
+	die();
+}
+$stmt->close();
+
+
 // create application tables to store application data
 //
 $query = "CREATE TABLE IF NOT EXISTS $AppDB ( $AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL , $AppTy VARCHAR(5) , $stat VARCHAR(255) NOT NULL, $AFrom VARCHAR(10) NOT NULL , $AUpto VARCHAR(10) NOT NULL , $AReason VARCHAR(255) NOT NULL , PRIMARY KEY($AppId) )" ;

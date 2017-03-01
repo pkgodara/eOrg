@@ -22,5 +22,9 @@ $AppDB = 'ApplicationData' ;
 	$AUpto = 'AppUpto';
 	$AReason = 'AppReason';
 
+// Designation => user , database
+$DesigDB = 'DesignationsData';
+	$DesigD = 'Designation';
+	$UNameD = 'UserName';
 
 ?>
