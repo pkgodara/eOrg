@@ -13,6 +13,8 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 	die();
 }
 
+
+
 if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['design']) )
 {
 	
@@ -20,18 +22,47 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 require_once "../LocalSettings.php";
 	require_once "Globals.php";
 
+$a=',';
 
-if($_POST['design'] == 'student')
+
+
+if($_POST['design'] == 'S')
+
 {
-$design = 'Student';
-}
-else if(isset($_POST['OArnk']) && $_POST['OArnk'] == yes )
-{
-$design = $_POST['OArank'];
-}
+
+if(isset($_POST['deg'] ) && isset($_POST['dcpln']) && isset($_POST['batch']) && ($_POST['dcpln'] != 'null') && ($_POST['deg'] != 'null') && ($_POST['batch'] != 'null'))
+$design = $_POST['design'].$a.$_POST['deg'].$a.$_POST['dcpln'].$a.$_POST['batch'].';';
 else
 {
-$design = $_POST['Arnk'];
+echo "Please fill the details first.";
+	die();
+}
+}
+
+
+
+else if(isset($_POST['OArnk']) && $_POST['OArnk'] == yes )
+{
+if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null')
+
+$design = $_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].$a.$_POST['OArank'].';';
+else
+{
+echo "Please fill the details first.";
+	die();
+}
+}
+
+else
+{
+if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && isset($_POST['OArnk']) && $_POST['dept'] != 'nuul' && $_POST['Arnk'] != 'null')
+
+$design =$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].';';
+else
+{
+echo "Please fill the details first.";
+	die();
+}
 }
 
 

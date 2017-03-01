@@ -24,9 +24,9 @@ $html = <<<HTML
 <tr><th>Password : </th><td><input type="text" name="passwd" required/> </td></tr>
 <tr><th>Full Name : </th><td><input type="text" name="fname" required/> </td></tr>
 </table>
-<br><input type ="radio" name = "design" value = "student">Student ::
+<br><input type ="radio" name = "design" value = "S">Student ::
 Degree:
-<select name ="std">
+<select name ="deg">
 <option value = > </option>
 HTML;
 echo"$html";
@@ -38,9 +38,9 @@ echo"<option value =".$a.">".$DAbbrDeg[$a]."</option>";
 
 $html = <<<HTML
 </select>
-department:
+Department:
 <select name = "dcpln">
-<option value = > </option>
+<option value = "null" > </option>
 HTML;
 
 
@@ -77,9 +77,9 @@ Batch:
 </select>
 <br><hr>
 <Br>
-<input type ="radio" name = "design" value = "faculty">Faculty ::
+<input type ="radio" name = "design" value = "F">Faculty ::
 Department:
-<select name = "dcpln">
+<select name = "dept">
 <option value = > </option>
 HTML;
 
