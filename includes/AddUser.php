@@ -11,7 +11,7 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 	die();
 }
 
-$html = <<<HTML
+/*$html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +42,8 @@ $html = <<<HTML
 </body>
 </html>
 HTML;
+*/
 
-echo $html;
+require 'option.php';
 
 ?>
