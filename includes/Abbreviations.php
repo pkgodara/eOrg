@@ -36,7 +36,7 @@ $AppStat['G'] = 'Generated';
 $AppStat['A'] = 'Approved';
 $AppStat['P'] = 'Pending';
 $AppStat['Y'] = 'Accepted';
-
+$AppStat['R'] = 'Rejected';
 
 //abbreviations degree
 $AbbrDeg['BTech'] = 'B';  $DAbbrDeg['B'] = 'BTech';
@@ -45,9 +45,9 @@ $AbbrDeg['PhD']   = 'P';  $DAbbrDeg['P'] = 'PhD';
 
 
 //Academic ranks
-$AbbrArnk['professor'] = 'prof'; $DAbbrArnk['prof'] = 'professor';
-$AbbrArnk['Associate Professor'] = 'AsProf'; $DAbbrArnk['AsProf'] = 'Associate Professor';
-$AbbrArnk['Assistant Professor'] = 'AProf' ; $DAbbrArnk['AProf'] = 'Assistant Professor';
+$AbbrArnk['Professor'] = 'P'; $DAbbrArnk['P'] = 'Professor';
+$AbbrArnk['Associate Professor'] = 'AsP'; $DAbbrArnk['AsP'] = 'Associate Professor';
+$AbbrArnk['Assistant Professor'] = 'AP' ; $DAbbrArnk['AP'] = 'Assistant Professor';
 
 
 
