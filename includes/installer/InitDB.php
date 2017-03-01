@@ -56,7 +56,7 @@ $stmt->close();
 
 // Create [ Database => username ] storing tables in Database
 //
-$query = "CREATE TABLE IF NOT EXISTS $DesigDB ( $Desig VARCHAR(20) NOT NULL, $UName VARCHAR(50) NOT NULL, INDEX idx USING BTREE ($Desig) )";
+$query = "CREATE TABLE IF NOT EXISTS $DesigDB ( $DesigD VARCHAR(20) NOT NULL, $UNameD VARCHAR(50) NOT NULL, INDEX idx USING BTREE ($DesigD) )";
 
 $stmt = $sqlConn->prepare( $query );
 

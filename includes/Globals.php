@@ -24,7 +24,7 @@ $AppDB = 'ApplicationData' ;
 
 // Designation => user , database
 $DesigDB = 'DesignationsData';
-	$Desig = 'Designation';
-	$UName = 'UserName';
+	$DesigD = 'Designation';
+	$UNameD = 'UserName';
 
 ?>
