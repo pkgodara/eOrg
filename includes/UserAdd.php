@@ -22,54 +22,74 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 require_once "../LocalSettings.php";
 	require_once "Globals.php";
 
-$a=',';
+$a = ',';
 
 
 
-if($_POST['design'] == 'S')
+if( $_POST['design'] == 'S')
 
 {
 
-if(isset($_POST['deg'] ) && isset($_POST['dcpln']) && isset($_POST['batch']) && ($_POST['dcpln'] != 'null') && ($_POST['deg'] != 'null') && ($_POST['batch'] != 'null') )
+if( isset($_POST['deg'] ) && isset($_POST['dcpln']) && isset($_POST['batch']) && ($_POST['dcpln'] != 'null') && ($_POST['deg'] != 'null') && ($_POST['batch'] != 'null') )
 $design = $_POST['design'].$a.$_POST['deg'].$a.$_POST['dcpln'].$a.$_POST['batch'];
+
+
 else
+
 {
 echo "Please fill the details first.";
 	die();
 }
+
+
 }
 
 
 
 else if(isset($_POST['OArnk']) && $_POST['OArnk'] == 'yes')
+
+
 {
+
+
 if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null' && $_POST['OArank'] != 'null')
 
-$design = $_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].';'.$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].$a.$_POST['OArank'];
+$design = $_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].';'.$_POST['design'].$a.$_POST['dept'].$a.$_POST['OArank'];
+
+
 else
+
 {
 echo "Please fill the details first.";
 	die();
 }
+
+
 }
 
+
 else
+
 {
 if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && isset($_POST['OArnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null')
 
 $design =$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'];
 
 else
+
+
 {
 echo "Please fill the details first.";
 	die();
 }
+
 }
 
 
 
 $user = $_POST['user'];
 
+	
 	if( ! preg_match('#^[A-Za-z0-9\.]+$#' , $user ) )
 	{
 		echo "Username not allowed";
