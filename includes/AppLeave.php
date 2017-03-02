@@ -71,7 +71,7 @@ else
 
 	// Add application id in receiver's database
 	//
-	$destDB = str_replace('.','$',$dest);
+	$destDB = str_replace('.','$',$appr);
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$appTy);
 
