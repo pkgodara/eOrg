@@ -2,6 +2,20 @@
 /* 
  * Generate Login page
  */
+session_start();
+
+if( isset( $_SESSION['Username'] ) )
+{
+	if( $_SESSION['Username'] == 'admin' )
+	{
+		header("Location:includes/dashboard/Admin.php");
+	}
+	else
+	{
+		header("Location:includes/dashboard/User.php");
+	}
+	die();
+}
 
 $html = <<<HTML
 <!DOCTYPE html>
