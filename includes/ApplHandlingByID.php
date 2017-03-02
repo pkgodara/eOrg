@@ -126,7 +126,7 @@ function approve ( $id, $user )
 			global $AppDB; $AppDB = $AppDB;
 			global $AppId; $AppId = $AppId;
 			global $stat; $stat = $stat;
-			$QRY = "UPDATE $AppDB SET $stat = ? WHERE $AppID = ?";
+			$QRY = "UPDATE $AppDB SET $stat = ? WHERE $AppId = ?";
 			$STMT = $sqlconn->prepare ( $QRY );
 			$STMT->bind_param ( 'ss', $newStatus, $id );
 			if ( ! $STMT->execute() )

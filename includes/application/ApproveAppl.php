@@ -13,8 +13,8 @@ if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
 }
 
 
-require "ApplHandlingByID.php";
-require "ApplHandlingByStr.php";
+require "../ApplHandlingByID.php";
+require "../ApplHandlingByStr.php";
 //require_once "Globals.php";
 //require_once "../LocalSettings.php";
 
@@ -28,7 +28,7 @@ else
 {
 	$app_id = $_POST['app_id'];
 	$UID = $_SESSION['Username'];
-	if ( isApprover ( $app_id, $UID ) )
+	if ( isApprover ( $app_id, $UID ) != false )
 	{
 		approve ( $app_id, $UID );
 		echo "The application has been successfully approved<br>";
