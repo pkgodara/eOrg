@@ -25,12 +25,13 @@ else
 	$upto = $_POST['upto'];
 	$reason = $_POST['reason'];
 	$dest = $_POST['dest'];
+	$appr = $_POST['appr'];
 	$appTy = 'LA'; // leave application
 
 	require_once "../LocalSettings.php";
 	require_once "Globals.php";
 
-	$status = $_SESSION['Username'].",G;$dest,P" ; // initial status for application.
+	$status = $_SESSION['Username'].",G;".$appr.",P;"."$dest,P" ; // initial status for application.
 
 	// Connect to mysql
 	//

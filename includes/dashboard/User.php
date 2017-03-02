@@ -30,6 +30,8 @@ $html2 = <<<HTML
 
 <button onclick="document.location.href='../application/LeaveAppl.php'"> Generate Leave Application </button>
 
+<button onclick="document.location.href='../application/handleAppl.php'"> Handle Applications </button>
+
 <button onclick="document.location.href='../Logout.php'"> Log out ! </button>
 
 HTML;
