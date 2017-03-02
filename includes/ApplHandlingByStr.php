@@ -11,6 +11,7 @@
 
 function str_isApproved ( $stat_str, $user )
 {
+
 	$STR = explode ( ';', $stat_str );
 	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
 	{

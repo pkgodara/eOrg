@@ -104,14 +104,14 @@ function approve ( $id, $user )
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
 		$status = explode ( ';', $row[2] );
-		$newStatus = $stasus[0]; // to create the new status.
+		$newStatus = $status[0]; // to create the new status.
 		$flag = 0;       // a flag to check wether the status has been updated or not.
 		for ( $i = 1 ; $i < count ( $status ) ; $i++ )
 		{
 			$Stat = explode ( ',', $status[$i] );
 			if ( strcmp ( $user, $Stat[0] ) == 0 )
 			{
-				$flag = 1;
+				$flag = $i;
 				if ( $Stat[1] == 'P' )
 				{
 					$Stat[1] = 'A';
@@ -134,7 +134,17 @@ function approve ( $id, $user )
 				echo " Unable to perform the task, internal server error.<br>";
 				die();
 			}
+			$next = explode ( ',', $status[ $flag + 1 ] );
+			$NEXT = str_replace('.','$', $next[0] );
+			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?, ? )" );
+			$STMT->bind_param ( 'ss', $id, $row[1] );
+			if ( ! $STMT->execute() )
+			{
+				echo " Unable to perform the task, internal server error.<br>";
+				die();
+			}
 			$STMT->close();
+			
 		}
 		else
 			return false;
@@ -292,7 +302,9 @@ function whoIsApprover ( $id )
 {
 	global $stmt;
 	$stmt = $stmt;
+
 	$stmt->bind_param ( 's', $id );
+
 	if ( ! $stmt->execute() )
 	{
 		echo "there is a problem with the database<br>";
@@ -304,6 +316,7 @@ function whoIsApprover ( $id )
 		$row = mysqli_fetch_row ( $result );
 		$status = explode ( ';', $row[2] );
 		$Stat = explode ( ',', $status[1] );
+
 		return $Stat[0];
 	}
 }

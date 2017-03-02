@@ -92,6 +92,8 @@ HTML;
 		{
 			echo "<td>PENDING for approval </td>";
 		}
+
+
 		if ( str_isAccepted ( $Status, $accepter = whoIsAccepter ( $ROW[0] ) ) )
 		{
 			echo "<td> ACCEPTED by $accepter</td>";
@@ -139,6 +141,7 @@ HTML;
 			echo "$html";
 		}
 	}
+
 
 	echo "</tr>";
 	$i++;
