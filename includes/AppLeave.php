@@ -25,12 +25,13 @@ else
 	$upto = $_POST['upto'];
 	$reason = $_POST['reason'];
 	$dest = $_POST['dest'];
+	$appr = $_POST['appr'];
 	$appTy = 'LA'; // leave application
 
 	require_once "../LocalSettings.php";
 	require_once "Globals.php";
 
-	$status = $_SESSION['Username'].",G;$dest,P" ; // initial status for application.
+	$status = $_SESSION['Username'].",G;".$appr.",P;"."$dest,P" ; // initial status for application.
 
 	// Connect to mysql
 	//
@@ -70,7 +71,7 @@ else
 
 	// Add application id in receiver's database
 	//
-	$destDB = str_replace('.','$',$dest);
+	$destDB = str_replace('.','$',$appr);
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$appTy);
 

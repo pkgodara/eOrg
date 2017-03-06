@@ -33,6 +33,7 @@ $html = <<<HTML
 <tr><th>Leave Start Date :</th><td> <input type="text" name="from" required/> </td></tr>
 <tr><th>Leave Till Date : </th><td><input type="text" name="upto" required/> </td></tr>
 <tr><th>Reason : </th><td><input type="text" name="reason" required/> </td></tr>
+<tr><th>Approver User : </th><td><input type="text" name="appr" required/> </td></tr>
 <tr><th>Receiver User : </th><td><input type="text" name="dest" required/> </td></tr>
 </table>
 
