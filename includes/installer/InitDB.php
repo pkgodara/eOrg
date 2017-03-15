@@ -105,4 +105,19 @@ $sqlConn->close();
 
 echo "All Setup , Now you can use admin credentials to login and add users." ;
 
+
+// categorising the users............
+
+
+session_start();
+if( !isset( $_SESSION['Username'] ) || !isset($_SESSION['Name']) )
+	{
+		$_SESSION['Username'] = "admin";
+		$_SESSION['Name'] = "admin";
+	}
+
+
+require "catUsers.php";
+//echo "<a href='catUsers.php'>click here</a><br>";
+
 ?>

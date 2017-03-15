@@ -29,6 +29,7 @@ require_once "$IP/includes/Globals.php";
 
 require_once "$IP/includes/InitialDB.php";
 
+
 require_once "$IP/includes/Login.php";
 
 ?>
