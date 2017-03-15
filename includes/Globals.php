@@ -27,4 +27,13 @@ $DesigDB = 'DesignationsData';
 	$DesigD = 'Designation';
 	$UNameD = 'UserName';
 
+// User categories database
+
+$catDB = 'UserCategoryData';
+$levels = 'CategoryLevels';
+$levelName = 'CategoryLevelName'; 
+
+
+
+
 ?>
