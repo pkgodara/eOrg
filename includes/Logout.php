@@ -17,6 +17,8 @@ $thankhtml = <<<HTML
 <body >
 <h3> You have logged out successfully.</h3>
 <h4> Thank you. </h4>
+<br><br>
+<a href="/eorg"> GO HOME </a>
 </body>
 </html>
 HTML;
