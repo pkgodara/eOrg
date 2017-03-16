@@ -14,11 +14,11 @@ $thankhtml = <<<HTML
 
 </head>
 
-<body >
-<h3> You have logged out successfully.</h3>
+<body style = "background-color:MediumAquaMarine" >
+<h2> You have logged out successfully.</h2>
 <h4> Thank you. </h4>
 <br><br>
-<a href="/eorg"> GO HOME </a>
+<a href="../"> GO HOME </a>
 </body>
 </html>
 HTML;

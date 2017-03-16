@@ -1,6 +1,15 @@
 <?php
 
-require 'Abbreviations.php';
+session_start();
+
+
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
+{
+	echo "session id :".session_id()." ,You need to login as Admin to add users. Please log in as/contact Admin.";
+	die();
+}
+
+
 
 $html = <<<HTML
 <!DOCTYPE html>
@@ -10,10 +19,10 @@ $html = <<<HTML
 
 </head>
 
-<body >
+<body style ="background-color:LightSlateGray" >
 
-<h2>Please Enter Credentials.</h2>
-
+<h1 style = "text-align:center">Please Enter Credentials.</h1>
+<center>
 <form action="UserAdd.php" method="post">
 
 
@@ -24,115 +33,141 @@ $html = <<<HTML
 <tr><th>Password : </th><td><input type="text" name="passwd" required/> </td></tr>
 <tr><th>Full Name : </th><td><input type="text" name="fname" required/> </td></tr>
 </table>
-<br><input type ="radio" name = "design" value = "S">Student ::
-Degree:
-<select name ="deg">
-<option value = 'null' > </option>
+
 HTML;
 echo"$html";
 
-foreach($AbbrDeg as $a )
+$sqlConn = new mysqli ( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $catDB );
+
+
+if( $sqlConn->connect_errno ) 
 {
-echo"<option value =".$a.">".$DAbbrDeg[$a]."</option>";
+	echo "Error connecting database. Please check your database credentials and update.";
+	die();
 }
 
-$html = <<<HTML
-</select>
-Department:
-<select name = "dcpln">
-<option value = "null" > </option>
-HTML;
 
 
-echo "$html";
+$qry = 'SELECT table_name FROM information_schema.tables WHERE table_schema = ?';//select all table from a data bases
 
-foreach($AbbrDept as $a ){
-echo"<option value =".$a.">".$DAbbrDept[$a]."</option>";
-}
-
-$html = <<<HTML
-</select>
-Batch:
-<select name = "batch">
-<option value = 'null' > </option>
-<option value ="05">2005</option>
-<option value ="06">2006</option>
-<option value ="07">2007</option>
-<option value ="08">2008</option>
-<option value ="09">2009</option>
-<option value ="10">2010</option> 
-<option value ="11">2011</option>
-<option value ="12">2012</option>  
-<option value ="13">2013</option>
-<option value ="14">2014</option>
-<option value ="15">2015</option>
-<option value ="16">2016</option>
-<option value ="17">2017</option>
-<option value ="18">2018</option>
-<option value ="19">2019</option>
-<option value ="20">2020</option>
-<option value ="21">2021</option>
-<option value ="22">2022</option>
-<option value ="23">2023</option>
-</select>
-<br><hr>
-<Br>
-<input type ="radio" name = "design" value = "F">Faculty ::
-Department:
-<select name = "dept">
-<option value = 'null'> </option>
-HTML;
+$stmt = $sqlConn->prepare($qry);
 
 
-echo "$html";
+$stmt->bind_param('s',$catDB);
 
-foreach($AbbrDept as $a ){
-echo"<option value =".$a.">".$DAbbrDept[$a]."</option>";
-}
+$stmt->execute();
 
-$html = <<<HTML
-</select>
-Acedmic Rank:
-<select name = "Arnk" >
-<option value = 'null' > </option>
-HTML;
+$result = $stmt->get_result();
 
-echo "$html";
 
-foreach($AbbrArnk as $a)
+
+if( $result->num_rows == 0  )//find number of rows in result object
+
 {
-echo"<option value = ".$a.">".$DAbbrArnk[$a]."</option><br>";
+
+echo "PLESE FIRST CATEGORIZE THE USER AND THE PROCEED AGAIN<br>THANK YOU!!";
+die();
+
 }
 
-$html = <<<HTML
-</select>
+else
+
+
+{
+
+echo "<h1>Categorize the users.</h1>";
+echo "<b><big>Category::: </big></b>";
+
+while ($row = mysqli_fetch_row($result))
+{
+{
+echo "<input type = 'radio' name = 'name[]' value = $row[0] onclick = 'TableFun( this )'  style='height:20px; width:20px'> <b><big>$row[0]</big></b> ";
+}
+
+}
+echo"<hr>";
+
+
+$h = <<<H
+<div id ="table"></div>
+
+<div id ="t"></div>
 <br><br>
-Other Rank::
-<input type = "radio" name = "OArnk" value = "yes" >Yes
-<input type = "radio" name = "OArnk" value = "No" >No <br>
-if yes then select:
-<select name = "OArank" >
-<option value = 'null'> </option>
-HTML;
-
-echo "$html";
 
 
 
-foreach($AbbrOArnk as $a )
-{
-echo"<option value = ".$a.">".$DAbbrOArnk[$a]."</option><br>";
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+
+
+
+
+
+<script>
+
+
+function TableFun(str) {
+   
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+
+if (this.readyState == 4 && this.status == 200) {
+
+document.getElementById("table").innerHTML = this.responseText;
+
 }
 
-$html = <<<HTML
-</select>
-<br><br><br>
-<input  type="submit" name="submit" value="Create User !" />
+
+}
+
+
+
+xmlhttp.open("POST", "TableDivision.php", true);
+
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");       
+
+xmlhttp.send("q="+str.value);
+    
+}
+
+
+
+
+
+
+function FurtherCategorize(Table ,Str) {
+   
+var xmlhttp = new XMLHttpRequest();
+
+
+xmlhttp.onreadystatechange = function() {
+
+
+if (this.readyState == 4 && this.status == 200) {
+
+$("#t").append("<br><br>"+this.responseText);
+
+}
+}
+
+xmlhttp.open("POST", "Categorize.php", true);
+
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");       
+
+xmlhttp.send("q="+Table+"&f="+Str);
+}
+
+
+
+</script>
+
+<input type ="submit"  value="SUBMIT" style='height:50px; width:200px'>
 </form>
- 
+</center>
 </body>
 </html>
-HTML;
+H;
+echo"$h";
 
-echo "$html";
+}
 ?>

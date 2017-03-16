@@ -16,12 +16,21 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 
 
 
-if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['design']) )
+if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['LastValue']) )
 {
 
 
 	require_once "../LocalSettings.php";
 	require_once "Globals.php";
+	require_once "StringManuplation.php";	
+	
+	$String = $_POST['LastValue'];
+	
+	$design = StringManuplation( $String );//finding final designation name
+
+
+/*	
+	
 
 	$a = ',';
 
@@ -70,7 +79,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	}
 
-
+*/
 
 	$user = $_POST['user'];
 
@@ -144,6 +153,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	$sqlConn->close();
 
 	echo "user added successfully";
+	echo"<br><br><a href = 'AddUser.php'>CREAT ANOTHER USER</a> <br> <a href = '../'>HOME</a><br>";
 	die();
 }
 else
