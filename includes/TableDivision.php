@@ -65,7 +65,7 @@ $result = $stmt->get_result();
 
 if($result->num_rows == 0 )
 {
-echo "<br><br><input type = 'radio' name = 'LastValue' value = $Str checked > ";
+echo "<br><br><input type = 'radio' name = 'LastValue' value = $levelStr checked > ";
 echo "  Categorization is Complete now Submit the form";
 
 }

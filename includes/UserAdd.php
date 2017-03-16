@@ -153,7 +153,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	$sqlConn->close();
 
 	echo "user added successfully";
-	echo"<br><br><a href = 'AddUser.php'>CREAT ANOTHER USER</a> <br> <a href = '/eorg'>HOME</a><br>";
+	echo"<br><br><a href = 'AddUser.php'>CREAT ANOTHER USER</a> <br> <a href = '../'>HOME</a><br>";
 	die();
 }
 else
