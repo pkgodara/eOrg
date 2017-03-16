@@ -57,26 +57,28 @@ if ( $result->num_rows == 0 )
 {
 	echo "enter the 'type' of this category (eg. say the categories are CSE, ME, EE, etc. then its category type would be 'deparement' ) : ";
 $html = <<<HTML
-<form id="afterClick" action="updateCatTable.php" method="post">
+<form  action="updateCatTable.php" method="post">
 <input type="text" name="catType" required="required"><br>
-<input type="text" name="tab" value="$tab" readonly>Now, enter the categories<br>
-<input type="text" name="levelId" value="$levId" readonly>one by one<br>
-Category Name : <input type="text" name="levels[]" required="required">
-<button type="button" onclick="addAnother()" >Add to users</button>
+<input type="radio" name="tab" value="$tab" checked>Now, enter the categories<br>
+<input type="radio" name="levelId" value="$levId" checked>one by one<br>
+<div id="afterClick">
+Category Name(s) : <input type="text" name="levels[]" required="required">
+<button type="button" id="1" onclick="addAnother()" >Want to add another</button>
+</div>
+<br><button type='submit' name='submit'>Done with it !</button><br>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+var i = 1;
 function addAnother ()
 {
+//hiding the previous button
+//
+$("#"+i).hide();
+i++;
 //asking to add another or done with adding
 //
-$("#afterClick").append("<br><button type='button' onclick='takeInput ()'>Want to Add another</button><br><button type='submit' name='submit'>Done with it !</button><br>");
-}
-function takeInput ()
-{
-//taking input if the user prompted to add another
-//
-$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' onclick='addAnother ()' >Add to users</button><br>");
+$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button><br>");
 }
 </script>
 HTML;
@@ -87,7 +89,7 @@ HTML;
 else
 {
 	$qry2 = "SELECT * FROM $tab WHERE $levels REGEXP \"^$catType$\"";
-	$stmt2 = $sqlConn->prepare($qry);
+	$stmt2 = $sqlConn->prepare($qry2);
 	if ( ! $stmt2->execute() )
 	{
 		echo"there is a problem with database<br>";
