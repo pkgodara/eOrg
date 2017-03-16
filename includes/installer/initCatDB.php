@@ -38,6 +38,38 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
+$qry = "SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = ?";
+$stmt = $sqlConn->prepare( $qry );
+$stmt->bind_param ( 's', $catDB );
+
+
+if ( ! $stmt->execute() )
+{
+	echo"there is a problem with database<br>";
+	die ();
+}
+
+$res = $stmt->get_result();
+
+// Starting the creation of tables after these many no. of tables.
+//
+
+$k = $res->num_rows;
+
+//creating array of previously existing tables
+//
+
+$prevTab = array();
+$j = 0; // index for $prevTab
+while ($row = mysqli_fetch_row ($res))
+{
+	$prevTab[$j] = $row[0];
+	$j++;
+}
+
+$stmt->close();
+
+$j = 1; //for further use of j while filling the entries of the tables
 
 for ( $i = 0 ; $i < count ( $lev ) ; $i++ )
 {
@@ -53,21 +85,24 @@ for ( $i = 0 ; $i < count ( $lev ) ; $i++ )
 	}
 
 	$stmt->close();
+	
 
-
-	$val = "L".($i+1);
-	$stmt = $sqlConn->prepare("INSERT INTO $lev[$i] VALUES (?,?)");
-	$stmt->bind_param('ss', $val , $lev[$i] );
-
-
-	if( ! $stmt->execute() )
+	if ( ! in_array($lev[$i], $prevTab) )
 	{
-		echo "Error in database.";
-		die();
+		$val = "L".($j+$k);
+		$j++;
+		$stmt = $sqlConn->prepare("INSERT INTO $lev[$i] VALUES (?,?)");
+		$stmt->bind_param('ss', $val , $lev[$i] );
+
+
+		if( ! $stmt->execute() )
+		{
+			echo "Error in database.";
+			die();
+		}
+		
+		$stmt->close();
 	}
-	
-	$stmt->close();
-	
 }
 
 echo "The entered broad categories has been updated in the database successfully<br>";

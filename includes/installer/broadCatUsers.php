@@ -23,23 +23,26 @@ $html = <<<HTML
 </head>
 <body>
 <p>Enter the categories</p>
-<form id="afterClick" action="initCatDB.php" method="post">
+<form  action="initCatDB.php" method="post">
+<div id="afterClick">
 <input type="text" name="levels[]" required="required">
-<button type="button" onclick="addAnother()" >Add to users</button>
+<button type="button" id="1" onclick="addAnother()" >Want to add another</button>
+</div>
+<br><button type='submit' name='submit'>Done with it !</button><br>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
+var i = 1;
 function addAnother ()
 {
+//hiding the previous button 
+//
+$("#"+i).hide();
+i++;
 //asking to add another or done with adding
 //
-$("#afterClick").append("<br><button type='button' onclick='takeInput ()'>Want to Add another</button><br><button type='submit' name='submit'>Done with it !</button><br>");
-}
-function takeInput ()
-{
-//taking input if the user prompted to add another
-//
-$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' onclick='addAnother ()' >Add to users</button><br>");
+
+$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button><br>");
 }
 </script>
 </body>
