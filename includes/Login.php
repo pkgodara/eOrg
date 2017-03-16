@@ -25,7 +25,7 @@ $html = <<<HTML
 
 </head>
 
-<body >
+<body style ="background-color:LightSlateGray">
 
 <h2>Please Enter your Login credentials.</h2>
 
