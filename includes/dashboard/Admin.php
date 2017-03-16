@@ -19,7 +19,7 @@ $html1 = <<<HTML
 
 </head>
 
-<body >
+<body style ="background-color:LightSlateGray">
 
 <h2>Hello
 HTML;
