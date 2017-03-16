@@ -135,7 +135,7 @@ function page($title,$info,$details) {
 $code
 <br><br>
 
-<button onclick="document.location.href='/eorg'"> Next </button>
+<button onclick="document.location.href='../../'"> Next </button>
 
 </body>
 <html>

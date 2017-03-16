@@ -7,7 +7,7 @@
 class PHPVersionCheck {
 
 	#The number of eOrg version used.
-	var $eorgVersion = '1.0';
+	var $eorgVersion = '2.0';
 
 	#Minimum PHP version required.
 	var $minVersionPHP = '5.4.0';
