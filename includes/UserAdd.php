@@ -16,7 +16,7 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 
 
 
-if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['LastValue']) )
+if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['LastValue'])  && isset($_POST['sex']) )
 {
 
 
@@ -29,59 +29,9 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	$design = StringManuplation( $String );//finding final designation name
 
 
-/*	
-	
-
-	$a = ',';
-
-
-	// check for user-designations and encode it suitably as string
-	//
-	if( $_POST['design'] == 'S')
-	{
-
-		if( isset($_POST['deg'] ) && isset($_POST['dcpln']) && isset($_POST['batch']) && ($_POST['dcpln'] != 'null') && ($_POST['deg'] != 'null') && ($_POST['batch'] != 'null') )
-		{
-			$design = $_POST['design'].$a.$_POST['deg'].$a.$_POST['dcpln'].$a.$_POST['batch'];
-		}
-		else
-		{
-			echo "Please fill the details first.";
-			die();
-		}
-
-	}
-	else if(isset($_POST['OArnk']) && $_POST['OArnk'] == 'yes')
-	{
-
-		if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null' && $_POST['OArank'] != 'null')
-		{
-			$design = $_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'].';'.$_POST['design'].$a.$_POST['dept'].$a.$_POST['OArank'];
-		}
-		else
-		{
-			echo "Please fill the details first.";
-			die();
-		}
-
-	}
-	else
-	{
-		if(isset($_POST['dept'] ) && isset($_POST['Arnk']) && isset($_POST['OArnk']) && $_POST['dept'] != 'null' && $_POST['Arnk'] != 'null')
-		{
-			$design =$_POST['design'].$a.$_POST['dept'].$a.$_POST['Arnk'];
-		}
-		else
-		{
-			echo "Please fill the details first.";
-			die();
-		}
-
-	}
-
-*/
 
 	$user = $_POST['user'];
+
 
 	// Validate username : only A-Z and a-z and 0-9 and . is allowed.
 	if( ! preg_match('#^[A-Za-z0-9\.]+$#' , $user ) )
@@ -106,12 +56,14 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	// insert login data into database
 	//
-	$stmt = $sqlConn->prepare("Insert INTO $loginDB VALUES ( ?,?,?,? )" );
-	$stmt->bind_param('ssss',$_POST['user'],$hash,$_POST['fname'], $design );
+	$stmt = $sqlConn->prepare("Insert INTO $loginDB VALUES ( ?,?,?,?,? )" );
+	$stmt->bind_param('sssss',$_POST['user'],$hash,$_POST['fname'],$_POST['sex'],$design );
 
 	if( ! $stmt->execute() )
 	{
-		echo "Error updating database information, Try another username";
+		echo "<h1 style ='color:red'>Error updating database information, Try another username because same user name already exists</h1>";
+		echo "<br><br><h3><a href = 'AddUser.php'>Add Another User</a>";
+		echo "<br><a href = 'dashboard/Admin.php'>HOME</a></h3>";
 		die();
 	}
 
@@ -152,7 +104,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	$sqlConn->close();
 
-	echo "user added successfully";
+	echo "<h2>User Added Successfully";
 	echo"<br><br><a href = 'AddUser.php'>CREAT ANOTHER USER</a> <br> <a href = '../'>HOME</a><br>";
 	die();
 }

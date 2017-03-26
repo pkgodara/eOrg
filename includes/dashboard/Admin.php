@@ -33,6 +33,9 @@ $html2 = <<<HTML
 
 <button onclick="document.location.href='../RemoveUser.php'"> Remove User </button>
 
+
+<button onclick="document.location.href='../Logout.php'"> Modify Category </button>
+
 <button onclick="document.location.href='../Logout.php'"> Log out ! </button>
 
 
@@ -58,14 +61,14 @@ if( $sqlConn->connect_errno )
 }
 
 $i = 1;
-echo "<pre>	User ID			Name			Designation(s)<br><br></pre>";
+echo "<pre>	User ID			Name			Sex 		Designation(s)<br><br></pre>";
 $qry = "SELECT * FROM $loginDB " ;
 $stmt = $sqlConn->prepare ( $qry );
 $stmt->execute ( );
 $result = $stmt->get_result();
 while ( $row = mysqli_fetch_row ( $result ) )
 {
-	echo "<pre>$i.	$row[0]			$row[2]			$row[3]<br></pre>";
+	echo "<pre>$i.	$row[0]			$row[2]			$row[3]			$row[4]<br></pre>";
 	$i = $i + 1;
 }
 $stmt->close();
