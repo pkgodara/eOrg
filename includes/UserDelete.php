@@ -54,13 +54,14 @@ else
 $qry = "DELETE FROM $loginDB WHERE $UName = ?" ;
 	$stmt = $sqlConn->prepare ( $qry );
 	$stmt->bind_param ( 's', $userN );
-	if (  $stmt->execute() )
 	
+	
+	if (  $stmt->execute() )
 	{
-	 	echo "user $userN has been successfully deleted";
+	 	
 		echo "<br><br><a href = 'RemoveUser.php'>Delete another user.</a>";
 		echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a>";
-	
+		echo "<br><br>user $userN has been successfully deleted";
 	}
 	$stmt->close();
 
@@ -70,9 +71,8 @@ $qry = "DELETE FROM $loginDB WHERE $UName = ?" ;
 		$stmt = $sqlConn->prepare ( "DROP TABLE $user");
 		if ( $stmt->execute() )
 		{
-			echo "And the complete data of user $userN is successfully deleted also.";
-			echo "<br><br><a href = 'RemoveUser.php'>Delete another user.</a>";
-			echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a>";
+			echo " And the complete data of user $userN is successfully deleted also.";
+			
 			die ();
 		}
 		$stmt->close();
