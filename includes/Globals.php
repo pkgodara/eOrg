@@ -8,7 +8,7 @@ $loginDB = 'eorgLoginData' ;
 	$UPasswd = 'PassWord';
 	$FName = 'FullName' ;
 	$Desig = 'Designations';
-
+	$Sex = 'SEX';
 // user database
 $UserAppId = "ApplId";
 $UserAppTy = "AppType";

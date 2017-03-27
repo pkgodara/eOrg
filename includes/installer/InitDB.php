@@ -41,9 +41,12 @@ $hash = password_hash( $passwd , PASSWORD_BCRYPT );
 
 // Create User-Login Credentials storing tables in Database
 //
-$query = "CREATE TABLE IF NOT EXISTS $loginDB ( $UName VARCHAR(50) NOT NULL, $UPasswd VARCHAR(60) NOT NULL, $FName VARCHAR(60) NOT NULL, $Desig VARCHAR(255) NOT NULL, PRIMARY KEY($UName) )" ;
+
+$query = "CREATE TABLE IF NOT EXISTS $loginDB ( $UName VARCHAR(50) NOT NULL, $UPasswd VARCHAR(60) NOT NULL, $FName VARCHAR(60) NOT NULL, $Sex VARCHAR(15) NOT NULL,$Desig VARCHAR(255) NOT NULL, PRIMARY KEY($UName) )" ;
+
 
 $stmt = $sqlConn->prepare( $query );
+
 
 
 if ( ! $stmt->execute() ) // if unsuccessful
@@ -52,6 +55,8 @@ if ( ! $stmt->execute() ) // if unsuccessful
 	die();
 }
 $stmt->close();
+
+
 
 
 // Create [ Database => username ] storing tables in Database
@@ -76,6 +81,8 @@ $query = "CREATE TABLE IF NOT EXISTS $AppDB ( $AppId BIGINT UNSIGNED AUTO_INCREM
 $stmt = $sqlConn->prepare( $query );
 
 
+
+
 if( ! $stmt->execute() )
 {
 	echo "Error creating application database";
@@ -85,9 +92,9 @@ $stmt->close();
 
 // Store credentials in DB
 //
-$query = "Insert INTO $loginDB VALUES ( ? , ? , ? , ? )" ;
+$query = "Insert INTO $loginDB VALUES ( ? , ? , ? , ? ,?)";
 $stmt = $sqlConn->prepare( $query );
-$stmt->bind_param( 'ssss', $user , $hash , $user , $user );
+$stmt->bind_param( 'sssss', $user , $hash , $user , $user, $user );
 
 
 if( ! $stmt->execute() )
@@ -97,7 +104,6 @@ if( ! $stmt->execute() )
 
 $stmt->close();
 $sqlConn->close();
-
 
 
 // Everything alright...............
@@ -119,5 +125,4 @@ if( !isset( $_SESSION['Username'] ) || !isset($_SESSION['Name']) )
 
 require "catUsers.php";
 //echo "<a href='catUsers.php'>click here</a><br>";
-
 ?>
