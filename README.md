@@ -14,7 +14,7 @@ To reduce paperwork in organisations as far as possible.
 
 To build an enhanced structure for better application management within organisation.
 
-Proficient and secure way to manage different types of documents/applications.
+Proficient and secure way to manage different types of documents/applications within an organisation.
 
 # Installation :
 
