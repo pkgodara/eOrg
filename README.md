@@ -12,7 +12,7 @@ eOrg is a free open source software intended to reduce loads of paperwork done i
 
 To reduce paperwork in organisations as far as possible.
 
-To build an enhanced structure for better communication among members of organisation.
+To build an enhanced structure for better application management within organisation.
 
 Proficient and secure way to manage different types of documents/applications.
 
