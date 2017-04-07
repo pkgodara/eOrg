@@ -42,7 +42,7 @@ i++;
 //asking to add another or done with adding
 //
 
-$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button><br>");
+$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button>");
 }
 </script>
 </body>

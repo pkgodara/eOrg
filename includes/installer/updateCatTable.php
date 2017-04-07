@@ -31,7 +31,7 @@ $tab = $_POST['tab'];
 $levId = $_POST['levelId'];
 $catType = $_POST['catType'];
 $catId = str_replace ( "L", "C", $levId );
-
+$newLevId = $levId."_";
 $lev = array();
 $lev = $_POST['levels'];
 
@@ -60,7 +60,7 @@ for ( $i = 0 ; $i < count ( $lev ) ; $i++ )
 	$query = "INSERT INTO $tab VALUES (?, ?)";
 
 	$stmt = $sqlConn->prepare( $query );
-	$temp = $levId.($i+1);
+	$temp = $levId."_".($i+1);
 	$stmt->bind_param ('ss',$temp, $lev[$i] );
 
 

@@ -62,6 +62,7 @@ echo $html;
 
 while ( $row = mysqli_fetch_row ( $res ) )
 {
+	$tableName = str_replace('_', ' ', $row[0]);
 	$qry2 = "SELECT * FROM $row[0] LIMIT 1"; // to take the level no. of the broad category
 	$stmt2 = $sqlConn->prepare ( $qry2 );
 	if ( ! $stmt2->execute () )
@@ -71,7 +72,7 @@ while ( $row = mysqli_fetch_row ( $res ) )
 	}
 	$res2 = $stmt2->get_result ();
 	$row2 = mysqli_fetch_row ( $res2 );
-	echo "<input type='radio' id=$row2[1] name='users' value=$row2[0] onclick='showOptions(this)'>$row2[1]<hr><div id=$row2[0]></div><hr><br>";
+	echo "<input type='radio' id=$row2[1] name='users' value=$row2[0] onclick='showOptions(this)'>$tableName<div id=$row2[0]></div><hr><br>";
 	$stmt2->close();
 }	
 

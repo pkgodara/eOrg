@@ -73,7 +73,8 @@ $j = 1; //for further use of j while filling the entries of the tables
 
 for ( $i = 0 ; $i < count ( $lev ) ; $i++ )
 {
-	$query = "CREATE TABLE IF NOT EXISTS $lev[$i] ( $levels VARCHAR(200) NOT NULL, $levelName VARCHAR(50) NOT NULL, INDEX idx USING BTREE ($levels) )";
+	$LEV = preg_replace('/\s+/', '_', $lev[$i]);
+	$query = "CREATE TABLE IF NOT EXISTS $LEV ( $levels VARCHAR(200) NOT NULL, $levelName VARCHAR(50) NOT NULL, INDEX idx USING BTREE ($levels) )";
 
 	$stmt = $sqlConn->prepare( $query );
 
@@ -87,12 +88,12 @@ for ( $i = 0 ; $i < count ( $lev ) ; $i++ )
 	$stmt->close();
 	
 
-	if ( ! in_array($lev[$i], $prevTab) )
+	if ( ! in_array($LEV, $prevTab) )
 	{
-		$val = "L".($j+$k);
+		$val = "L_".($j+$k);
 		$j++;
-		$stmt = $sqlConn->prepare("INSERT INTO $lev[$i] VALUES (?,?)");
-		$stmt->bind_param('ss', $val , $lev[$i] );
+		$stmt = $sqlConn->prepare("INSERT INTO $LEV VALUES (?,?)");
+		$stmt->bind_param('ss', $val , $LEV );
 
 
 		if( ! $stmt->execute() )

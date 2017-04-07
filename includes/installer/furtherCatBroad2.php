@@ -39,8 +39,8 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
-
-$qry = "SELECT * FROM $tab WHERE $levels REGEXP \"^$levId.$\"";
+$newLevId = $levId."_[0-9]{1,}";
+$qry = "SELECT * FROM $tab WHERE $levels REGEXP \"^$newLevId$\"";
 $stmt = $sqlConn->prepare($qry);
 
 if ( ! $stmt->execute() )
@@ -106,7 +106,7 @@ else
 	$stmt2->close();
 	while ( $row = mysqli_fetch_row ($result) )
 	{
-		echo "<input type='radio' name=$catType id=$tab value=$row[0] onclick='showOptions (this)' >$row[1]<hr><div id=$row[0]></div><hr>";
+		echo "<input type='radio' name=$catType id=$tab value=$row[0] onclick='showOptions (this)' >$row[1]<div id=$row[0]></div><hr>";
 	}
 	$stmt->close();
 	
