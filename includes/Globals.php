@@ -33,6 +33,10 @@ $catDB = 'UserCategoryData';
 $levels = 'CategoryLevels';
 $levelName = 'CategoryLevelName'; 
 
+// application type database
+
+$applnDB = 'ApplnDataBase';
+$entries = 'entries';
 
 
 
