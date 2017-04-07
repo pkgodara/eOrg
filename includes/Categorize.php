@@ -21,7 +21,7 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 $TableName = $_REQUEST['q'];
 $LevelStr =  $_REQUEST['f'];
 
-
+$newLevelStr = $LevelStr."_[0-9]{1,}";
 
 require 'Globals.php';
 require '../LocalSettings.php';
@@ -74,9 +74,9 @@ $row = mysqli_fetch_row($result);
 echo"SELECT ".$row[1]." ::    ";
 
 
-show_cate( $table , $LevelStr  );
+show_cate( $table ,$newLevelStr  );
 }
-function show_cate( $table , $LevelStr  )
+function show_cate( $table ,$newLevelStr )
 {
 global $sqlConn ;
 
@@ -84,9 +84,9 @@ global $sqlConn ;
 $sqlConn = $sqlConn ;
 
 global $levels;
- $levels = $levels;
+$levels = $levels;
 
-$qry = "select * from $table where $levels regexp \"^$LevelStr.$\" ";
+$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
 
 $stmt = $sqlConn->prepare($qry);
 

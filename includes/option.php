@@ -83,11 +83,10 @@ echo "<b><big>Category::: </big></b>";
 
 while ($row = mysqli_fetch_row($result))
 {
-{
-echo "<input type = 'radio' name = 'name[]' value = $row[0] onclick = 'TableFun( this )'  style='height:20px; width:20px'> <b><big>$row[0]</big></b> ";
+$Str = str_replace('_',' ',$row[0]) ;
+echo "<input type = 'radio' name = 'name[]' value = $row[0] onclick = 'TableFun( this )'  style='height:20px; width:20px'> <b><big>$Str</big></b> ";
 }
 
-}
 echo"<hr>";
 
 

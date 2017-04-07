@@ -48,6 +48,7 @@ $r = mysqli_fetch_row($result);
 
 
 $levelStr = $r[0];
+$newLevelStr = $levelStr."_[0-9]{1,}";
 
 $table= $r[1];
 
@@ -75,11 +76,11 @@ else
 $row = mysqli_fetch_row($result);
 echo"<big><b>SELECT ".$row[1]." :::</big></b>  ";
 
-show_cat( $table , $levelStr  );
+show_cat( $table , $newLevelStr );
 }
 
 
-function show_cat( $table , $levelStr  )
+function show_cat( $table , $newLevelStr  )
 {
 
 global $sqlConn ;
@@ -87,15 +88,14 @@ $sqlConn = $sqlConn ;
 global $levels;
  $levels = $levels;
 
-$qry = "select * from $table where $levels regexp \"^$levelStr.$\" ";//change table name $table and where = $levels
-
+$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
 $stmt = $sqlConn->prepare($qry);
 
 $stmt->execute();
 
 $result = $stmt->get_result();
 
-echo"<select name = 'level'  id = $table onclick = 'FurtherCategorize( this.id ,this.value )'>";//change table name $table
+echo"<select name = 'level'  id = $table onclick = 'FurtherCategorize( this.id ,this.value )'>";
 
 while ($r = mysqli_fetch_row($result))
 

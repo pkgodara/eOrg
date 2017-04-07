@@ -10,28 +10,24 @@ function StringManuplation( $String )
 {
 
 $length = strlen($String);
-$t =",";
-$k = 1;
-$str = "";
-for($i = 0 ;$i < $length ;$i++ )
-{
-	
-for($j = 0 ;$j <= $k  ;$j++  )
-{
- if($k < $length)
- {
-$str = $str.$String[$j] ;
- }
-}
- if($k < $length - 1)
- {
-$str = $str.$t ;
-	 }
-$k++;
 
+$finalStr = "";
+
+for($i = 2 ;$i < $length ;$i++)
+{
+
+	if($String[$i] == '_' )
+	{	
+
+$temp = substr($String ,0 , $i);
+$finalStr = $finalStr.$temp.";";
+
+	}
 }
- 
-return ($str);
+
+$finalStr = $finalStr.$String;
+	
+	return ($finalStr);
 }
  
 ?>
