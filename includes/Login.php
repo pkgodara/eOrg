@@ -21,11 +21,18 @@ $html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+body {
+    
+    background-image: url("nat.jpg");
+}
+
+</style>
 <title>Login!</title>
 
 </head>
-
-<body style ="background-color:LightSlateGray">
+<center>
+<body>
 
 <h2>Please Enter your Login credentials.</h2>
 
@@ -39,10 +46,10 @@ $html = <<<HTML
 <tr><th>Password  : </th><td><input type="password" name="Passwd" required/> </td></tr>
 
 </table>
-
-<input  type="submit" name="login" value="Login!" />
+<br><br><br><br>
+<input  type="submit" name="login" value="Login!" style=" font-size : 30px; height:auto; width:auto ;background-color: 	#000080 ;border:15px ;color:white" />
 </form>
-
+</centre>
 </body>
 </html>
 HTML;

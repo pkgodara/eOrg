@@ -15,29 +15,35 @@ $html1 = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+body {
+color:white;
+    background-image: url("../../adminpic.jpg");
+}
+</style>
 <title>Admin</title>
 
 </head>
-
-<body style ="background-color:LightSlateGray">
-
+<center>
+<body>
+<br><br><br><br>
 <h2>Hello
 HTML;
 
 $html2 = <<<HTML
 </h2>
+<br><br><br><br>
+<button onclick="document.location.href='../AddUser.php'" style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Add User </button>
 
-<button onclick="document.location.href='../AddUser.php'"> Add User </button>
+<button onclick="document.location.href='../EditUser.php'"style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Edit User </button>
 
-<button onclick="document.location.href='../EditUser.php'"> Edit User </button>
-
-<button onclick="document.location.href='../RemoveUser.php'"> Remove User </button>
+<button onclick="document.location.href='../RemoveUser.php'"style=" font-size : 25px; height:auto; width:auto ;background-color:blue ;border:10px "> Remove User </button>
 
 
-<button onclick="document.location.href='../Logout.php'"> Modify Category </button>
+<button onclick="document.location.href='../Logout.php'"style=" font-size : 25px; height:auto; width:auto ;background-color:blue ;border:10px "> Modify Category </button>
 
-<button onclick="document.location.href='../Logout.php'"> Log out ! </button>
-
+<button onclick="document.location.href='../Logout.php'"style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Log out ! </button>
+<br><br><br><br>
 
 HTML;
 
@@ -47,7 +53,7 @@ echo " ".$_SESSION['Name'];
 
 
 echo $html2;
-echo "<br><br><br>The available users are :<br><br>";
+echo "<h2><br><br><br>The available users are :<br><br>";
 
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
@@ -75,6 +81,6 @@ $stmt->close();
 $sqlConn->close();
 
 
-echo "</body> </html>";
+echo "</center></body> </html>";
 
 ?>
