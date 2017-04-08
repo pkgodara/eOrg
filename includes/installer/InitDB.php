@@ -74,21 +74,6 @@ if ( ! $stmt->execute() ) // if unsuccessful
 $stmt->close();
 
 
-// create application tables to store application data
-//
-$query = "CREATE TABLE IF NOT EXISTS $AppDB ( $AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL , $AppTy VARCHAR(5) , $stat VARCHAR(255) NOT NULL, $AFrom VARCHAR(10) NOT NULL , $AUpto VARCHAR(10) NOT NULL , $AReason VARCHAR(255) NOT NULL , PRIMARY KEY($AppId) )" ;
-
-$stmt = $sqlConn->prepare( $query );
-
-
-
-
-if( ! $stmt->execute() )
-{
-	echo "Error creating application database";
-	die();
-}
-$stmt->close();
 
 // Store credentials in DB
 //
