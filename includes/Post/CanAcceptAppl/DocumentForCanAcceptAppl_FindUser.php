@@ -71,12 +71,13 @@ else
 
 
 echo "<select name = 'level' onclick = 'DocumentForCanAcceptAppl_button( this.value )' >";
-
+echo "<option value = ''  > </option>";
 
 while ($r = mysqli_fetch_row($result))
 
                 {
-                echo "<option value= $r[0]  >$r[0]</option>";
+                $Str = str_replace('_',' ',$r[0]) ;
+                echo "<option value= $r[0]  >$Str</option>";
 		}
 echo"</select>";
 

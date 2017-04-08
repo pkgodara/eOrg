@@ -38,14 +38,15 @@ $html = <<< html
 
 <body style ="color:green ;background-color:yellow">
 
-<form action ="Post.php" method ="post" >
+<form action ="HandalFinaleDataOfCreatePost.php" method ="post" >
 
 POST NAME : <input type = "text"  name ="Pname"><br><br>
-CAN ADD USER ? : <input type="radio" name="adduser" value="yes" >Yes
-<input type="radio" name="adduser" value="no">No<br><br>
 
-CAN DELETE USER ? :<input type="radio" name="delete" value="yes" > Yes
-<input type="radio" name="delete" value="no"> No<br><br>
+CAN ADD USER ? : <input type="radio" name="add_user" value="yes" >Yes
+<input type="radio" name="add_user" value="no">No<br><br>
+
+CAN DELETE USER ? :<input type="radio" name="delete_user" value="yes" > Yes
+<input type="radio" name="delete_user" value="no"> No<br><br>
 
 CAN ASSIGN POST ? :<input type="radio" name="assign_post" value="yes" > Yes
 <input type="radio" name="assign_post" value="no"> No<br><br>
@@ -140,7 +141,8 @@ CAN ACCESS DATABASES OF USER ?if not all then select whose?:
 
 
 function DocumentForCanAcceptAppl_HideEverithing(){
-
+document.getElementById("DocumentForCanAcceptAppl_termination").innerHTML = "";
+document.getElementById("DocumentForCanAcceptAppl_backgroundId").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_acceptApplication").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_further").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_button").innerHTML = "";
@@ -295,7 +297,7 @@ xmlhttp.send("q="+Table+"&f="+Str);
 
 function DocumentForCanAcceptAppl_newPath(Str) {
 $("#DocumentForCanAcceptAppl_backgroundId").hide(); 
-$("#DocumentForCanAcceptAppl_backgroundId").append("<input type = 'text' name = 'canAccept[]'  value= '"+Str+"' >");
+$("#DocumentForCanAcceptAppl_backgroundId").append("<input type = 'text' name = 'canAccept[]'  value= '"+Str+"' readonly>");
 document.getElementById("DocumentForCanAcceptAppl_acceptApplication").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_further").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_button").innerHTML = "";
@@ -309,7 +311,7 @@ DocumentForCanAcceptAppl_WhoseApplication();
 
 function DocumentForCanAcceptAppl_terminate(Str) {
 $("#DocumentForCanAcceptAppl_backgroundId").hide();
-$("#DocumentForCanAcceptAppl_backgroundId").append("<input type = 'text' name = 'canAccept[]'  value = '"+Str+"' >");
+$("#DocumentForCanAcceptAppl_backgroundId").append("<input type = 'text' name = 'canAccept[]'  value = '"+Str+"' readonly>");
 document.getElementById("DocumentForCanAcceptAppl_acceptApplication").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_further").innerHTML = "";
 document.getElementById("DocumentForCanAcceptAppl_button").innerHTML = "";
@@ -329,7 +331,8 @@ document.getElementById("DocumentForCanAcceptAppl_termination").innerHTML = "Pat
 
 
 function DocumentForCanAccessDatabaseOfUser_HideEverithing(){
-
+document.getElementById("DocumentForCanAccessDatabaseOfUser_termination").innerHTML = "";
+document.getElementById("DocumentForCanAccessDatabaseOfUser_backgroundId").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_accessDataBase").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_further").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_button").innerHTML = "";
@@ -492,7 +495,7 @@ xmlhttp.send("q="+Table+"&f="+Str);
 
 function DocumentForCanAccessDatabaseOfUser_newPath(Str) {
 $("#DocumentForCanAccessDatabaseOfUser_backgroundId").hide(); 
-$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value= '"+Str+"' >");
+$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value= '"+Str+"' readonly >");
 document.getElementById("DocumentForCanAccessDatabaseOfUser_accessDataBase").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_further").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_button").innerHTML = "";
@@ -506,7 +509,7 @@ DocumentForCanAccessDatabaseOfUser_WhoseApplication();
 
 function DocumentForCanAccessDatabaseOfUser_terminate(Str) {
 $("#DocumentForCanAccessDatabaseOfUser_backgroundId").hide();
-$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value = '"+Str+"' >");
+$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value = '"+Str+"' readonly >");
 document.getElementById("DocumentForCanAccessDatabaseOfUser_accessDataBase").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_further").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_button").innerHTML = "";

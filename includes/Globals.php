@@ -44,4 +44,22 @@ $applnCount = 'ApplicationCount';
 	$count = 'TotalNoOfApplications';
 	$tillDate = 'UntilDate';
 
+//table for post
+
+$PostTable = "PostTable";
+
+//Colomn name for PostTable
+$NameOfThePost = "PostName";
+$CanAddUser ="AddUser";
+$CanDeleteUser = "DeleteUser";
+$CanAssignPost = "AssignPost";
+$CanHandlePost = "handlePost";
+$CanAcceptApplication = "AcceptAppl";
+$CanAccessDataBaseOfUser = "AccessDatabese";
+
+
+
+
+
+
 ?>

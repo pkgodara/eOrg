@@ -96,9 +96,10 @@ function show_cat( $table , $newLevelStr  )
 	$result = $stmt->get_result();
 
 	echo"<select name = 'level'  id = $table onclick = 'FurtherCategorize( this.id ,this.value )'>";
-
+	echo "<option value = ''  > </option>";
+	
 	while ($r = mysqli_fetch_row($result))
-
+	
 	{
 		echo "<option value= $r[0] >$r[1]</option>";
 	}

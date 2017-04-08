@@ -33,6 +33,7 @@ HTML;
 $html2 = <<<HTML
 </h2>
 <br><br><br><br>
+<button onclick="document.location.href='../Post/CreatePost.php' "style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Create Post </button>
 <button onclick="document.location.href='../AddUser.php'" style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Add User </button>
 
 <button onclick="document.location.href='../EditUser.php'"style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Edit User </button>

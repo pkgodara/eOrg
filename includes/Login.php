@@ -22,9 +22,12 @@ $html = <<<HTML
 <html lang="en">
 <head>
 <style>
+
+
 body {
     
     background-image: url("nat.jpg");
+    background-repeat: no-repeat;
 }
 
 </style>
