@@ -1,12 +1,12 @@
 <?php
 
 /*******************************
-*
-* this file willl handle the option of user categrise.
-*
-*
-*
-********************************/
+ *
+ * this file willl handle the option of user categrise.
+ *
+ *
+ *
+ ********************************/
 
 
 session_start();
@@ -49,8 +49,8 @@ $stmt = $sqlConn->prepare($qry);
 
 if( !$stmt->execute())
 {
-echo"problem in execution!!!";
-die();
+	echo"problem in execution!!!";
+	die();
 }
 
 
@@ -60,8 +60,8 @@ if($result->num_rows == 0 )
 
 {
 
-echo "<br><input type = 'radio' name ='LastValue' value = $LevelStr checked > ";
-echo "<b><big>Categorization is complete now Submit</big></b>";
+	echo "<br><input type = 'radio' name ='LastValue' value = $LevelStr checked > ";
+	echo "<b><big>Categorization is complete now Submit</big></b>";
 
 }
 
@@ -69,40 +69,40 @@ else
 
 {
 
-$row = mysqli_fetch_row($result);
+	$row = mysqli_fetch_row($result);
 
-echo"SELECT ".$row[1]." ::    ";
+	echo"SELECT ".$row[1]." ::    ";
 
 
-show_cate( $table ,$newLevelStr  );
+	show_cate( $table ,$newLevelStr  );
 }
 function show_cate( $table ,$newLevelStr )
 {
-global $sqlConn ;
+	global $sqlConn ;
 
 
-$sqlConn = $sqlConn ;
+	$sqlConn = $sqlConn ;
 
-global $levels;
-$levels = $levels;
+	global $levels;
+	$levels = $levels;
 
-$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
+	$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
 
-$stmt = $sqlConn->prepare($qry);
+	$stmt = $sqlConn->prepare($qry);
 
-$stmt->execute();
+	$stmt->execute();
 
-$result = $stmt->get_result();
+	$result = $stmt->get_result();
 
 
-echo "<select name = 'level' id = $table  onclick = 'FurtherCategorize( this.id ,this.value )' >";
-//echo "<option value= "" ></option>";
-while ($r = mysqli_fetch_row($result))
+	echo "<select name = 'level' id = $table  onclick = 'FurtherCategorize( this.id ,this.value )' >";
+	//echo "<option value= "" ></option>";
+	while ($r = mysqli_fetch_row($result))
 
-                {
-                echo "<option value= $r[0]  >$r[1]</option>";
-		}
-echo"</select>";
+	{
+		echo "<option value= $r[0]  >$r[1]</option>";
+	}
+	echo"</select>";
 }
 
 

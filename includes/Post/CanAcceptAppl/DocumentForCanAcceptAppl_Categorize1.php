@@ -27,14 +27,14 @@ echo "yha per uska dena hi";
 }
 
 
-require '../Globals.php';
-require '../../LocalSettings.php';
+require '../../Globals.php';
+require '../../../LocalSettings.php';
 
 
 $TableName = $_REQUEST['q'];
 $LevelStr =  $_REQUEST['f'];
 
-
+$newLevelStr = $LevelStr."_[0-9]{1,}";
 
 
 $sqlConn = new mysqli ( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $catDB );
@@ -82,14 +82,12 @@ else
 
 $row = mysqli_fetch_row($result);
 
-//echo"SELECT ".$row[1]." ::    ";
 
-
-show_cate( $table , $LevelStr  );
+show_cate( $table , $newLevelStr  );
 }
 
 
-function show_cate( $table , $LevelStr  )
+function show_cate( $table , $newLevelStr )
 {
 global $sqlConn ;
 
@@ -99,7 +97,7 @@ $sqlConn = $sqlConn ;
 global $levels;
  $levels = $levels;
 
-$qry = "select * from $table where $levels regexp \"^$LevelStr.$\" ";
+$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
 
 $stmt = $sqlConn->prepare($qry);
 
@@ -108,8 +106,8 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 
-echo "<select name = 'level' id = '$table'  onclick = 'button1( this.id ,this.value )' >";
-//echo "<option value= "" ></option>";
+echo "<select name = 'level' id = '$table'  onclick = 'DocumentForCanAcceptAppl_button1( this.id ,this.value )' >";
+
 while ($r = mysqli_fetch_row($result))
 
                 {

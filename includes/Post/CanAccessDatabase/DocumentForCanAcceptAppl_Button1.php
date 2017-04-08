@@ -26,8 +26,8 @@ echo "yha per uska dena hi";
 
 }
 
-require '../Globals.php';
-require '../../LocalSettings.php';
+require '../../Globals.php';
+require '../../../LocalSettings.php';
 
 
 $table = $_REQUEST['q'];
@@ -38,7 +38,7 @@ $levelId= $_REQUEST['f'];
 
 
 
-echo "<input  type = 'button' name =  '$table'  id = '$levelId'   value =  'FURTHER EXPLORE'   onclick= 'further_explore(this.name ,this.id)' >";
-echo "<input type ='button' name = '$levelId'  value = 'DONE'  onclick = 'Done(this.name)' >";
+echo "<input  type = 'button' name =  '$table'  id = '$levelId'   value =  'FURTHER EXPLORE'   onclick= 'DocumentForCanAcceptAppl_FurtherExplore(this.name ,this.id)' >";
+echo "<input type ='button' name = '$levelId'  value = 'DONE'  onclick = 'DocumentForCanAcceptAppl_Done(this.name)' >";
 
 ?>

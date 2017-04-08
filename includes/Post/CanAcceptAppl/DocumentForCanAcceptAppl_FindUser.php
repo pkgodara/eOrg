@@ -25,8 +25,8 @@ echo "yha per uska dena hi";
 
 }
 
-require '../Globals.php';
-require '../../LocalSettings.php';
+require '../../Globals.php';
+require '../../../LocalSettings.php';
 
 
 
@@ -70,7 +70,7 @@ else
 {
 
 
-echo "<select name = 'level' onclick = 'button( this.value )' >";
+echo "<select name = 'level' onclick = 'DocumentForCanAcceptAppl_button( this.value )' >";
 
 
 while ($r = mysqli_fetch_row($result))

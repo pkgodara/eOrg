@@ -1,12 +1,12 @@
 <?php
 
 /*****************************************************
-*
-* this file willl handle the option of user categrise.
-*
-*
-*
-******************************************************/
+ *
+ * this file willl handle the option of user categrise.
+ *
+ *
+ *
+ ******************************************************/
 
 
 session_start();
@@ -66,42 +66,42 @@ $result = $stmt->get_result();
 
 if($result->num_rows == 0 )
 {
-echo "<br><br><input type = 'radio' name = 'LastValue' value = $levelStr checked > ";
-echo "  Categorization is Complete now Submit the form";
+	echo "<br><br><input type = 'radio' name = 'LastValue' value = $levelStr checked > ";
+	echo "  Categorization is Complete now Submit the form";
 
 }
 else
 
 {
-$row = mysqli_fetch_row($result);
-echo"<big><b>SELECT ".$row[1]." :::</big></b>  ";
+	$row = mysqli_fetch_row($result);
+	echo"<big><b>SELECT ".$row[1]." :::</big></b>  ";
 
-show_cat( $table , $newLevelStr );
+	show_cat( $table , $newLevelStr );
 }
 
 
 function show_cat( $table , $newLevelStr  )
 {
 
-global $sqlConn ;
-$sqlConn = $sqlConn ;
-global $levels;
- $levels = $levels;
+	global $sqlConn ;
+	$sqlConn = $sqlConn ;
+	global $levels;
+	$levels = $levels;
 
-$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
-$stmt = $sqlConn->prepare($qry);
+	$qry = "select * from $table where $levels regexp \"^$newLevelStr$\" ";
+	$stmt = $sqlConn->prepare($qry);
 
-$stmt->execute();
+	$stmt->execute();
 
-$result = $stmt->get_result();
+	$result = $stmt->get_result();
 
-echo"<select name = 'level'  id = $table onclick = 'FurtherCategorize( this.id ,this.value )'>";
+	echo"<select name = 'level'  id = $table onclick = 'FurtherCategorize( this.id ,this.value )'>";
 
-while ($r = mysqli_fetch_row($result))
+	while ($r = mysqli_fetch_row($result))
 
-                {
-                echo "<option value= $r[0] >$r[1]</option>";
-		}
+	{
+		echo "<option value= $r[0] >$r[1]</option>";
+	}
 
 }
 
