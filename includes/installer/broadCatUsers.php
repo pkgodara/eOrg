@@ -25,7 +25,7 @@ $html = <<<HTML
 <p>Enter the categories</p>
 <form  action="initCatDB.php" method="post">
 <div id="afterClick">
-<input type="text" name="levels[]" required="required">
+<input type="text" name="levels[]" required="required" pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed'>
 <button type="button" id="1" onclick="addAnother()" >Want to add another</button>
 </div>
 <br><button type='submit' name='submit'>Done with it !</button><br>
@@ -35,14 +35,14 @@ $html = <<<HTML
 var i = 1;
 function addAnother ()
 {
-//hiding the previous button 
+//hiding the previous button
 //
 $("#"+i).hide();
 i++;
 //asking to add another or done with adding
 //
 
-$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button>");
+$("#afterClick").append("<br><input type='text' name='levels[]' required='required' pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button>");
 }
 </script>
 </body>
