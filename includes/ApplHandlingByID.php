@@ -8,27 +8,22 @@
 
 
 
-require_once "../../LocalSettings.php";
-require_once "../Globals.php";
-
-
-
-$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
-
-if ( $sqlconn->connect_errno )
+function isApproved ( $id, $type , $user )  // checking wether application is approved or not
 {
-	echo "Internal Server Error, Sorry for inconvenience.";
-	die();
-}
+	require "../../LocalSettings.php";
+	require "../Globals.php";
 
-$qry = "SELECT * FROM $AppDB WHERE $AppId = ?";
-$stmt = $sqlconn->prepare ( $qry );
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
 
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 1, Sorry for inconvenience.";
+		die();
+	}
 
-function isApproved ( $id, $user )  // checking wether application is approved or not
-{
-	global $stmt;
-	$stmt = $stmt;
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -39,7 +34,7 @@ function isApproved ( $id, $user )  // checking wether application is approved o
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		for ( $i = 1 ; $i < count ( $status ) ; $i++ )
 		{
 			$Stat = explode ( ',', $status[$i] );
@@ -57,10 +52,22 @@ function isApproved ( $id, $user )  // checking wether application is approved o
 }
 
 
-function isAccepted ( $id, $user )
+function isAccepted ( $id, $type, $user )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 2, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -71,7 +78,7 @@ function isAccepted ( $id, $user )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		for ( $i = 1 ; $i < count ( $status ) ; $i++ )
 		{
 			$Stat = explode ( ',', $status[$i] );
@@ -89,10 +96,22 @@ function isAccepted ( $id, $user )
 }
 
 
-function approve ( $id, $user )
+function approve ( $id, $type, $user )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 3, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -103,7 +122,7 @@ function approve ( $id, $user )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		$newStatus = $status[0]; // to create the new status.
 		$flag = 0;       // a flag to check wether the status has been updated or not.
 		for ( $i = 1 ; $i < count ( $status ) ; $i++ )
@@ -122,11 +141,7 @@ function approve ( $id, $user )
 		}
 		if ( $flag != 0 )
 		{
-			global $sqlconn; $sqlconn = $sqlconn;
-			global $AppDB; $AppDB = $AppDB;
-			global $AppId; $AppId = $AppId;
-			global $stat; $stat = $stat;
-			$QRY = "UPDATE $AppDB SET $stat = ? WHERE $AppId = ?";
+			$QRY = "UPDATE $type SET $stat = ? WHERE $AppId = ?";
 			$STMT = $sqlconn->prepare ( $QRY );
 			$STMT->bind_param ( 'ss', $newStatus, $id );
 			if ( ! $STMT->execute() )
@@ -137,14 +152,14 @@ function approve ( $id, $user )
 			$next = explode ( ',', $status[ $flag + 1 ] );
 			$NEXT = str_replace('.','$', $next[0] );
 			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?, ? )" );
-			$STMT->bind_param ( 'ss', $id, $row[1] );
+			$STMT->bind_param ( 'ss', $id, $type );
 			if ( ! $STMT->execute() )
 			{
 				echo " Unable to perform the task, internal server error.<br>";
 				die();
 			}
 			$STMT->close();
-			
+
 		}
 		else
 			return false;
@@ -155,10 +170,22 @@ function approve ( $id, $user )
 
 
 
-function accept ( $id, $user )
+function accept ( $id, $type, $user )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 4, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -169,7 +196,7 @@ function accept ( $id, $user )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		$newStatus = $status[0]; // to create the new status.
 		$flag = 0;       // a flag to check wether the status has been updated or not.
 		for ( $i = 1 ; $i < count ( $status ) ; $i++ )
@@ -189,11 +216,7 @@ function accept ( $id, $user )
 
 		if ( $flag != 0 )
 		{
-			global $sqlconn; $sqlconn = $sqlconn;
-			global $AppDB; $AppDB = $AppDB;
-			global $AppId; $AppId = $AppId;
-			global $stat; $stat = $stat;
-			$QRY = "UPDATE $AppDB SET $stat = ? WHERE $AppId = ?";
+			$QRY = "UPDATE $type SET $stat = ? WHERE $AppId = ?";
 
 			$STMT = $sqlconn->prepare ( $QRY );
 			$STMT->bind_param ( 'ss', $newStatus, $id );
@@ -212,10 +235,22 @@ function accept ( $id, $user )
 
 
 
-function isGenerator ( $id, $user )
+function isGenerator ( $id, $type , $user )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 5, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 
 	if ( ! $stmt->execute() )
@@ -227,11 +262,11 @@ function isGenerator ( $id, $user )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		$Stat = explode ( ',', $status[0] );
 		if ( strcmp ( $Stat[0], $user ) == 0 )
 		{
-			return $row[2];
+			return $row[0];
 		}
 		else
 		{
@@ -241,12 +276,22 @@ function isGenerator ( $id, $user )
 }
 
 
-
-
-function isAccepter ( $id, $user )
+function isAccepter ( $id, $type , $user )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 6, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -257,11 +302,11 @@ function isAccepter ( $id, $user )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		$Stat = explode ( ',', $status[ count ( $status ) - 1] );
 		if ( strcmp ( $Stat[0], $user ) == 0 )
 		{
-			return $row[2];
+			return $row[0];
 		}
 		else
 		{
@@ -271,10 +316,22 @@ function isAccepter ( $id, $user )
 }
 
 
-function isApprover ( $id, $user )
+function isApprover ( $id, $type , $user )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 7, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -285,23 +342,34 @@ function isApprover ( $id, $user )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		for ( $i = 1 ; $i < count ( $status ) - 1 ; $i++ )
 		{
 			$Stat = explode ( ',', $status[$i] );
 			if ( strcmp ( $user, $Stat[0] ) == 0 )
 			{
-				return $row[2];
+				return $row[0];
 			}
 		}
 		return false;
 	}
 }
 
-function whoIsApprover ( $id )
+function whoIsApprover ( $id , $type )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 8, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
 
 	$stmt->bind_param ( 's', $id );
 
@@ -314,7 +382,7 @@ function whoIsApprover ( $id )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		$Stat = explode ( ',', $status[1] );
 
 		return $Stat[0];
@@ -323,10 +391,22 @@ function whoIsApprover ( $id )
 
 
 
-function whoIsAccepter ( $id )
+function whoIsAccepter ( $id , $type )
 {
-	global $stmt;
-	$stmt = $stmt;
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 9, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
 	$stmt->bind_param ( 's', $id );
 	if ( ! $stmt->execute() )
 	{
@@ -337,18 +417,11 @@ function whoIsAccepter ( $id )
 	{
 		$result = $stmt->get_result();
 		$row = mysqli_fetch_row ( $result );
-		$status = explode ( ';', $row[2] );
+		$status = explode ( ';', $row[0] );
 		$Stat = explode ( ',', $status[count ( $status ) -1] );
 		return $Stat[0];
 	}
 }
-
-
-
-
-
-
-
 
 
 ?>

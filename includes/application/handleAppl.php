@@ -81,10 +81,10 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 HTML;
 	echo "$html";
 
-	if ( ($Status = isGenerator ( $ROW[0], $UID )) != false )
+	if ( ($Status = isGenerator ( $ROW[0], $ROW[1], $UID )) != false )
 	{
 
-		if ( str_isApproved ( $Status, $approver = whoIsApprover ( $ROW[0]) ) )
+		if ( str_isApproved ( $Status, $approver = whoIsApprover ( $ROW[0] , $ROW[1] ) ) )
 		{
 			echo "<td> APPROVED by $approver </td>";
 		}
@@ -94,7 +94,7 @@ HTML;
 		}
 
 
-		if ( str_isAccepted ( $Status, $accepter = whoIsAccepter ( $ROW[0] ) ) )
+		if ( str_isAccepted ( $Status, $accepter = whoIsAccepter ( $ROW[0] , $ROW[1] ) ) )
 		{
 			echo "<td> ACCEPTED by $accepter</td>";
 		}
@@ -103,7 +103,7 @@ HTML;
 			echo "<td>PENDING for acceptence</td>";
 		}
 	}
-	else if ( ($Status = isApprover ( $ROW[0], $UID )) != false )
+	else if ( ($Status = isApprover ( $ROW[0], $ROW[1] , $UID )) != false )
 	{
 		if ( str_isApproved ( $Status, $UID ) )
 		{
@@ -115,6 +115,7 @@ HTML;
 <td>
 <form action="ApproveAppl.php" method="post">
 <input type="text" name="app_id" value=$app_id readonly>
+<input type="text" name="app_type" value=$app_type readonly>
 <input type="submit" value="approve now">
 </form>
 </td>
@@ -122,7 +123,7 @@ HTML;
 			echo "$html";
 		}
 	}
-	else if ( ($Status =  ( isAccepter ( $ROW[0], $UID ) )) != false )
+	else if ( ($Status =  ( isAccepter ( $ROW[0], $ROW[1], $UID ) )) != false )
 	{
 		if ( str_isAccepted ( $Status, $UID ) )
 		{
@@ -134,6 +135,7 @@ HTML;
 <td>
 <form action="AcceptAppl.php" method="post">
 <input type="text" name="app_id" value=$app_id readonly>
+<input type="text" name="app_type" value=$app_type readonly>
 <input type="submit" value="accept now">
 </form>
 </td>
@@ -154,14 +156,6 @@ $html = <<<HTML
 HTML;
 
 echo "$html";
-
-
-
-
-
-
-
-
 
 
 ?>

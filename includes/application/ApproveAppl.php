@@ -27,10 +27,12 @@ if ( ! isset (  $_POST['app_id'] ) )
 else
 {
 	$app_id = $_POST['app_id'];
+	$app_type = $_POST['app_type'];
 	$UID = $_SESSION['Username'];
-	if ( isApprover ( $app_id, $UID ) != false )
+	
+	if ( isApprover ( $app_id, $app_type , $UID ) != false )
 	{
-		approve ( $app_id, $UID );
+		approve ( $app_id, $app_type , $UID );
 		echo "The application has been successfully approved<br>";
 	}
 	else
