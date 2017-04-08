@@ -93,12 +93,49 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	// Since '.' is not allowed in name , using '$'
 	//
 	$userdb = str_replace('.','$',$user) ;
+	
 	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(5), PRIMARY KEY($UserAppId) )" );
 
 	if( ! $stmt->execute() )
 	{
 		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
 		echo "Error creating database for user, contact Admin";
+		die();
+	}
+	
+	$sqlConn->close();
+	
+	// create separate database to count applications.
+	//
+	$sqlConn = new mysqli( $DBserver , $Uname , $passwd , "" );
+
+	if( $mysqlConn->connect_errno )  //if connection failed
+	{
+		echo "Sql credentials does not seem correct.<br>" ;
+		die();
+	}
+
+	//create database if not exists
+	//
+	$stmt = $sqlConn->prepare( "create database if not exists $applnCount" );
+
+	if( ! $stmt->execute() )
+	{
+		echo "Error creating database.";
+		die();
+	}
+
+	$sqlConn->close();
+	
+	// create separate table to count applications.
+	//
+	$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $applnCount );
+	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $applnTy VARCHAR(255), $count DOUBLE PRECISION(,2) UNSIGNED NOT NULL, $tillDate VARCHAR(10),INDEX idx1 USING BTREE($applnTy), INDEX idx2 USING BTREE($tillDate) )" );
+
+	if( ! $stmt->execute() )
+	{
+		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
+		echo "Error creating count database for user, contact Admin";
 		die();
 	}
 

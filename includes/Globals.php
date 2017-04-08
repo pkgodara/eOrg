@@ -38,6 +38,10 @@ $levelName = 'CategoryLevelName';
 $applnDB = 'ApplnDataBase';
 $entries = 'entries';
 
-
+// application count database
+$applnCount = 'ApplicationCount';
+	$applnTy = 'ApplicationType';
+	$count = 'TotalNoOfApplications';
+	$tillDate = 'UntilDate';
 
 ?>
