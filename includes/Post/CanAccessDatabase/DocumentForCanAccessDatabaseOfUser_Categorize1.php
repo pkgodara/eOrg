@@ -106,7 +106,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 
-echo "<select name = 'level' id = '$table'  onclick = 'DocumentForCanAcceptAppl_button1( this.id ,this.value )' >";
+echo "<select name = 'level' id = '$table'  onclick = 'DocumentForCanAccessDatabaseOfUser_button1( this.id ,this.value )' >";
 
 while ($r = mysqli_fetch_row($result))
 

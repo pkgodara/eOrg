@@ -54,9 +54,9 @@ CAN HANDLE POST ? :<input type="radio" name="handle_post" value="yes" > Yes
 <input type="radio" name="handle_post" value="no"> No<br><br>
 
 CAN ACCEPT APPLICATION ?if not all then select whose?:
-<input type ="radio" name="accept_application" value ="all" >All Users 
+<input type ="radio" name="accept_application" value ="all"  onclick = "DocumentForCanAcceptAppl_HideEverithing()">All Users 
 <input type="radio" name="accept_application" value ="yes"  onclick = "DocumentForCanAcceptAppl_WhoseApplication()" >Not All
-<input type="radio" name="accept_application" value ="no"> No<br><br>
+<input type="radio" name="accept_application" value ="no" onclick = "DocumentForCanAcceptAppl_HideEverithing()"> No<br><br>
 
 
 
@@ -87,11 +87,12 @@ CAN ACCEPT APPLICATION ?if not all then select whose?:
 
 
 
-
+<br><br><br><br>
 CAN ACCESS DATABASES OF USER ?if not all then select whose?:
-<input type ="radio" name="canAccessDatabase" value ="all" >All Users 
+<input type ="radio" name="canAccessDatabase" value ="all" onclick = "DocumentForCanAccessDatabaseOfUser_HideEverithing()" >All Users 
 <input type="radio" name="canAccessDatabase" value="yes"  onclick = "DocumentForCanAccessDatabaseOfUser_WhoseApplication()" >Not All
-<input type="radio" name="canAccessDatabase" value="no"> No<br><br>
+<input type="radio" name="canAccessDatabase" value="no"  onclick = "DocumentForCanAccessDatabaseOfUser_HideEverithing()"> No<br><br>
+
 
 
 
@@ -134,11 +135,20 @@ CAN ACCESS DATABASES OF USER ?if not all then select whose?:
 
 
 
-
-
-
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script>
+
+
+function DocumentForCanAcceptAppl_HideEverithing(){
+
+document.getElementById("DocumentForCanAcceptAppl_acceptApplication").innerHTML = "";
+document.getElementById("DocumentForCanAcceptAppl_further").innerHTML = "";
+document.getElementById("DocumentForCanAcceptAppl_button").innerHTML = "";
+
+
+
+}
+
 
 
 
@@ -318,6 +328,15 @@ document.getElementById("DocumentForCanAcceptAppl_termination").innerHTML = "Pat
 
 
 
+function DocumentForCanAccessDatabaseOfUser_HideEverithing(){
+
+document.getElementById("DocumentForCanAccessDatabaseOfUser_accessDataBase").innerHTML = "";
+document.getElementById("DocumentForCanAccessDatabaseOfUser_further").innerHTML = "";
+document.getElementById("DocumentForCanAccessDatabaseOfUser_button").innerHTML = "";
+
+
+}
+
 
 
 
@@ -471,10 +490,9 @@ xmlhttp.send("q="+Table+"&f="+Str);
 
 
 
-function DocumentForCanAcceptAppl_newPath(Str) {
+function DocumentForCanAccessDatabaseOfUser_newPath(Str) {
 $("#DocumentForCanAccessDatabaseOfUser_backgroundId").hide(); 
-
-$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'canAccept[]'  value= '"+Str+"' >");
+$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value= '"+Str+"' >");
 document.getElementById("DocumentForCanAccessDatabaseOfUser_accessDataBase").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_further").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_button").innerHTML = "";
@@ -486,9 +504,9 @@ DocumentForCanAccessDatabaseOfUser_WhoseApplication();
 
 
 
-function DocumentForCanAcceptAppl_terminate(Str) {
-$("#DocumentForCanAcceptAppl_backgroundId").hide();
-$("#DocumentForCanAcceptAppl_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value = '"+Str+"' >");
+function DocumentForCanAccessDatabaseOfUser_terminate(Str) {
+$("#DocumentForCanAccessDatabaseOfUser_backgroundId").hide();
+$("#DocumentForCanAccessDatabaseOfUser_backgroundId").append("<input type = 'text' name = 'accessDataBase[]'  value = '"+Str+"' >");
 document.getElementById("DocumentForCanAccessDatabaseOfUser_accessDataBase").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_further").innerHTML = "";
 document.getElementById("DocumentForCanAccessDatabaseOfUser_button").innerHTML = "";

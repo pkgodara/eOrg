@@ -1,5 +1,4 @@
 <?php
-
 /********************************************
 
 this file will find out user from table for creat post
@@ -26,19 +25,12 @@ echo "yha per uska dena hi";
 
 }
 
-require '../../Globals.php';
-require '../../../LocalSettings.php';
+$done = $_REQUEST['q'];
 
 
-$table = $_REQUEST['q'];
-$levelId= $_REQUEST['f'];
-
-
-
-
-
-
-echo "<input  type = 'button' name =  '$table'  id = '$levelId'   value =  'FURTHER EXPLORE'   onclick= 'DocumentForCanAcceptAppl_FurtherExplore(this.name ,this.id)' >";
-echo "<input type ='button' name = '$levelId'  value = 'DONE'  onclick = 'DocumentForCanAcceptAppl_Done(this.name)' >";
+//echo "<input  type = 'radio' name = 'Can_accept[]'  value =  '$done' checked>Complete<br>";
+echo"Want to add another path";
+echo "<input type ='radio' name = 'y' value = '$done'  onclick = 'DocumentForCanAccessDatabaseOfUser_newPath(this.value)' > Yes";
+echo "<input type ='radio' name = 'y' value = '$done' onclick = 'DocumentForCanAccessDatabaseOfUser_terminate(this.value)' > NO ";
 
 ?>

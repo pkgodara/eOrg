@@ -35,8 +35,8 @@ $html = <<<HTML
 </table>
 <br><br><b><big>SEX:::</b></big>
 <input type ='radio' name ='sex' value ='Others'  style='height:20px; width:20px' ><b><big>OTHERS</b></big>
-<input type ='radio' name ='sex' value ='Female'  style='height:20px; width:20px'><b><big>MALE</b></big>
-<input type ='radio' name ='sex' value ='Male'  style='height:20px; width:20px'><b><big>FEMALE</b></big>
+<input type ='radio' name ='sex' value ='Male'  style='height:20px; width:20px'><b><big>MALE</b></big>
+<input type ='radio' name ='sex' value ='Female'  style='height:20px; width:20px'><b><big>FEMALE</b></big>
 HTML;
 echo"$html";
 

@@ -75,8 +75,8 @@ if($result->num_rows == 0 )
 echo "<b><big>Categorization is complete for this level</big></b>";
 //echo "<br><input type = 'button' name = '$levelStr' value ='DONE'  onclick = 'Done(this.name )' > ";
 echo"Want to add another path";
-echo "<input type ='radio' name = 'y' value = '$levelStr'  onclick = 'DocumentForCanAcceptAppl_newPath(this.value)' > Yes";
-echo "<input type ='radio' name = 'y' value = '$levelStr' onclick = 'DocumentForCanAcceptAppl_terminate(this.value)' > NO ";
+echo "<input type ='radio' name = 'y' value = '$levelStr'  onclick = 'DocumentForCanAccessDatabaseOfUser_newPath(this.value)' > Yes";
+echo "<input type ='radio' name = 'y' value = '$levelStr' onclick = 'DocumentForCanAccessDatabaseOfUser_terminate(this.value)' > NO ";
 
 }
 
@@ -85,8 +85,8 @@ else
 
 {
 
-echo "<button type='button' name =  '$TableName' id ='1' value =  '$levelStr'   onclick= 'DocumentForCanAcceptAppl_FurtherExplore(this.name ,this.value)' >  FURTHER EXPLORE </button>";
-echo "<input type ='button' name = '$levelStr' value = 'DONE'  onclick = 'DocumentForCanAcceptAppl_Done(this.name)' >";
+echo "<button type='button' name =  '$TableName' id ='1' value =  '$levelStr'   onclick= 'DocumentForCanAccessDatabaseOfUser_FurtherExplore(this.name ,this.value)' >  FURTHER EXPLORE </button>";
+echo "<input type ='button' name = '$levelStr' value = 'DONE'  onclick = 'DocumentForCanAccessDatabaseOfUser_Done(this.name)' >";
 
 }
 
