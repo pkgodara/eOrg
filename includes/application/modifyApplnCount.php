@@ -30,9 +30,9 @@ function updateCount( $user , $type , $date , $cnt )
 
 	$result = $sqlconn->query("SELECT * FROM $user WHERE $tillDate = $date AND $applnTy = \"$type\"");
 
-	if( $result->num_rows() > 0 )
+	if( mysqli_num_rows($result) > 0 )
 	{
-		$prev = $result->fetch_array()[1];
+		$prev = mysqli_fetch_array($result)[1];
 		$stmt = $sqlconn->prepare("UPDATE $user SET $count = $prev+$cnt WHERE $tillDate = $date AND $applnTy = \"$type\"");
 		if( !$stmt->execute() )
 		{
@@ -42,7 +42,8 @@ function updateCount( $user , $type , $date , $cnt )
 	else
 	{
 		$prev = 0;
-		$lim = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+		$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+		$lim = mysqli_fetch_array($res)[2];
 		$lim = explode('-',$lim);
 		$flag = false;
 
@@ -58,9 +59,9 @@ function updateCount( $user , $type , $date , $cnt )
 		{
 			$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = \"$type\"";
 			$result = $sqlconn->query($qry);
-			if( $result->num_rows() != 0 )
+			if( mysqli_num_rows($result) != 0 )
 			{
-				$row = $result->fetch_array();
+				$row = mysqli_fetch_array($result);
 				$prev = $row[1];
 				break;
 			}
@@ -92,12 +93,13 @@ function deleteCount( $user , $type , $date , $cnt )
 
 	$result = $sqlconn->query("SELECT * FROM $user WHERE $tillDate = $date AND $applnTy = \"$type\"");
 
-	if( $result->num_rows() > 0 )
+	if( mysqli_num_rows($result) > 0 )
 	{
-		$prev = $result->fetch_array()[1];
+		$prev = mysqli_fetch_array($result)[1];
 		$stmt = $sqlconn->prepare("UPDATE $user SET $count = $prev+$cnt WHERE $tillDate = $date AND $applnTy = \"$type\"");
 
-		$lim = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate DECR limit 1");
+		$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate DECR limit 1");
+		$lim = mysqli_fetch_array($res)[2];
 		$lim = explode('-',$lim);
 
 		$date = $year.'-'.$month.'-'.$day ;
@@ -111,9 +113,9 @@ function deleteCount( $user , $type , $date , $cnt )
 		{
 			$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = \"$type\"";
 			$result = $sqlconn->query($qry);
-			if( $result->num_rows() != 0 )
+			if( mysqli_num_rows($result) != 0 )
 			{
-				$prev = $result->fetch_array()[1];
+				$prev = mysqli_fetch_array($result)[1];
 				$stmt2 = $sqlconn->prepare("UPDATE $user SET $count = $prev-$cnt WHERE $tillDate = $date AND $applnTy = \"$type\"");
 				if( !$stmt2->execute() )
 				{

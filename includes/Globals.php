@@ -14,13 +14,9 @@ $UserAppId = "ApplId";
 $UserAppTy = "AppType";
 
 //application database
-$AppDB = 'ApplicationData' ;
 	$AppId = 'ApplID';
-	$AppTy = 'ApplType';
 	$stat = 'ApplStatus';
-	$AFrom = 'AppFrom';
-	$AUpto = 'AppUpto';
-	$AReason = 'AppReason';
+	$AppDate = 'ApplGenDate';
 
 // Designation => user , database
 $DesigDB = 'DesignationsData';
@@ -28,13 +24,11 @@ $DesigDB = 'DesignationsData';
 	$UNameD = 'UserName';
 
 // User categories database
-
 $catDB = 'UserCategoryData';
 $levels = 'CategoryLevels';
 $levelName = 'CategoryLevelName'; 
 
 // application type database
-
 $applnDB = 'ApplnDataBase';
 $entries = 'entries';
 
@@ -45,21 +39,14 @@ $applnCount = 'ApplicationCount';
 	$tillDate = 'UntilDate';
 
 //table for post
-
 $PostTable = "PostTable";
-
-//Colomn name for PostTable
-$NameOfThePost = "PostName";
-$CanAddUser ="AddUser";
-$CanDeleteUser = "DeleteUser";
-$CanAssignPost = "AssignPost";
-$CanHandlePost = "handlePost";
-$CanAcceptApplication = "AcceptAppl";
-$CanAccessDataBaseOfUser = "AccessDatabese";
-
-
-
-
-
+	//Colomn name for PostTable
+	$NameOfThePost = "PostName";
+	$CanAddUser ="AddUser";
+	$CanDeleteUser = "DeleteUser";
+	$CanAssignPost = "AssignPost";
+	$CanHandlePost = "handlePost";
+	$CanAcceptApplication = "AcceptAppl";
+	$CanAccessDataBaseOfUser = "AccessDatabese";
 
 ?>

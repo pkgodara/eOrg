@@ -94,7 +94,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	//
 	$userdb = str_replace('.','$',$user) ;
 	
-	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(5), PRIMARY KEY($UserAppId) )" );
+	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(255), INDEX idx USING BTREE($UserAppId), INDEX idx1 USING BTREE($UserAppTy) )" );
 
 	if( ! $stmt->execute() )
 	{

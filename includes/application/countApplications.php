@@ -11,11 +11,11 @@ function countTypeOfAppln()
 	require_once "../../LocalSettings.php";
 	require_once "../Globals.php";
 
-	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd );
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $applnDB );
 	$count = array();
-	$res = $sqlconn->query("SELECT * FROM information_schema.tables WHERE table_schema = $applnDB");
+	$res = $sqlconn->query("SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = \"$applnDB\"");
 
-	while( $row = $res->fetch_row() )
+	while( $row = mysqli_fetch_row($res) )
 	{
 		array_push($count,$row[0]);
 	}
@@ -61,14 +61,15 @@ function countApplnInYear( $user , $year )
 		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
-		if( $result1->num_rows() == 0 )
+		if( mysqli_num_rows($result1) == 0 )
 		{
 			$count->$type[$i] = 0;
 		}
 		else
 		{
-			$row1 = $result1->fetch_array();
-			$lim = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+			$row1 = mysqli_fetch_array($result1);
+			$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+			$lim = mysqli_fetch_array($res)[2];
 			$lim = explode('-',$lim)[0];
 			$flag = false;
 			$year = $year-1;
@@ -77,9 +78,9 @@ function countApplnInYear( $user , $year )
 			{
 				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
-				if( $result->num_rows() != 0 )
+				if( mysqli_num_rows($result) != 0 )
 				{
-					$row2 = $result->fetch_array();
+					$row2 = mysqli_fetch_array($result);
 					$count->$row1[0] = $row1[1]-$row2[1];
 					$flag = true;
 					break;
@@ -113,14 +114,15 @@ function countApplnInMonth( $user, $month, $year )
 		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
-		if( $result1->num_rows() == 0 )
+		if( mysqli_num_rows($result1) == 0 )
 		{
 			$count->$type[$i] = 0;
 		}
 		else
 		{
 			$row1 = $result1->fetch_array();
-			$lim = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+			$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+			$lim = mysqli_fetch_row($res)[2];
 			$lim = explode('-',$lim);
 			$flag = false;
 
@@ -135,9 +137,9 @@ function countApplnInMonth( $user, $month, $year )
 			{
 				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
-				if( $result->num_rows() != 0 )
+				if( mysqli_num_rows($result) != 0 )
 				{
-					$row2 = $result->fetch_array();
+					$row2 = mysqli_fetch_array($result);
 					$count->$row1[0] = $row1[1]-$row2[1];
 					$flag = true;
 					break;
@@ -177,14 +179,15 @@ function countApplnOnDay( $user, $day, $month, $year )
 		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
-		if( $result1->num_rows() == 0 )
+		if( mysqli_num_rows($result1) == 0 )
 		{
 			$count->$type[$i] = 0;
 		}
 		else
 		{
 			$row1 = $result1->fetch_array();
-			$lim = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+			$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
+			$lim = mysqli_fetch_array($res)[2];
 			$lim = explode('-',$lim);
 			$flag = false;
 
@@ -200,9 +203,9 @@ function countApplnOnDay( $user, $day, $month, $year )
 			{
 				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
-				if( $result->num_rows() != 0 )
+				if( mysqli_num_rows($result) != 0 )
 				{
-					$row2 = $result->fetch_array();
+					$row2 = mysqli_fetch_array($result);
 					$count->$row1[0] = $row1[1]-$row2[1];
 					$flag = true;
 					break;
@@ -243,7 +246,7 @@ function totalApplnTillNow( $user )
 		$qry = "SELECT * FROM $user WHERE $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
 		$result = $sqlconn->query($qry);
 		
-		$row = $result->fetch_array();
+		$row = mysqli_fetch_array($result);
 		
 		$count->$row[0] = $row[1];
 	}
