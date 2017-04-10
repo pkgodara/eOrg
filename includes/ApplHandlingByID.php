@@ -248,11 +248,11 @@ function isGenerator ( $id, $type , $user )
 		die();
 	}
 
-	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$qry = "SELECT $stat FROM $type WHERE $AppId = \"$id\"";
 	$stmt = $sqlconn->prepare ( $qry );
 
-	$stmt->bind_param ( 's', $id );
-
+	//$stmt->bind_param( 's', $id );
+	
 	if ( ! $stmt->execute() )
 	{
 		echo " there is a problem with the server<br>";

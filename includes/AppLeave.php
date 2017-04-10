@@ -26,7 +26,7 @@ else
 	
 	$appTy = str_replace('.','$',$appln);
 	
-	$type = str_replace('_',' ',$appln);
+	$type = str_replace(' ','_',$appln);
 
 	require_once "../LocalSettings.php";
 	require_once "Globals.php";
