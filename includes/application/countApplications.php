@@ -58,12 +58,13 @@ function countApplnInYear( $user , $year )
 
 	while( $i < count($type) )
 	{
-		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
 		if( mysqli_num_rows($result1) == 0 )
 		{
-			$count->$type[$i] = 0;
+			$v = $type[ $i ];
+			$count->$v = 0;
 		}
 		else
 		{
@@ -76,7 +77,7 @@ function countApplnInYear( $user , $year )
 
 			while( $year >= $lim )
 			{
-				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
 				if( mysqli_num_rows($result) != 0 )
 				{
@@ -85,13 +86,15 @@ function countApplnInYear( $user , $year )
 					$flag = true;
 					break;
 				}
+				
 				$year = $year-1;
 			}
 
 			if( !flag )
 				$count->$row1[0] = $row1[1];
 		}
-
+		
+		$i = $i+1;
 	}
 	$sqlconn->close();
 	return $count;
@@ -111,12 +114,13 @@ function countApplnInMonth( $user, $month, $year )
 
 	while( $i < count($type) )
 	{
-		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
 		if( mysqli_num_rows($result1) == 0 )
 		{
-			$count->$type[$i] = 0;
+			$v = $type[ $i ];
+			$count->$v = 0;
 		}
 		else
 		{
@@ -135,7 +139,7 @@ function countApplnInMonth( $user, $month, $year )
 
 			while( $year >= $lim[0] && $month >= $lim[1] )
 			{
-				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
 				if( mysqli_num_rows($result) != 0 )
 				{
@@ -156,6 +160,7 @@ function countApplnInMonth( $user, $month, $year )
 				$count->$row1[0] = $row1[1];
 		}
 
+		$i = $i+1;
 	}
 
 	$sqlconn->close();
@@ -176,12 +181,13 @@ function countApplnOnDay( $user, $day, $month, $year )
 
 	while( $i < count($type) )
 	{
-		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
 		if( mysqli_num_rows($result1) == 0 )
 		{
-			$count->$type[$i] = 0;
+			$v = $type[ $i ];
+			$count->$v = 0;
 		}
 		else
 		{
@@ -201,7 +207,7 @@ function countApplnOnDay( $user, $day, $month, $year )
 
 			while( $year >= $lim[0] && $month >= $lim[1] && $day >= $lim[2] )
 			{
-				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
 				if( mysqli_num_rows($result) != 0 )
 				{
@@ -223,6 +229,7 @@ function countApplnOnDay( $user, $day, $month, $year )
 				$count->$row1[0] = $row1[1];
 		}
 
+		$i = $i+1;
 	}
 
 	$sqlconn->close();
@@ -248,7 +255,9 @@ function totalApplnTillNow( $user )
 		
 		$row = mysqli_fetch_array($result);
 		
-		$count->$row[0] = $row[1];
+		$count-> $row[0] = $row[1];
+		
+		$i = $i+1;
 	}
 
 	$sqlconn->close();
