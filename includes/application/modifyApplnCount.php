@@ -46,8 +46,10 @@ function updateCount( $user , $type , $date , $cnt )
 			$lim = $date;
 		}
 		$lim = explode('-',$lim);
-
-		$ar = explode('-',$date);
+		
+		$dt = $date;
+		
+		$ar = explode('-',$dt );
 		$year = $ar[0];
 		$month = $ar[1];
 		$day = $ar[2];
@@ -64,9 +66,9 @@ function updateCount( $user , $type , $date , $cnt )
 				break;
 			}
 			
-			$date = decrDay( $date );
+			$dt = decrDay( $dt );
 
-			$ar = explode('-',$date);
+			$ar = explode('-',$dt);
 			$year = $ar[0];
 			$month = $ar[1];
 			$day = $ar[2];
@@ -104,9 +106,9 @@ function deleteCount( $user , $type , $date , $cnt )
 		$lim = mysqli_fetch_array($res)[2];
 		$lim = explode('-',$lim);
 
-		$date = $year.'-'.$month.'-'.$day ;
+		$dt = $year.'-'.$month.'-'.$day ;
 
-		$ar = explode('-',$date);
+		$ar = explode('-',$dt);
 		$year = $ar[0];
 		$month = $ar[1];
 		$day = $ar[2];
@@ -121,16 +123,16 @@ function deleteCount( $user , $type , $date , $cnt )
 				
 				$cnt = $prev-$cnt;
 				
-				$stmt2 = $sqlconn->prepare("UPDATE $user SET $count = \"$cnt\" WHERE $tillDate = \"$date\" AND $applnTy = \"$type\"");
+				$stmt2 = $sqlconn->prepare("UPDATE $user SET $count = \"$cnt\" WHERE $tillDate = \"$dt\" AND $applnTy = \"$type\"");
 				if( !$stmt2->execute() )
 				{
 					echo "record not updated $date";
 				}
 			}
 
-			$date = incrDay( $date );
+			$dt = incrDay( $dt );
 
-			$ar = explode('-',$date);
+			$ar = explode('-',$dt);
 			$year = $ar[0];
 			$month = $ar[1];
 			$day = $ar[2];
