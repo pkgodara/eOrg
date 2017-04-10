@@ -32,6 +32,11 @@ $levelName = 'CategoryLevelName';
 $applnDB = 'ApplnDataBase';
 $entries = 'entries';
 
+// application path table and its entries
+$applnPathTable = 'ApplnPathTable';
+$groupId = 'GroupId';
+
+
 // application count database
 $applnCount = 'ApplicationCount';
 	$applnTy = 'ApplicationType';
