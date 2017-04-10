@@ -8,8 +8,8 @@
 
 function countTypeOfAppln()
 {
-	require_once "../../LocalSettings.php";
-	require_once "../Globals.php";
+	require "../../LocalSettings.php";
+	require "../Globals.php";
 
 	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $applnDB );
 	$count = array();
@@ -26,29 +26,29 @@ function countTypeOfAppln()
 
 function decrYear( $date )
 {
-	$tmp = $DateTime($date);
+	$tmp = new DateTime($date);
 	$tmp->modify('-1 year');
-	return $tmp->format('y-m-d');
+	return $tmp->format('Y-m-d');
 }
 
 function decrMonth( $date )
 {
-	$tmp = $DateTime($date);
+	$tmp = new DateTime($date);
 	$tmp->modify('-1 month');
-	return $tmp->format('y-m-d');
+	return $tmp->format('Y-m-d');
 }
 
 function decrDay( $date )
 {
-	$tmp = $DateTime($date);
+	$tmp = new DateTime($date);
 	$tmp->modify('-1 day');
-	return $tmp->format('y-m-d');
+	return $tmp->format('Y-m-d');
 }
 
 function countApplnInYear( $user , $year )
 {
-	require_once "../../LocalSettings.php";
-	require_once "../Globals.php";
+	require "../../LocalSettings.php";
+	require "../Globals.php";
 
 	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $applnCount );
 
@@ -99,8 +99,8 @@ function countApplnInYear( $user , $year )
 
 function countApplnInMonth( $user, $month, $year )
 {
-	require_once "../../LocalSettings.php";
-	require_once "../Globals.php";
+	require "../../LocalSettings.php";
+	require "../Globals.php";
 
 	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $applnCount );
 
@@ -164,8 +164,8 @@ function countApplnInMonth( $user, $month, $year )
 
 function countApplnOnDay( $user, $day, $month, $year )
 {
-	require_once "../../LocalSettings.php";
-	require_once "../Globals.php";
+	require "../../LocalSettings.php";
+	require "../Globals.php";
 
 	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $applnCount );
 
@@ -231,8 +231,8 @@ function countApplnOnDay( $user, $day, $month, $year )
 
 function totalApplnTillNow( $user )
 {
-	require_once "../../LocalSettings.php";
-	require_once "../Globals.php";
+	require "../../LocalSettings.php";
+	require "../Globals.php";
 
 	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $applnCount );
 

@@ -130,7 +130,7 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	// create separate table to count applications.
 	//
 	$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $applnCount );
-	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $applnTy VARCHAR(255), $count DOUBLE PRECISION(20,2) UNSIGNED NOT NULL, $tillDate VARCHAR(10),INDEX idx1 USING BTREE($applnTy), INDEX idx2 USING BTREE($tillDate) )" );
+	$stmt = $sqlConn->prepare("CREATE TABLE $userdb ( $applnTy VARCHAR(255), $count BIGINT UNSIGNED NOT NULL, $tillDate VARCHAR(10),INDEX idx1 USING BTREE($applnTy), INDEX idx2 USING BTREE($tillDate) )" );
 
 	if( ! $stmt->execute() )
 	{
