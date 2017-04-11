@@ -427,6 +427,40 @@ function isApprover ( $id, $type , $user )
 	}
 }
 
+function whoIsGenerator( $id , $type )
+{
+	require "../../LocalSettings.php";
+	require "../Globals.php";
+
+	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+	if ( $sqlconn->connect_errno )
+	{
+		echo "Internal Server Error 8, Sorry for inconvenience.";
+		die();
+	}
+
+	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$stmt = $sqlconn->prepare ( $qry );
+
+	$stmt->bind_param ( 's', $id );
+
+	if ( ! $stmt->execute() )
+	{
+		echo "there is a problem with the database<br>";
+		die();
+	}
+	else
+	{
+		$result = $stmt->get_result();
+		$row = mysqli_fetch_row ( $result );
+		$status = explode ( ';', $row[0] )[0];
+		$Stat = explode ( ',', $status )[0];
+
+		return $Stat;
+	}
+}
+
 function whoIsApprover ( $id , $type )
 {
 	require "../../LocalSettings.php";

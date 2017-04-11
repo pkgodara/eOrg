@@ -78,10 +78,10 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 <td>$app_type</td>
 HTML;
 	echo "<tr> <td>$i</td>";
-
+	echo $html;
 	if ( ($Status = isGenerator ( $ROW[0], $ROW[1], $UID )) != false )
 	{
-		echo $html;
+		
 		showStatus( $Status ); // print complete status
 		/*
 		if ( str_isApproved ( $Status, $approver = whoIsApprover ( $ROW[0] , $ROW[1] ) ) )
@@ -121,23 +121,29 @@ HTML;
 		}
 		else 
 		{
-			$html = <<<HTML
+			echo <<<HTML
 <td>
 <form action="ApproveAppl.php" method="post">
-<input type="text" name="app_id" value=$app_id readonly>
-<input type="text" name="app_type" value=$app_type readonly>
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="approve now">
 </form>
 </td>
 <td>
 <form action="RejectAppl.php" method="post">
-<input type="text" name="app_id" value=$app_id readonly>
-<input type="text" name="app_type" value=$app_type readonly>
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="reject it">
 </form>
 </td>
+<td>
+<form action="getApplnCount.php" method="post">
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="submit" value="see user history">
+</form>
+</td>
 HTML;
-			echo "$html";
 		}
 	}
 	else if ( ($Status =  ( isAccepter ( $ROW[0], $ROW[1], $UID ) )) != false )
@@ -152,23 +158,29 @@ HTML;
 		}
 		else
 		{
-			$html = <<<HTML
+			echo <<<HTML
 <td>
 <form action="AcceptAppl.php" method="post">
-<input type="text" name="app_id" value=$app_id readonly>
-<input type="text" name="app_type" value=$app_type readonly>
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="accept now">
 </form>
 </td>
 <td>
 <form action="RejectAppl.php" method="post">
-<input type="text" name="app_id" value=$app_id readonly>
-<input type="text" name="app_type" value=$app_type readonly>
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="reject it">
 </form>
 </td>
+<td>
+<form action="getApplnCount.php" method="post">
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="submit" value="see user history">
+</form>
+</td>
 HTML;
-			echo "$html";
 		}
 	}
 

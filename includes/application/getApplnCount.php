@@ -7,16 +7,26 @@
 
 session_start();
 
-if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $_SESSION['UserName']) ) )
 {
 	echo "You must login first to visit this page.";
 	die();
 }
 
+if ( ! isset (  $_POST['app_id'] ) )
+{
+	echo "Sorry, there was a problem.<br>";
+	die();
+}
+
+$id = $_POST['app_id'];
+$type = $_POST['app_type'];
+
+
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 require_once "countApplications.php";
-
+require_once "../ApplHandlingByID.php";
 
 echo <<<HTML
 <!DOCTYPE html>
@@ -43,6 +53,10 @@ Applications on :
 
 HTML;
 
+$user = whoIsGenerator( $id , $type );
+
+echo "<input type=\"text\" name=\"usr\" id=\"usr\" value=$user style=\"visibility: hidden; display: none;\" readonly>";
+
 echo <<<HTML
 
 <div id="table">
@@ -56,12 +70,6 @@ echo <<<HTML
 
 HTML;
 
-	$result = totalApplnTillNow( $_SESSION['Username'] );
-
-	foreach( $result as $key => $value )
-	{
-		echo "<tr><th>$key</th><td>$value</td></tr>" ;
-	}
 
 
 echo <<<HTML
@@ -77,7 +85,8 @@ $(document).ready(function() {
 	$("#submit").click( function() {
 		var dt = $("#date").val();
 		var ch = $("#choice").val();
-		var date = "date=" + dt + "&choice=" + ch ;
+		var usr = $("#usr").val();
+		var date = "date=" + dt + "&choice=" + ch + "&user=" + usr ;
 		
 		$.ajax( {
 			type: "POST",
