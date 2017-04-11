@@ -20,9 +20,17 @@ require_once "../Globals.php";
 require_once "../../LocalSettings.php";
 
 $NAME = $_SESSION['Name'];
-$UID = $_SESSION['Username'];
+$UID;
 
-$USER= str_replace('.','$',$_SESSION['Username'] );
+if( isset( $_SESSION['PostName']) )
+{
+	$UID = $_SESSION['PostName'] ;
+}
+else
+{
+	$UID = $_SESSION['Username'];
+}
+$USER= str_replace('.','$',$UID );
 
 
 

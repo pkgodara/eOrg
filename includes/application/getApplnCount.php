@@ -7,7 +7,7 @@
 
 session_start();
 
-if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $_SESSION['UserName']) ) )
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $_SESSION['PostName']) ) )
 {
 	echo "You must login first to visit this page.";
 	die();
