@@ -72,6 +72,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $row = mysqli_fetch_row($result);
 
+echo "<button onclick=\"document.location.href='../application/handleAppl.php'\"> Handle Applications </button>";
 
 if ( $row[1] == 'yes')
 {
