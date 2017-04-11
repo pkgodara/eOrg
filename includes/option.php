@@ -163,7 +163,7 @@ xmlhttp.send("q="+Table+"&f="+Str);
 
 </script>
 
-<input type ="submit"  value="SUBMIT" style='height:50px; width:200px'>
+<input type ="submit"  value="SUBMIT" style='cursor: pointer; height:50px; width:200px'>
 </form>
 </center>
 </body>

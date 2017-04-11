@@ -36,11 +36,11 @@ $html = <<< html
 <head>
 </head>
 
-<body style ="color:green ;background-color:yellow">
-
+<body style ="background-color:#6699FF">
+<center>
 <form action ="HandalFinaleDataOfCreatePost.php" method ="post" >
-
-POST NAME : <input type = "text"  name ="Pname"><br><br>
+<br><br><br><br><br><br>
+<i><b>POST NAME : <input type = "text"  name ="Pname"><br><br>
 
 CAN ADD USER ? : <input type="radio" name="add_user" value="yes" >Yes
 <input type="radio" name="add_user" value="no">No<br><br>
@@ -528,10 +528,11 @@ document.getElementById("DocumentForCanAccessDatabaseOfUser_termination").innerH
 
 
 </script>
-
-<input type = "submit" name="SUBMIT">
+<br><br><br><br><br><br><br><br><br><br><br>
+<input type ="submit" name ="SUBMIT" style='font-size:auto ;cursor: pointer; height:50px; width:200px;color:white ;background-color:#4B0082;font-size : 30px;'/>
+</i></b>
 </form->
-</body>
+</center></body>
 </html>
 html;
 

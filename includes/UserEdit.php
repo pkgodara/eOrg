@@ -58,16 +58,24 @@ background-color:blue;
 
 </style>
 </head>
-<body >
+<body style = "background-color:#FCFCE8">
 <h1 style ="text-align:center ;color:blue">Edit The Information</h1>
 <div >
 <form action ="UpdateUser.php" method="post" >
 <table border="12">
 <tr><th>UserName </th><td> <input type = "text" name = "name" value = "$row[0]" readonly /></td></tr>
 <tr><th>FullName </th><td> <input type="text" name = "flname" value="$row[2]"  required />    </td></tr>
-<tr><th>Designations </th><td> <input type="text" name = "dgname" value= "$row[3]" required/> </td></tr>
+
 </table>
-<input type ="submit" name ="submit" value="UPDATE"/>
+<center><br><br>
+SEX::<select name ='sex' required   style='cursor: pointer; height:auto; width:auto ;background-color:#4B0082;color:white' >
+<option value ="">Select sex</option>
+<option value ="Others">Other</option>
+<option value ="Male">Male</option>
+<option value ="Female">Female</option>
+</select><br><br><br><br><br><br><br><br><br><br>
+<input type ="submit" name ="submit" value="UPDATE" style='font-size:auto ;cursor: pointer; height:50px; width:200px;color:white ;background-color:#4B0082'/>
+</center>
 </form></div>
 </body>
 </html>

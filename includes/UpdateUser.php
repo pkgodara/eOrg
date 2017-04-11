@@ -23,7 +23,7 @@ if( isset( $_POST['submit']) )
 		die();
 	}
 
-	$updt = "UPDATE $loginDB SET $FName = \"".$_POST['flname']."\", $Desig = \"".$_POST['dgname']."\" WHERE $UName = \"".$_POST['name']."\"";
+	$updt = "UPDATE $loginDB SET $FName = \"".$_POST['flname']."\", $Sex = \"".$_POST['sex']."\" WHERE $UName = \"".$_POST['name']."\"";
 
 $stmt = $sqlConn->prepare($updt);
 

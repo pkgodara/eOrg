@@ -10,6 +10,7 @@ $thankhtml = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=2.0">
 <style>
 body {
 text-align:center;

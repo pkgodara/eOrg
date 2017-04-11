@@ -29,6 +29,7 @@ else
 
 }
 
+
 require '../Globals.php';
 require '../../LocalSettings.php';
 
@@ -40,6 +41,11 @@ if (  !(isset ($_POST['Pname']) &&  isset ($_POST['add_user']) && isset ($_POST[
 	die();
 
 }
+
+
+$userPost = str_replace('.','$',$_POST['Pname']) ;
+
+$userPost = preg_replace('/\s+/', '_', $userPost);
 
 
 if ($_POST['accept_application'] == "yes" )
@@ -131,6 +137,9 @@ if( $sqlConn->connect_errno )
 }
 
 
+
+//creating table for post data 
+
 $qry = "create  table if not exists $PostTable ( $NameOfThePost VARCHAR(50) NOT NULL, $CanAddUser VARCHAR(30) NOT NULL,$CanDeleteUser  VARCHAR(30) NOT NULL,$CanAssignPost VARCHAR(30) NOT NULL ,$CanHandlePost VARCHAR(30) NOT NULL ,$CanAcceptApplication  VARCHAR(1000) NOT NULL  ,$CanAccessDataBaseOfUser  VARCHAR(1000) NOT NULL ,INDEX idx2 USING BTREE($NameOfThePost) ) ";
 
 $stmt = $sqlConn->prepare($qry);
@@ -159,6 +168,21 @@ $qry = "SELECT * FROM $eorgDBname where $NameOfThePost regexp \"^$_POST['Pname']
 
 
 */
+//
+
+//creating table for post dash board
+
+$stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $userPost ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(255), INDEX idx USING BTREE($UserAppId), INDEX idx1 USING BTREE($UserAppTy) )" );
+
+	if( ! $stmt->execute() )
+	{
+		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
+		echo "Error creating database for user, contact Admin";
+		die();
+	}
+	
+
+
 
 
 

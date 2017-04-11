@@ -21,6 +21,7 @@ $html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=.5">
 <style>
 
 
@@ -50,7 +51,7 @@ body {
 
 </table>
 <br><br><br><br>
-<input  type="submit" name="login" value="Login!" style=" font-size : 30px; height:auto; width:auto ;background-color: 	#000080 ;border:15px ;color:white" />
+<input  type="submit" name="login" value="Login!" style="cursor: pointer; font-size : 30px; height:auto; width:auto ;background-color: 	#000080 ;border:15px ;color:white" />
 </form>
 </centre>
 </body>

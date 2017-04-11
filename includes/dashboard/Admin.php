@@ -15,6 +15,7 @@ $html1 = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
 color:white;
@@ -33,17 +34,17 @@ HTML;
 $html2 = <<<HTML
 </h2>
 <br><br><br><br>
-<button onclick="document.location.href='../Post/CreatePost.php' "style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Create Post </button>
-<button onclick="document.location.href='../AddUser.php'" style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Add User </button>
+<button onclick="document.location.href='../Post/CreatePost.php' "style=" cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Create Post </button>
+<button onclick="document.location.href='../AddUser.php'" style="cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Add User </button>
 
-<button onclick="document.location.href='../EditUser.php'"style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Edit User </button>
+<button onclick="document.location.href='../EditUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Edit User </button>
 
-<button onclick="document.location.href='../RemoveUser.php'"style=" font-size : 25px; height:auto; width:auto ;background-color:blue ;border:10px "> Remove User </button>
+<button onclick="document.location.href='../RemoveUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Remove User </button>
 
 
-<button onclick="document.location.href='../Logout.php'"style=" font-size : 25px; height:auto; width:auto ;background-color:blue ;border:10px "> Modify Category </button>
+<button onclick="document.location.href='../Logout.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Modify Category </button>
 
-<button onclick="document.location.href='../Logout.php'"style=" font-size : 25px; height:auto; width:150px ;background-color:blue ;border:10px "> Log out ! </button>
+<button onclick="document.location.href='../Logout.php'"style="cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Log out ! </button>
 <br><br><br><br>
 
 HTML;
