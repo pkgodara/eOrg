@@ -4,7 +4,7 @@
  * display application count to user
  *
  */
-/* 
+
 session_start();
 
 if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
@@ -12,7 +12,7 @@ if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
 	echo "You must login first to visit this page.";
 	die();
 }
- */
+
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 require_once "countApplications.php";
@@ -30,14 +30,16 @@ echo <<<HTML
 
 <h2>Please Select Date or Month or Year to get count</h2>
 
-Select Date : <input type="date" name="date" id="date" required/>
+Select Date : <input type="date" name="date" id="date" placeholder="yyyy-mm-dd" required/>
 <br>
 Applications on : 
-<input type="radio" name="choice" value="year" checked required> Year
-<input type="radio" name="choice" value="month" > Month
-<input type="radio" name="choice" value="day" > Full Date
+<select id="choice">
+<option value="year" >Year</option>
+<option value="month" >Month</option>
+<option value="day" selected>Full Date</option>
+</select>
 <br>
-<button name="submit" id="submit" onclick="f()" >Submit Application !</button>
+<button name="submit" id="submit" >Submit Application !</button>
 
 HTML;
 
@@ -70,22 +72,22 @@ echo <<<HTML
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 
 <script>
-
-function f(){
-var c = document.getElementById("date").value;
-var d = document.getElementById("choice").value;
-var xhttp;
-xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function()
-{
-if (this.readyState == 4 && this.status == 200)
-{
-document.getElementById("table").innerHTML = this.responseText;
-}
-};
-xhttp.open("POST", "showCountAJAX.php", true);
-xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xhttp.send("date="+c+"&choice="+d);}
+$(document).ready(function() {
+	$("#submit").click( function() {
+		var dt = $("#date").val();
+		var ch = $("#choice").val();
+		var date = "date=" + dt + "&choice=" + ch ;
+		
+		$.ajax( {
+			type: "POST",
+			url: "showCountAJAX.php",
+			data: date,
+			success: function( result ) {
+				$("#table").html(result);
+			}
+		}); 
+	});
+});
 </script>
 
 </body>
