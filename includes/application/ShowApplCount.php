@@ -28,12 +28,17 @@ echo <<<HTML
 
 <body >
 
-<h2>Please Select Date</h2>
-
-<input type="text" name="date" id="date" value="" placeholder="yyyy-mm-dd OR yyyy-mm OR yyyy" required/>
-
+<h2>Please Select Date or Month or Year to get count</h2>
+<form>
+Select Date : <input type="date" name="date" id="date" placeholder="yyyy-mm-dd" required/>
+<br>
+Applications on : 
+<input type="radio" name="choice" value="year" id="choice" checked required> Year
+<input type="radio" name="choice" value="month" id="choice" > Month
+<input type="radio" name="choice" value="day" id="choice" > Full Date
+<br>
 <button name="submit" id="submit" >Submit Application !</button>
-
+</form>
 HTML;
 
 echo <<<HTML
@@ -68,8 +73,9 @@ echo <<<HTML
 $(document).ready(function() {
 	$("#submit").click( function() {
 		var dt = $("#date").val();
-		var date = "date="+dt;
-	
+		var ch = $("#choice").val();
+		var date = "date=" + dt + "&choice=" + ch ;
+		
 		$.ajax( {
 			type: "POST",
 			url: "showCountAJAX.php",

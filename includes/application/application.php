@@ -47,10 +47,10 @@ while( $row = $res->fetch_row() )
 }
 
 if( $flagSD )
-	echo "<tr><th>Start Date :</th><td> <input type=\"text\" name=Start_Date placeholder=\"Date yyyy-mm-dd\" required/></td></tr>";
+	echo "<tr><th>Start Date :</th><td> <input type=\"date\" name=Start_Date placeholder=\"Date yyyy-mm-dd\" required/></td></tr>";
 
 if( $flagED )
-	echo "<tr><th>End Date :</th><td> <input type=\"text\" name=End_Date placeholder=\"Date yyyy-mm-dd\" required/></td></tr>";
+	echo "<tr><th>End Date :</th><td> <input type=\"date\" name=End_Date placeholder=\"Date yyyy-mm-dd\" required/></td></tr>";
 
 
 echo $html; 
