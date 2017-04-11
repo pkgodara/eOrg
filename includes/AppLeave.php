@@ -33,10 +33,12 @@ else
 	
 	// finding approvers and acceptors
 	//
-	$appr = 'user2';
+/*	$appr = 'user2';
 	$dest = 'user3';
 	
-	$status = $user.",G;".$appr.",P;"."$dest,P" ; // initial status for application.
+	$status = $user.",G;".$appr.",P;"."$dest,P" ; // initial status for application.*/
+	
+	
 
 	// Connect to mysql
 	//
@@ -47,6 +49,8 @@ else
 		echo "Server error.";
 		die();
 	}
+	
+	require "DetermineApplnPath.php";
 	
 	// create application table if not exists
 	//
@@ -107,6 +111,8 @@ else
 
 	// Add application id in receiver's database
 	//
+	$appr = explode(';',$status)[1];
+	$appr = explode(',',$appr)[0];
 	$destDB = str_replace('.','$',$appr);
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$appTy);
