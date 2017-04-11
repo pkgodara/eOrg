@@ -32,6 +32,11 @@ $levelName = 'CategoryLevelName';
 $applnDB = 'ApplnDataBase';
 $entries = 'entries';
 
+// application path table and its entries
+$applnPathTable = 'ApplnPathTable';
+$groupId = 'GroupId';
+
+
 // application count database
 $applnCount = 'ApplicationCount';
 	$applnTy = 'ApplicationType';
@@ -48,5 +53,11 @@ $PostTable = "PostTable";
 	$CanHandlePost = "handlePost";
 	$CanAcceptApplication = "AcceptAppl";
 	$CanAccessDataBaseOfUser = "AccessDatabese";
+
+// assign post table and its entries
+$assignPostTable = 'AssignPostTable';
+$postTitle = 'PostTitle';
+$assignedUser = 'AssignedUser';
+
 
 ?>
