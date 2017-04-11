@@ -6,7 +6,7 @@
 
 session_start();
 
-if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $_SESSION['PostName'] ) ) )
 {
 	echo "session id :".session_id()." ,You must login first to visit this page.";
 	die();
@@ -31,7 +31,7 @@ else
 {
 	$id = $_POST['app_id'];
 	$type = $_POST['app_type'];
-	$UID = $_SESSION['Username'];
+	$UID = $_SESSION['PostName'];
 
 	if ( isAccepter ( $id, $type , $UID ) != false )
 	{

@@ -1,7 +1,7 @@
 <?php
-/*
+/* 
+ * reject application
  *
- *  to approve application by the approver.
  */
 
 session_start();
@@ -30,9 +30,8 @@ else
 	$app_type = $_POST['app_type'];
 	$UID = $_SESSION['PostName'];
 	
-	if ( isApprover ( $app_id, $app_type , $UID ) != false )
+	if ( reject( $app_id, $app_type , $UID ) )
 	{
-		approve( $app_id, $app_type , $UID );
 		echo "The application has been successfully approved<br>";
 	}
 	else
@@ -41,8 +40,6 @@ else
 		die();
 	}
 }
-
-
 
 
 ?>

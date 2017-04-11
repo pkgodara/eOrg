@@ -9,6 +9,37 @@
  */
 
 
+function showStatus( $stat_str )
+{
+	$STR = explode ( ';', $stat_str );
+	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
+	{
+		$str = explode ( ',', $STR[$i] );
+		
+		if( $str[1] == 'P' )
+		{
+			echo "<td><b>PENDING</b></td>";
+		}
+		else if( $str[1] == 'A' )
+		{
+			echo "<td><b>APPROVED</b> by ".$str[0] ."</td>";
+		}
+		else if( $str[1] == 'Y' )
+		{
+			echo "<td><b>ACCEPTED</b> by ".$str[0] ."</td>";
+		}
+		else if( $str[1] == 'R' )
+		{
+			echo "<td><b>REJECTED</b> by ".$str[0] ."</td>";
+		}
+		else
+		{
+			echo "<td><b>Unknown Status</b></td>";
+		}
+	}
+}
+
+
 function str_isApproved ( $stat_str, $user )
 {
 
@@ -18,6 +49,24 @@ function str_isApproved ( $stat_str, $user )
 		$str = explode ( ',', $STR[$i] );
 		if ( strcmp ( $user, $str[0] ) == 0 )
 			if ( $str[1] == 'A' )
+				return true;
+			else
+				return false;
+	}
+	return false;
+}
+
+
+
+function str_isRejected ( $stat_str, $user )
+{
+
+	$STR = explode ( ';', $stat_str );
+	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
+	{
+		$str = explode ( ',', $STR[$i] );
+		if ( strcmp ( $user, $str[0] ) == 0 )
+			if ( $str[1] == 'R' )
 				return true;
 			else
 				return false;

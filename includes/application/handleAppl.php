@@ -74,40 +74,50 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 	$app_id = $ROW[0];
 	$app_type = $ROW[1];
 	$html = <<<HTML
-<tr>
-<td>$i</td>
 <td>$app_id</td>
 <td>$app_type</td>
 HTML;
-	echo "$html";
+	echo "<tr> <td>$i</td>";
 
 	if ( ($Status = isGenerator ( $ROW[0], $ROW[1], $UID )) != false )
 	{
-
+		echo $html;
+		showStatus( $Status ); // print complete status
+		/*
 		if ( str_isApproved ( $Status, $approver = whoIsApprover ( $ROW[0] , $ROW[1] ) ) )
 		{
-			echo "<td> APPROVED by $approver </td>";
+			echo "<td><b>APPROVED</b> by $approver </td>";
 		}
 		else
 		{
-			echo "<td>PENDING for approval </td>";
+			echo "<td><b>PENDING</b> for approval </td>";
 		}
 
 
 		if ( str_isAccepted ( $Status, $accepter = whoIsAccepter ( $ROW[0] , $ROW[1] ) ) )
 		{
-			echo "<td> ACCEPTED by $accepter</td>";
+			echo "<td><b>ACCEPTED</b> by $accepter</td>";
 		}
 		else
 		{
-			echo "<td>PENDING for acceptence</td>";
+			echo "<td><b>PENDING</b> for acceptence</td>";
 		}
+		
+		if ( str_isRejected ( $Status, $accepter = whoIsAccepter ( $ROW[0] , $ROW[1] ) ) )
+		{
+			echo "<td><b>REJECTED</b> by $accepter</td>";
+		}
+		*/
 	}
 	else if ( ($Status = isApprover ( $ROW[0], $ROW[1] , $UID )) != false )
 	{
 		if ( str_isApproved ( $Status, $UID ) )
 		{
-			echo "<td> You have approved it.</td>";
+			echo "<td>You have <b>Approved</b> it</td>";
+		}
+		else if ( str_isRejected ( $Status, $UID) )
+		{
+			echo "<td>You have <b>Rejected</b> it</td>";
 		}
 		else 
 		{
@@ -119,6 +129,13 @@ HTML;
 <input type="submit" value="approve now">
 </form>
 </td>
+<td>
+<form action="RejectAppl.php" method="post">
+<input type="text" name="app_id" value=$app_id readonly>
+<input type="text" name="app_type" value=$app_type readonly>
+<input type="submit" value="reject it">
+</form>
+</td>
 HTML;
 			echo "$html";
 		}
@@ -127,7 +144,11 @@ HTML;
 	{
 		if ( str_isAccepted ( $Status, $UID ) )
 		{
-			echo "<td>You Have Accepted it.</td>";
+			echo "<td>You Have <b>Accepted</b> it.</td>";
+		}
+		else if ( str_isRejected ( $Status, $UID) )
+		{
+			echo "<td>You have <b>Rejected</b> it</td>";
 		}
 		else
 		{
@@ -137,6 +158,13 @@ HTML;
 <input type="text" name="app_id" value=$app_id readonly>
 <input type="text" name="app_type" value=$app_type readonly>
 <input type="submit" value="accept now">
+</form>
+</td>
+<td>
+<form action="RejectAppl.php" method="post">
+<input type="text" name="app_id" value=$app_id readonly>
+<input type="text" name="app_type" value=$app_type readonly>
+<input type="submit" value="reject it">
 </form>
 </td>
 HTML;
