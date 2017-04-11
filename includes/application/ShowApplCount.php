@@ -7,12 +7,18 @@
  
 session_start();
 
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
+{
+	echo "You must login first to visit this page.";
+	die();
+}
+
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 require_once "countApplications.php";
 
 
-$html = <<<HTML
+echo <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +36,30 @@ $html = <<<HTML
 
 HTML;
 
-$html2 = <<<HTML
+echo <<<HTML
 
-<div id="table"> </div>
+<div id="table">
+<table>
+<caption style ="color:blue;text-align:center">Your Total Applications Till Now</caption>
+
+<tr>
+<td>Application type</td>
+<td>Total No of App.</td>
+</tr>
+
+HTML;
+
+$result = totalApplnTillNow( $_SESSION['Username'] );
+
+foreach( $result as $key => $value )
+{
+	echo "<tr><th>$key</th><td>$value</td></tr>" ;
+}
+
+echo <<<HTML
+
+</table>
+</div>
 
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
@@ -58,9 +85,5 @@ $(document).ready(function() {
 </body>
 </html>
 HTML;
-
-echo $html;
-
-echo $html2;
 
 ?>

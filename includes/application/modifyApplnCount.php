@@ -45,18 +45,18 @@ function updateCount( $user , $type , $date , $cnt )
 		{
 			$lim = $date;
 		}
-		$lim = explode('-',$lim);
+		//$lim = explode('-',$lim);
 		
 		$dt = $date;
-		
+		$dt = decrDay( $dt );
 		$ar = explode('-',$dt );
 		$year = $ar[0];
 		$month = $ar[1];
 		$day = $ar[2];
 
-		while( $year >= $lim[0] && $month >= $lim[1] && $day >= $lim[2] )
+		while( strtotime($dt) >= strtotime($lim) )
 		{
-			$qry = "SELECT * FROM $user WHERE $tillDate = \"$year-$month-$day\" AND $applnTy = \"$type\"";
+			$qry = "SELECT * FROM $user WHERE $tillDate = \"$dt\" AND $applnTy = \"$type\"";
 			
 			$result = $sqlconn->query($qry);
 			if( mysqli_num_rows($result) > 0 )

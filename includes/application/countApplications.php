@@ -45,6 +45,7 @@ function decrDay( $date )
 	return $tmp->format('Y-m-d');
 }
 
+
 function countApplnInYear( $user , $year )
 {
 	require "../../LocalSettings.php";
@@ -58,40 +59,46 @@ function countApplnInYear( $user , $year )
 
 	while( $i < count($type) )
 	{
-		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-[0-9][0-9]-[0-9][0-9]\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+		
 		$result1 = $sqlconn->query($qry1);
 
 		if( mysqli_num_rows($result1) == 0 )
 		{
 			$v = $type[ $i ];
-			$count->$v = 0;
+			$count->$v = '0';
 		}
 		else
 		{
 			$row1 = mysqli_fetch_array($result1);
+			
 			$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
-			$lim = mysqli_fetch_array($res)[2];
+			$lim = mysqli_fetch_array($res)[0];
+			
 			$lim = explode('-',$lim)[0];
 			$flag = false;
-			$year = $year-1;
+			$yr = $year-1;
+			
+			$v = $row1[0];
 
-			while( $year >= $lim )
+			while( $yr >= $lim )
 			{
-				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$yr-[0-9][0-9]-[0-9][0-9]\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+				
 				$result = $sqlconn->query($qry);
 				if( mysqli_num_rows($result) != 0 )
 				{
 					$row2 = mysqli_fetch_array($result);
-					$count->$row1[0] = $row1[1]-$row2[1];
+					$count-> $v = $row1[1]-$row2[1];
 					$flag = true;
 					break;
 				}
 				
-				$year = $year-1;
+				$yr = $yr-1;
 			}
 
-			if( !flag )
-				$count->$row1[0] = $row1[1];
+			if( !$flag )
+				$count-> $v = $row1[1];
 		}
 		
 		$i = $i+1;
@@ -114,7 +121,7 @@ function countApplnInMonth( $user, $month, $year )
 
 	while( $i < count($type) )
 	{
-		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+		$qry1 = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-[0-9][0-9]\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 		$result1 = $sqlconn->query($qry1);
 
 		if( mysqli_num_rows($result1) == 0 )
@@ -125,26 +132,28 @@ function countApplnInMonth( $user, $month, $year )
 		else
 		{
 			$row1 = $result1->fetch_array();
+			$v = $row1[0];
+			
 			$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
-			$lim = mysqli_fetch_row($res)[2];
-			$lim = explode('-',$lim);
+			$lim = mysqli_fetch_row($res)[0];
+			//$lim = explode('-',$lim);
 			$flag = false;
 
-			$date = $year.'-'.$month.'-01';
+			$date = $year.'-'.$month.'-'. explode('-',$lim)[2] ;
 			$date = decrMonth( $date );
 
 			$ar = explode('-',$date);
-			$year = $ar[0];
-			$month = $ar[1];
+			$yr = $ar[0];
+			$mth = $ar[1];
 
-			while( $year >= $lim[0] && $month >= $lim[1] )
+			while( strtotime($date) >= strtotime($lim) )
 			{
-				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-*\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$yr-$mth-[0-9][0-9]\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
 				if( mysqli_num_rows($result) != 0 )
 				{
 					$row2 = mysqli_fetch_array($result);
-					$count->$row1[0] = $row1[1]-$row2[1];
+					$count->$v = $row1[1]-$row2[1];
 					$flag = true;
 					break;
 				}
@@ -152,12 +161,12 @@ function countApplnInMonth( $user, $month, $year )
 				$date = decrMonth( $date );
 
 				$ar = explode('-',$date);
-				$year = $ar[0];
-				$month = $ar[1];
+				$yr = $ar[0];
+				$mth = $ar[1];
 			}
 
-			if( !flag )
-				$count->$row1[0] = $row1[1];
+			if( !$flag )
+				$count->$v = $row1[1];
 		}
 
 		$i = $i+1;
@@ -192,27 +201,29 @@ function countApplnOnDay( $user, $day, $month, $year )
 		else
 		{
 			$row1 = $result1->fetch_array();
+			$v = $row1[0];
+			
 			$res = $sqlconn->query("SELECT $tillDate FROM $user ORDER BY $tillDate limit 1");
-			$lim = mysqli_fetch_array($res)[2];
-			$lim = explode('-',$lim);
+			$lim = mysqli_fetch_array($res)[0];
+			//$lim = explode('-',$lim);
 			$flag = false;
 
 			$date = $year.'-'.$month.'-'.$day ;
 			$date = decrDay( $date );
 
 			$ar = explode('-',$date);
-			$year = $ar[0];
-			$month = $ar[1];
-			$day = $ar[2];
+			$yr = $ar[0];
+			$mth = $ar[1];
+			$dy = $ar[2];
 
-			while( $year >= $lim[0] && $month >= $lim[1] && $day >= $lim[2] )
+			while( strtotime($date) >= strtotime($lim) )
 			{
-				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$year-$month-$day\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
+				$qry = "SELECT * FROM $user WHERE $tillDate regexp \"$yr-$mth-$dy\" AND $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 				$result = $sqlconn->query($qry);
 				if( mysqli_num_rows($result) != 0 )
 				{
 					$row2 = mysqli_fetch_array($result);
-					$count->$row1[0] = $row1[1]-$row2[1];
+					$count->$v = $row1[1]-$row2[1];
 					$flag = true;
 					break;
 				}
@@ -220,13 +231,13 @@ function countApplnOnDay( $user, $day, $month, $year )
 				$date = decrDay( $date );
 
 				$ar = explode('-',$date);
-				$year = $ar[0];
-				$month = $ar[1];
-				$day = $ar[2];
+				$yr = $ar[0];
+				$mth = $ar[1];
+				$dy = $ar[2];
 			}
 
-			if( !flag )
-				$count->$row1[0] = $row1[1];
+			if( !$flag )
+				$count->$v = $row1[1];
 		}
 
 		$i = $i+1;
@@ -250,12 +261,20 @@ function totalApplnTillNow( $user )
 
 	while( $i < count($type) )
 	{
-		$qry = "SELECT * FROM $user WHERE $applnTy = $type[$i] ORDER BY $tillDate DESC limit 1";
+		$qry = "SELECT * FROM $user WHERE $applnTy = \"$type[$i]\" ORDER BY $tillDate DESC limit 1";
 		$result = $sqlconn->query($qry);
 		
-		$row = mysqli_fetch_array($result);
-		
-		$count-> $row[0] = $row[1];
+		if( mysqli_num_rows($result) == 0 )
+		{
+			$v = $type[ $i ];
+			$count->$v = 0;
+		}
+		else
+		{
+			$row = mysqli_fetch_array($result);
+			$v = $row[0];
+			$count-> $v = $row[1];
+		}
 		
 		$i = $i+1;
 	}

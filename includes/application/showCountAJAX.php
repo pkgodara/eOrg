@@ -5,6 +5,14 @@
  *
  */
 
+session_start();
+
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
+{
+	echo "You must login first to visit this page.";
+	die();
+}
+
 $date = $_REQUEST['date'];
 
 if( $date != "" ) 
@@ -12,11 +20,12 @@ if( $date != "" )
 	require_once "countApplications.php";
 
 	$user = $_SESSION['Username'];
+	
 	$dt = explode('-',$date);
 
 echo <<<HT
 <table>
-<caption style ="color:blue;text-align:center">Application Count</caption>
+<caption style ="color:blue;text-align:center">Your Application Count</caption>
 <tr>
 <td>Application type</td>
 <td>Total No of App.</td>
