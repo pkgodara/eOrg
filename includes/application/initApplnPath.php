@@ -22,6 +22,7 @@ require_once "../Globals.php";
 
 
 $sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $applnDB );
+$sqlConnEorg = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
 
 if( $sqlConn->connect_errno ) 
 {
@@ -51,7 +52,7 @@ $postStr = $postStr.$postSequence[$i] ;
 
 
 
-$stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $applnPathTable ( $groupId VARCHAR(200) NOT NULL, INDEX idx USING BTREE ($groupId))");
+$stmt = $sqlConnEorg->prepare("CREATE TABLE IF NOT EXISTS $applnPathTable ( $groupId VARCHAR(200) NOT NULL, INDEX idx USING BTREE ($groupId))");
 
 if( !$stmt->execute() )
 {
@@ -91,7 +92,7 @@ while ( $row = mysqli_fetch_row($res) )
 
 $stmt->close();
 
-$stmt = $sqlConn->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = \"$applnDB\" AND TABLE_NAME = \"$applnPathTable\"");
+$stmt = $sqlConnEorg->prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = \"$eorgDBname\" AND TABLE_NAME = \"$applnPathTable\"");
 
 if ( ! $stmt->execute() )
 {
@@ -117,7 +118,7 @@ for ($i = 0 ; $i < count($applnTypeArray) ; $i++)
 {
 	if ( ! in_array($applnTypeArray[$i], $columnArray) )
 	{
-		$stmt = $sqlConn->prepare("ALTER TABLE $applnPathTable ADD $applnTypeArray[$i] VARCHAR(500)");
+		$stmt = $sqlConnEorg->prepare("ALTER TABLE $applnPathTable ADD $applnTypeArray[$i] VARCHAR(500)");
 		if ( ! $stmt->execute() )
 		{
 			echo"there is a problem with database<br>";
@@ -128,7 +129,7 @@ for ($i = 0 ; $i < count($applnTypeArray) ; $i++)
 }
 
 
-$stmt = $sqlConn->prepare("SELECT $groupId FROM $applnPathTable WHERE $groupId = \"$groupCode\"");
+$stmt = $sqlConnEorg->prepare("SELECT $groupId FROM $applnPathTable WHERE $groupId = \"$groupCode\"");
 
 if ( ! $stmt->execute() )
 {
@@ -140,7 +141,7 @@ $res = $stmt->get_result();
 
 if ($res->num_rows == 0)
 {
-	$stmt2 = $sqlConn->prepare("INSERT INTO $applnPathTable ($groupId, $applnType) VALUES (\"$groupCode\", \"$postStr\")");
+	$stmt2 = $sqlConnEorg->prepare("INSERT INTO $applnPathTable ($groupId, $applnType) VALUES (\"$groupCode\", \"$postStr\")");
 	if ( ! $stmt2->execute() )
 	{
 		echo "there is a problem with database<br>";
@@ -150,7 +151,7 @@ if ($res->num_rows == 0)
 }
 else
 {
-	$stmt2 = $sqlConn->prepare("UPDATE $applnPathTable SET  $applnType = \"$postStr\" WHERE $groupId = \"$groupCode\"");
+	$stmt2 = $sqlConnEorg->prepare("UPDATE $applnPathTable SET  $applnType = \"$postStr\" WHERE $groupId = \"$groupCode\"");
 	if ( ! $stmt2->execute() )
 	{
 		echo"there is a problem with database<br>";
