@@ -54,4 +54,10 @@ $PostTable = "PostTable";
 	$CanAcceptApplication = "AcceptAppl";
 	$CanAccessDataBaseOfUser = "AccessDatabese";
 
+// assign post table and its entries
+$assignPostTable = 'AssignPostTable';
+$postTitle = 'PostTitle';
+$assignedUser = 'AssignedUser';
+
+
 ?>
