@@ -10,7 +10,7 @@ session_start();
 
 
 //we have to change this session letter
-if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && isset($_SESSION['PostName']) ) )
 {
 	echo "session id :".session_id()." ,You need to login as Admin to add users. Please log in as/contact Admin.";
 		die();
@@ -38,13 +38,13 @@ HTML;
 
 echo $html1;
 
-$POST = "deepak";
+$POST = $_SESSION['PostName'];
 
 require '../Globals.php';
 require '../../LocalSettings.php';
 
 
-echo "<h1>Hello<h1><br>";
+echo "<h1>Hello $POST<h1><br>";
 echo "";//session post name latter
 
 

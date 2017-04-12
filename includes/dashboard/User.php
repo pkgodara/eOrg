@@ -56,6 +56,50 @@ if( $sqlConn->connect_errno )
 	echo "Internal Server Error, Contact Administrator.";
 	die();
 }
+$user = $_SESSION['Username'];
+$stmt = $sqlConn->prepare("SELECT $postTitle FROM $assignPostTable WHERE $assignedUser = \"$user\"");
+if ( ! $stmt->execute() )
+{
+	echo"there is a problem with database<br>";
+	die ();
+}
+
+$res = $stmt->get_result();
+
+if ($res->num_rows != 0)
+{
+	echo "<select name='posts' id='posts' onchange='callForChange(this)'>";
+	echo "<option value=''>Select the post(s)</option>";
+	while($row = mysqli_fetch_row ($res))
+	{
+		echo "<option value='$row[0]'>$row[0]</option>";
+	}
+	echo "</select>";
+echo <<<HTML
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function callForChange(opted)
+{
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+if (this.readyState == 4 && this.status == 200)
+{
+window.location = "PostDashBoard.php";
+}
+};
+xhttp.open("POST", "forwardPost.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("post="+opted.value);
+}
+</script>
+HTML;
+}
+
+
+
+$stmt->close();
 
 $qry = "SELECT * FROM $user";
 $stmt = $sqlConn->prepare($qry);
@@ -75,6 +119,7 @@ $i=$i+1;
 
 $stmt->close();
 $sqlConn->close();
+
 
 
 echo "</body></html>";
