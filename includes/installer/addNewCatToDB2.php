@@ -46,9 +46,7 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
-echo count($lev);
-echo $levId;
-echo "hello".$tab.$k.$catType;
+
 
 
 $newLevId = $levId."_[0-9]{1,}";
