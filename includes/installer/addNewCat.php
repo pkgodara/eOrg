@@ -83,7 +83,7 @@ $html = <<<HTML
 <p>Or to add category(s) to this, type them below and then hit 'done with it'</p>
 <form  action="addNewCatToDB.php" method="post">
 <div id="afterClick2">
-<input type="text" name="levels[]" >
+<input type="text" name="levels[]" pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed'>
 <button type="button" id="1" onclick="addMore()" >Want to add another</button>
 </div>
 <br><button type='submit' name='submit'>Done with it !</button><br>
@@ -100,7 +100,7 @@ i++;
 //asking to add another or done with adding
 //
 
-$("#afterClick2").append("<br><input type='text' name='levels[]' ><button type='button' id='"+i+"' onclick='addMore ()' >Want to add another</button>");
+$("#afterClick2").append("<br><input type='text' name='levels[]' pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed'><button type='button' id='"+i+"' onclick='addMore ()' >Want to add another</button>");
 }
 function showOptions ( opted )
 {
