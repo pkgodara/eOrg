@@ -7,7 +7,7 @@
 
 session_start();
 
-if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $_SESSION['PostName'] ) ) )
 {
 	echo "You must login first to visit this page.";
 	die();
@@ -28,8 +28,8 @@ echo <<<HTML
 
 <body >
 
-<h2>Please Select Date or Month or Year to get count</h2>
-
+<h2>Please Select Username AND Date or Month or Year to get count</h2>
+Username : <input type="text" name="user" id="user" required/> <br>
 Select Date : <input type="date" name="date" id="date" placeholder="yyyy-mm-dd" required/>
 <br>
 Applications on : 
@@ -41,32 +41,7 @@ Applications on :
 <br>
 <button name="submit" id="submit" >Get Count</button>
 
-HTML;
-
-echo <<<HTML
-
 <div id="table">
-<table>
-<caption style ="color:blue;text-align:center">Your Total Applications Till Now</caption>
-
-<tr>
-<td>Application type</td>
-<td>Total No of App.</td>
-</tr>
-
-HTML;
-
-	$result = totalApplnTillNow( $_SESSION['Username'] );
-
-	foreach( $result as $key => $value )
-	{
-		echo "<tr><th>$key</th><td>$value</td></tr>" ;
-	}
-
-
-echo <<<HTML
-
-</table>
 </div>
 
 
@@ -77,7 +52,8 @@ $(document).ready(function() {
 	$("#submit").click( function() {
 		var dt = $("#date").val();
 		var ch = $("#choice").val();
-		var date = "date=" + dt + "&choice=" + ch ;
+		var us = $("#user").val();
+		var date = "date=" + dt + "&choice=" + ch + "&user=" + us ;
 		
 		$.ajax( {
 			type: "POST",
