@@ -18,6 +18,7 @@ require "../ApplHandlingByStr.php";
 //require_once "Globals.php";
 //require_once "../LocalSettings.php";
 
+echo "rejecting...";
 
 if ( ! isset (  $_POST['app_id'] ) )
 {
@@ -32,7 +33,7 @@ else
 	
 	if ( reject( $app_id, $app_type , $UID ) )
 	{
-		echo "The application has been successfully approved<br>";
+		echo "The application has been successfully rejected<br>";
 	}
 	else
 	{

@@ -25,6 +25,7 @@ else
 	$appln = $_POST['appln'];
 	
 	$appTy = str_replace('.','$',$appln);
+	$appTy = str_replace(' ','_',$appTy);
 	
 	$type = str_replace(' ','_',$appln);
 
@@ -50,7 +51,10 @@ else
 		die();
 	}
 	
+	//generates application status
 	require "DetermineApplnPath.php";
+	
+	echo "processing............";
 	
 	// create application table if not exists
 	//
@@ -99,6 +103,8 @@ else
 
 	// Add Application id in sender's database
 	//
+	echo "updating application for $user";
+	
 	$userDB = str_replace('.','$',$user);
 	$stmt = $sqlConn->prepare("INSERT INTO $userDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$type);
@@ -113,6 +119,9 @@ else
 	//
 	$appr = explode(';',$status)[1];
 	$appr = explode(',',$appr)[0];
+	
+	echo "Sending application to $appr";
+	
 	$destDB = str_replace('.','$',$appr);
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
 	$stmt->bind_param('ss',$id,$appTy);

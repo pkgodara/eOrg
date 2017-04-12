@@ -72,7 +72,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $row = mysqli_fetch_row($result);
 
-echo "<button onclick=\"document.location.href='../application/handleAppl.php'\"> Handle Applications </button>";
+
 
 if ( $row[1] == 'yes')
 {
@@ -93,20 +93,21 @@ echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '
 if ( $row[3] == 'yes')
 
 {
-echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = ' cursor: pointer;  margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ASSIGN POST </button> ";
+echo "<button  onclick=\"document.location.href='../AssignPost.php' \" style = ' cursor: pointer;  margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ASSIGN POST </button> ";
 }
 
 if ( $row[4] == 'yes')
 {
 
-echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> HANDLE POST </button> ";
+echo "<button  onclick=\"document.location.href='../Post/CreatePost.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '>CREATE POST</button> ";
 
 }
 
 if ( $row[5] != 'no')
 {
-echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ACCEPT APPLICATION</button> ";
+echo "<button onclick=\"document.location.href='../application/handleAppl.php'\" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> Handle Applications </button>";
 }
+
 if ( $row[6] != 'no')
 {
 echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ACCESS USER DATABASE </button> ";

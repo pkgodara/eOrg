@@ -8,7 +8,7 @@
 
 session_start();
 
-if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] === 'admin' ) )
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION['Username'] == 'admin' || isset($_SESSION['PostName']) ) ) )
 {
 	echo "To access this page you need to login as Admin. Please log in first.";
 	die();

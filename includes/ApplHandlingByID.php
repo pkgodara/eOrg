@@ -222,22 +222,15 @@ function reject( $id, $type, $user )
 				echo " Unable to perform the task, internal server error.<br>";
 				die();
 			}
-			$next = explode ( ',', $status[ $flag + 1 ] );
-			$NEXT = str_replace('.','$', $next[0] );
-			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?, ? )" );
-			$STMT->bind_param ( 'ss', $id, $type );
-			if ( ! $STMT->execute() )
-			{
-				echo " Unable to perform the task, internal server error.<br>";
-				die();
-			}
+			
 			$STMT->close();
-
+			return true;
 		}
 		else
 			return false;
 	}
 	$stmt->close();
+	return true;
 }
 
 

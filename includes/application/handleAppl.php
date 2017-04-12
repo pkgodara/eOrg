@@ -82,11 +82,14 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 	$app_id = $ROW[0];
 	$app_type = $ROW[1];
 	$html = <<<HTML
+<tr> <td>$i</td>
 <td>$app_id</td>
 <td>$app_type</td>
 HTML;
-	echo "<tr> <td>$i</td>";
 	echo $html;
+	
+	
+	
 	if ( ($Status = isGenerator ( $ROW[0], $ROW[1], $UID )) != false )
 	{
 		
