@@ -21,9 +21,7 @@ $html = <<<HTML
 <form action="">
 <button type="submit">Delete a category</button><br><br>
 </form>
-<form action="">
-<button type="submit">Rename a category</button><br><br>
-</form>
+
 HTML;
 
 

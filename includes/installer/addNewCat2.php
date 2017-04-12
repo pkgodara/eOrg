@@ -39,8 +39,8 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
-
-$qry = "SELECT * FROM $tab WHERE $levels REGEXP \"^$levId.$\"";
+$newLevId = $levId."_[0-9]{1,}";
+$qry = "SELECT * FROM $tab WHERE $levels REGEXP \"^$newLevId$\"";
 $stmt = $sqlConn->prepare($qry);
 
 if ( ! $stmt->execute() )
@@ -80,7 +80,7 @@ $("#"+i).hide();
 i++;
 //asking to add another or done with adding
 //
-$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button><br>");
+$("#afterClick").append("<br><input type='text' name='levels[]' required='required'><button type='button' id='"+i+"' onclick='addAnother ()' >Want to add another</button>");
 }
 </script>
 HTML;
@@ -108,7 +108,8 @@ else
 	$stmt2->close();
 	while ( $row = mysqli_fetch_row ($result) )
 	{
-		echo "<input type='radio' name=$catType id=$tab value=$row[0] onclick='showOptions (this)' >$row[1]<hr><div id=$row[0]></div><hr>";
+		$newRow = str_replace('_', ' ', $row[1]);
+		echo "<input type='radio' name=$catType id=$tab value=$row[0] onclick='showOptions (this)' >$newRow<div id=$row[0]></div><hr>";
 	}
 $html = <<<HTML
 <p>Or to add category(s) to this, type them below and then hit 'done with it'</p>
@@ -116,7 +117,7 @@ $html = <<<HTML
 <input type="radio" name="tab" value=$tab checked>
 <input type="radio" name="catType" value=$catType checked>
 <input type="radio" name="alreadyPresent" value=$numRows checked><br>
-<div id="afterClick">
+<div id="afterClickAnother">
 <input type="text" name="levels[]" >
 <button type="button" id="1" onclick="addMore2()" >Want to add another</button>
 </div>
@@ -134,7 +135,7 @@ i++;
 //asking to add another or done with adding
 //
 
-$("#afterClick").append("<br><input type='text' name='levels[]' ><button type='button' id='"+i+"' onclick='addMore2 ()' >Want to add another</button><br>");
+$("#afterClickAnother").append("<br><input type='text' name='levels[]' ><button type='button' id='"+i+"' onclick='addMore2 ()' >Want to add another</button>");
 }
 </script>
 HTML;

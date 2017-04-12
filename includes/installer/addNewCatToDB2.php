@@ -31,23 +31,28 @@ $catType = $_POST['catType'];
 $lev = array();
 $lev = $_POST['levels'];
 
+
 $levId = str_replace ( "C", "L", $catType );
 
-echo count($lev);
-echo $levId;
+
 
 $sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $catDB );
 
 
-/*
+
 if( $sqlConn->connect_errno ) 
 {
 	echo "Error connecting database. Please check your database credentials and update.";
 	die();
 }
 
+echo count($lev);
+echo $levId;
+echo "hello".$tab.$k.$catType;
 
-$qry = "SELECT * FROM $tab WHERE $levels REGEXP \"^$levId.$\"";
+
+$newLevId = $levId."_[0-9]{1,}";
+$qry = "SELECT * FROM $tab WHERE $levels REGEXP \"^$newLevId$\"";
 $stmt = $sqlConn->prepare ($qry) ;
 
 if ( ! $stmt->execute() )
@@ -67,20 +72,21 @@ $i = 0;  // array index
 
 while ( $row = mysqli_fetch_row ( $result ) )
 {
-	$preLev[$i] = $row[0];
+	$prevLev[$i] = $row[0];
 	$i++;
 }
 
 $stmt->close();
 
+$k = count($prevLev);
 
 for ( $i = 0 ; $i < count($lev) ; $i++ )
 {
-	$val = $levId.($k+1) ;
+	$val = $levId."_".($k+1) ;
 	while ( in_array($val, $prevLev) )
 	{
 		$k++;
-		$val = $levId.($k+1) ;
+		$val = $levId."_".($k+1) ;
 	}
 	$stmt = $sqlConn->prepare("INSERT INTO $tab VALUES (?,?)");
 		$stmt->bind_param('ss', $val , $lev[$i] );
@@ -97,9 +103,9 @@ for ( $i = 0 ; $i < count($lev) ; $i++ )
 	$k++;
 }
 
-*/
+
 echo "Updates have been made successsfully<br>";
 
-echo "<br><a href="">home</a>";
+echo "<br><a href='abc.php'>home</a>";
 
 ?>

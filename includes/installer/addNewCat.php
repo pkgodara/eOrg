@@ -71,7 +71,8 @@ while ( $row = mysqli_fetch_row ( $res ) )
 	}
 	$res2 = $stmt2->get_result ();
 	$row2 = mysqli_fetch_row ( $res2 );
-	echo "<input type='radio' id=$row2[1] name='users' value=$row2[0] onclick='showOptions(this)'>$row2[1]<hr><div id=$row2[0]></div><hr><br>";
+	$newRow = str_replace('_', ' ', $row2[1]);
+	echo "<input type='radio' id=$row2[1] name='users' value=$row2[0] onclick='showOptions(this)'>$newRow<div id=$row2[0]></div><hr><br>";
 	$stmt2->close();
 }	
 
@@ -99,7 +100,7 @@ i++;
 //asking to add another or done with adding
 //
 
-$("#afterClick2").append("<br><input type='text' name='levels[]' ><button type='button' id='"+i+"' onclick='addMore ()' >Want to add another</button><br>");
+$("#afterClick2").append("<br><input type='text' name='levels[]' ><button type='button' id='"+i+"' onclick='addMore ()' >Want to add another</button>");
 }
 function showOptions ( opted )
 {

@@ -35,6 +35,9 @@ $html2 = <<<HTML
 </h2>
 <br><br><br><br>
 <button onclick="document.location.href='../installer/broadCatUsers.php'" style="cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Add category(s) </button>
+
+<button onclick="document.location.href='../modifyCat.php'" style="cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Modify category(s) </button>
+
 <button onclick="document.location.href='../Post/CreatePost.php' "style=" cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Create Post </button>
 
 <button onclick="document.location.href='../application/createApplnType.php'" style="cursor: pointer; font-size : 25px; height:auto; width:150px ;background-color:#8B4513;color:white ;border:10px "> Create a type of application </button>
