@@ -85,10 +85,17 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 <tr> <td>$i</td>
 <td>$app_id</td>
 <td>$app_type</td>
+	
+<td>
+<form action="viewApplication.php" method="post">
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="submit" value="View">
+</form>
+</td>
 HTML;
+	
 	echo $html;
-	
-	
 	
 	if ( ($Status = isGenerator ( $ROW[0], $ROW[1], $UID )) != false )
 	{

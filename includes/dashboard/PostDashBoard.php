@@ -114,6 +114,7 @@ echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '
 }
 //}
 
+echo "<button  onclick=\"document.location.href='../postLogout.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '>Log-Out !</button> ";
 
 
 echo "</body> </html>";
