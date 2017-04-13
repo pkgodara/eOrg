@@ -31,6 +31,19 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    
+    width: 100%;
+    border-color: white;
+}
+
+th {
+    height: 50px;
+}
 
 </style>
 

@@ -27,6 +27,18 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+table, td, th {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-color: white;
+}
+
+th {
+    height: 50px;
+}
 </style>
 <title>Admin</title>
 
@@ -40,7 +52,7 @@ include 'Watch.php';
 
 
 $html2 = <<<HTML
-<center>
+<center><b><i>
 <br><br><br><br>
 <h2>Hello
 
@@ -54,28 +66,28 @@ $html2 = <<<HTML
 <br><br><br><br>
 
 
-<button onclick="document.location.href='../modifyCat.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Modify category(s) </button>
+<button onclick="document.location.href='../modifyCat.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Modify category(s) </button>
 
-<button onclick="document.location.href='../Post/CreatePost.php' "style=" cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Create Post </button>
+<button onclick="document.location.href='../Post/CreatePost.php' "style=" cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Create Post </button>
 
-<button onclick="document.location.href='../application/createApplnType.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Create a type of application </button>
+<button onclick="document.location.href='../application/createApplnType.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Create a type of application </button>
 
-<button onclick="document.location.href='../application/ApplnPaths.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Create path(s) of Application </button>
+<button onclick="document.location.href='../application/ApplnPaths.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Create path(s) of Application </button>
 
-<button onclick="document.location.href='../AssignPost.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Assign a POST </button>
+<button onclick="document.location.href='../AssignPost.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Assign a POST </button>
 
 
 
-<button onclick="document.location.href='../AddUser.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Add User </button>
+<button onclick="document.location.href='../AddUser.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Add User </button>
 
-<button onclick="document.location.href='../EditUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Edit User </button>
+<button onclick="document.location.href='../EditUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Edit User </button>
 
-<button onclick="document.location.href='../RemoveUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Remove User </button>
+<button onclick="document.location.href='../RemoveUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Remove User </button>
 
 <br><br><br>
 
 
-<button onclick="document.location.href='../Logout.php'"style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#8B4513;color:white ;border:10px "> Log out ! </button>
+<button onclick="document.location.href='../Logout.php'"style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Log out ! </button>
 <br><br><br><br>
 
 HTML;
@@ -136,6 +148,6 @@ $stmt->close();
 $sqlConn->close();
 
 
-echo "</table></center></body> </html>";
+echo "</table></i></b></center></body> </html>";
 
 ?>
