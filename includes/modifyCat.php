@@ -18,7 +18,7 @@ $html = <<<HTML
 <form action="installer/addNewCat.php">
 <button type="submit">Add a new category</button><br><br>
 </form>
-<form action="">
+<form action="installer/deleteCat.php">
 <button type="submit">Delete a category</button><br><br>
 </form>
 
