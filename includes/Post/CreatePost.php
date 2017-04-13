@@ -29,7 +29,7 @@ $html = <<< html
 
 <body style ="background-color:#6699FF">
 <center>
-<form action ="HandalFinaleDataOfCreatePost.php" method ="post" >
+<form action ="HandleFinalDataOfCreatePost.php" method ="post" >
 <br><br><br><br><br><br>
 <i><b>POST NAME : <input type = "text"  name ="Pname" pattern='[A-Za-z0-9. ]{1,}'  title='only alphabets, numbers and spaces and dot are allowed' required autofocus><br><br>
 

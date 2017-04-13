@@ -55,14 +55,15 @@ require '../../LocalSettings.php';
 if (  !(isset ($_POST['Pname']) &&  isset ($_POST['add_user']) && isset ($_POST['delete_user']) && isset ($_POST['assign_post']) && isset ($_POST['handle_post']) && isset ($_POST['accept_application']) && isset ($_POST['canAccessDatabase']) )  )
 {
 
-	echo "Error IN creating Post Try Again";
-	die();
+		echo "<br><br><h3 style = 'color:white ;'>Error IN creating Post Try Again.</h3>";
+		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
+		die();
 
 }
 
 
 $userPost = str_replace('.','$',$_POST['Pname']) ;
-
 $userPost = preg_replace('/\s+/', '_', $userPost);
 
 
@@ -72,37 +73,29 @@ if ($_POST['accept_application'] == "yes" )
 	$CanAcceptArrey = array();
 	$CanAcceptArrey = $_POST['canAccept'] ;
 
-
 	if( ($length = count ($CanAcceptArrey)) != 0)
 	{
 		$finalString = "";
-
 		for($i = 0 ; $i < $length - 1 ; $i++) 
 
 		{
 			$finalString = $finalString.$CanAcceptArrey[$i].";";
 		}
-		$finalString = $finalString.$CanAcceptArrey[$length - 1];
-
+			$finalString = $finalString.$CanAcceptArrey[$length - 1];
 	}
 
 	else
 	{
-		echo "Error IN creating Post Try Again";
+		
+		echo "<br><br><h3 style = 'color:white ;'>Error IN creating Post Try Again.</h3>";
+		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 	}
-
-
 }
+
 else
-{
-
 	$finalString = $_POST['accept_application'];
-
-}
-
-
-
 
 if (($_POST['canAccessDatabase']) == "yes" )
 {
@@ -110,12 +103,6 @@ if (($_POST['canAccessDatabase']) == "yes" )
 	$CanAccessArrey = array();
 	$CanAccessArrey = $_POST['accessDataBase'] ;
 
-/*foreach($CanAccessArrey  as $a )
-{
-echo $a."<br>";
-}
-}
- */
 	if( ($length = count ($CanAccessArrey)) != 0)
 	{
 		$finalString1 = "";
@@ -125,25 +112,20 @@ echo $a."<br>";
 		{
 			$finalString1 = $finalString1.$CanAccessArrey[$i].",";
 		}
-		$finalString1 = $finalString1.$CanAccessArrey[$length - 1];
-
-	}
-
+			$finalString1 = $finalString1.$CanAccessArrey[$length - 1];
+}
 	else
 	{
-		echo "Error IN creating Post Try Again";
+		echo "<br><br><h3 style = 'color:white ;'> Error IN creating Post Try Again.</h3>";
+		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 	}
 
 
 }
 else
-{
 	$finalString1 = $_POST['canAccessDatabase'] ;
-}
-
-//echo $finalString."  and  ". $finalString1;
-
 
 
 $sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
@@ -154,8 +136,6 @@ if( $sqlConn->connect_errno )
 	die();
 }
 
-
-
 //creating table for post data 
 
 $qry = "create  table if not exists $PostTable ( $NameOfThePost VARCHAR(50) NOT NULL, $CanAddUser VARCHAR(30) NOT NULL,$CanDeleteUser  VARCHAR(30) NOT NULL,$CanAssignPost VARCHAR(30) NOT NULL ,$CanHandlePost VARCHAR(30) NOT NULL ,$CanAcceptApplication  VARCHAR(1000) NOT NULL  ,$CanAccessDataBaseOfUser  VARCHAR(1000) NOT NULL ,INDEX idx2 USING BTREE($NameOfThePost) ) ";
@@ -165,15 +145,11 @@ $stmt = $sqlConn->prepare($qry);
 if(!$stmt->execute())
 	echo"table is not crated";
 
-
-
 $post = $_POST['Pname'];
-
 $qry = "SELECT * FROM $PostTable WHERE $NameOfThePost regexp \"^$post$\"";//checking if the post is already exists or no not
 
 	$stmt = $sqlConn->prepare($qry);
 	$stmt->execute();
-	
 	$result = $stmt->get_result();
 	if($result->num_rows != 0)
 	{
@@ -184,18 +160,15 @@ $qry = "SELECT * FROM $PostTable WHERE $NameOfThePost regexp \"^$post$\"";//chec
 	}
 
 
-
-
-
-
 //creating table for post dash board
 
 $stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $userPost ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(255), INDEX idx USING BTREE($UserAppId), INDEX idx1 USING BTREE($UserAppTy) )" );
 
 	if( ! $stmt->execute() )
 	{
-		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
-		echo "Error creating database for user, contact Admin";
+		echo"<br><br><h3 style = 'color:white ;'>Error creating database for user, contact Admin</h3>";
+		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 	}
 	
@@ -205,15 +178,11 @@ $stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $userPost ( $UserAppId BIG
 
 
 $qry = "insert into $PostTable values(? ,? ,? ,? ,? ,? ,?)";
-
 $stmt = $sqlConn->prepare($qry);
-
-
 $stmt->bind_param('sssssss' ,$_POST['Pname'], $_POST['add_user'], $_POST['delete_user'] , $_POST['assign_post'] , $_POST['handle_post'] ,$finalString , $finalString1);
 
 if($stmt->execute())
 {
-
 	echo"<br><br><h3 style = 'color:white ;'>POST CREATED SUCCESSFULLY</h3>";
 	echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
 	echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
@@ -221,10 +190,11 @@ if($stmt->execute())
 }	
 else
 {
-	echo "ERROR IN CREATING POST TRY AGAIN";
+	echo"<br><br><h3 style = 'color:white ;'>ERROR IN CREATING POST TRY AGAIN</h3>";
+	echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+	echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 	die();
 }
 
 echo"</body></html>";
-
 ?>
