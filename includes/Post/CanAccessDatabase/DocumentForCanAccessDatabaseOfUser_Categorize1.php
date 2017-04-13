@@ -8,23 +8,14 @@ this file will find out user from table for creat post
 session_start();
 
 
-if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION['Username'] == 'admin' || isset($_SESSION['PostName']) ) ) )
 
 {
 	echo "session id :".session_id()." ,You need to login as Admin to add users. Please log in as/contact Admin.";
 	die();
 }
 
-else 
-{
 
-
-echo "yha per uska dena hi";
-
-
-
-
-}
 
 
 require '../../Globals.php';
