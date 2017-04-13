@@ -36,6 +36,7 @@ body {
 
 HTML;
 
+include 'Watch.php';
 echo $html1;
 
 $POST = $_SESSION['PostName'];
@@ -44,7 +45,7 @@ require '../Globals.php';
 require '../../LocalSettings.php';
 
 
-echo "<h1>Hello $POST<h1><br>";
+echo "<center><b><i><h1>Hello $POST<h1><br>";
 echo "";//session post name latter
 
 
@@ -77,7 +78,7 @@ $row = mysqli_fetch_row($result);
 if ( $row[1] == 'yes')
 {
 
-echo "<button  onclick= \"document.location.href='../AddUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ADD USER </button>";
+echo "<button  onclick= \"document.location.href='../AddUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white '> ADD USER </button>";
 
 }
 
@@ -86,37 +87,37 @@ echo "<button  onclick= \"document.location.href='../AddUser.php' \" style = '  
 
 if ( $row[2] == 'yes')
 {
-echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> DELETE USER </button> ";
+echo "<button  onclick=\"document.location.href='../RemoveUser.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white '> DELETE USER </button> ";
 }
-
+ 
 
 if ( $row[3] == 'yes')
 
 {
-echo "<button  onclick=\"document.location.href='../AssignPost.php' \" style = ' cursor: pointer;  margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ASSIGN POST </button> ";
+echo "<button  onclick=\"document.location.href='../AssignPost.php' \" style = ' cursor: pointer;  margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white'> ASSIGN POST </button> ";
 }
 
 if ( $row[4] == 'yes')
 {
 
-echo "<button  onclick=\"document.location.href='../Post/CreatePost.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '>CREATE POST</button> ";
+echo "<button  onclick=\"document.location.href='../Post/CreatePost.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white'>CREATE POST</button> ";
 
 }
 
 if ( $row[5] != 'no')
 {
-echo "<button onclick=\"document.location.href='../application/handleAppl.php'\" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> Handle Applications </button>";
+echo "<button onclick=\"document.location.href='../application/handleAppl.php'\" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white'> HANDLE APPLICATION </button>";
 }
 
 if ( $row[6] != 'no')
 {
-echo "<button  onclick=\"document.location.href='../application/getUserApplnCount.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '> ACCESS USER DATABASE </button> ";
+echo "<button  onclick=\"document.location.href='../application/getUserApplnCount.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white'> ACCESS USER DATABASE </button> ";
 }
 //}
 
-echo "<button  onclick=\"document.location.href='../postLogout.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#3CB371 ;border:10px '>Log-Out !</button> ";
+echo "<br><br><br><br><br><button  onclick=\"document.location.href='../postLogout.php' \" style = '  cursor: pointer; border:5px ; margin: 4px 2px; border:5px ; font-size : 25px; height:auto; width:auto ;background-color:#2a2a3c ;border:10px ;color:white'>Log-Out !</button> ";
 
 
-echo "</body> </html>";
+echo "</center></body> </html>";
 
 ?>

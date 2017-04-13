@@ -20,26 +20,31 @@ $html1 = <<<HTML
 
 </head>
 
-<body style ="background-color:MediumAquaMarine ">
-
-<h2>Hello
-HTML;
-
-$html2 = <<<HTML
-</h2>
-
-<button onclick="document.location.href='../application/LeaveAppl.php'"> Generate Leave Application </button>
-
-<button onclick="document.location.href='../application/handleAppl.php'"> Handle Applications </button>
-
-<button onclick="document.location.href='../application/ShowApplCount.php'"> Application Count </button>
-
-<button onclick="document.location.href='../Logout.php'"> Log out ! </button>
-
+<body style ="background-color:MediumAquaMarine ;font-size:30px">
 HTML;
 
 echo $html1;
+include 'Watch.php';
+
+
+echo"<center><b><i><h1>Hello";
 echo " ".$_SESSION['Name'];
+
+$html2 = <<<HTML
+</h1>
+
+<button onclick="document.location.href='../application/LeaveAppl.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Generate Leave Application </button>
+
+<button onclick="document.location.href='../application/handleAppl.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Handle Applications </button>
+
+<button onclick="document.location.href='../application/ShowApplCount.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Application Count </button>
+
+<button onclick="document.location.href='../Logout.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Log out ! </button>
+
+HTML;
+
+
+
 echo $html2;
 
 
@@ -68,7 +73,7 @@ $res = $stmt->get_result();
 
 if ($res->num_rows != 0)
 {
-	echo "<select name='posts' id='posts' onchange='callForChange(this)'>";
+	echo "<select name='posts' id='posts' onchange='callForChange(this)' style='cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px '>";
 	echo "<option value=''>Select the post(s)</option>";
 	while($row = mysqli_fetch_row ($res))
 	{
@@ -122,6 +127,6 @@ $sqlConn->close();
 
 
 
-echo "</body></html>";
+echo "</i></b></center></body></html>";
 
 ?>

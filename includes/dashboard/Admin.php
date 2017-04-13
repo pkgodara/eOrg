@@ -20,18 +20,31 @@ $html1 = <<<HTML
 body {
 color:white;
     background-image: url("../../adminpic.jpg");
+    background-repeat: no-repeat;
 }
 </style>
 <title>Admin</title>
 
 </head>
-<center>
+
 <body>
-<br><br><br><br>
-<h2>Hello
+
 HTML;
+echo $html1;
+include 'Watch.php';
+
 
 $html2 = <<<HTML
+<center>
+<br><br><br><br>
+<h2>Hello
+
+HTML;
+echo $html2;
+echo " ".$_SESSION['Name'];
+$html2 = <<<HTML
+
+
 </h2>
 <br><br><br><br>
 
@@ -61,9 +74,6 @@ $html2 = <<<HTML
 <br><br><br><br>
 
 HTML;
-
-echo $html1;
-echo " ".$_SESSION['Name'];
 
 
 
