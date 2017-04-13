@@ -520,7 +520,7 @@ document.getElementById("DocumentForCanAccessDatabaseOfUser_termination").innerH
 
 </script>
 <br><br><br><br><br><br><br><br><br><br><br>
-<input type ="submit" name ="SUBMIT" style='font-size:auto ;cursor: pointer; height:50px; width:200px;color:white ;background-color:#4B0082;font-size : 30px;'/>
+<input type ="submit" name ="SUBMIT" style='cursor: pointer; height:50px; width:200px;color:white ;background-color:#4B0082;font-size : 30px;'/>
 </i></b>
 </form->
 </center></body>

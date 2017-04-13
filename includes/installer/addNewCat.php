@@ -15,6 +15,10 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 }
 
 
+
+
+
+
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 
@@ -49,11 +53,43 @@ if ( $res->num_rows == 0 )
 
 
 $html = <<<HTML
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>New Categorization</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+input[type=text] {
+    
+    width: 400px;
+   height:35px;
+  font-size:25px;
+}
+button
+
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+</style>
 </head>
-<body>
+
+
+
+<body style = "color:white ;font-size:25px">
+<center><br><br><br><br><b><i>
+<button onclick="document.location.href='../../'" > HOME</button>
+
+<br><br><br><br>
+
 <p>Please select an item to categorize :<br><br></p>
 HTML;
 
@@ -83,7 +119,7 @@ $html = <<<HTML
 <p>Or to add category(s) to this, type them below and then hit 'done with it'</p>
 <form  action="addNewCatToDB.php" method="post">
 <div id="afterClick2">
-<input type="text" name="levels[]" pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed'>
+<input type="text" name="levels[]" pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed' >
 <button type="button" id="1" onclick="addMore()" >Want to add another</button>
 </div>
 <br><button type='submit' name='submit'>Done with it !</button><br>
@@ -100,7 +136,7 @@ i++;
 //asking to add another or done with adding
 //
 
-$("#afterClick2").append("<br><input type='text' name='levels[]' pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed'><button type='button' id='"+i+"' onclick='addMore ()' >Want to add another</button>");
+$("#afterClick2").append("<br><input type='text' name='levels[]' pattern='[A-Za-z0-9 ]{1,}' title='only alphabets, numbers and space are allowed' autofocus><button type='button' id='"+i+"' onclick='addMore ()' >Want to add another</button>");
 }
 function showOptions ( opted )
 {
@@ -118,6 +154,9 @@ xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 xhttp.send("tab="+opted.id+"&levelId="+opted.value);
 }
 </script>
+
+<br><br><br><br><br><br><br><br>
+</center>
 </body>
 </html>
 HTML;

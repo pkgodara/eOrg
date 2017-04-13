@@ -11,6 +11,37 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 	die();
 }
 
+$html = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Remove User</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
+a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/
+a:hover   {color:white;  text-decoration:none}/*link color when try to click the link*/
+a:active  {color:red; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
+
+body {
+	
+    font-size:30px;
+    color:white;
+    background-image: url("../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+<body >
+<center><br><br><br>
+HTML;
+echo $html;
+
 if( isset( $_POST['user'] ) )
 {
 	require_once "../LocalSettings.php";
@@ -89,5 +120,5 @@ else
 	die ();
 }
 
-
+echo "</center></body></html>";
 ?>

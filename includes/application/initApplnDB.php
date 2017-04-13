@@ -37,6 +37,44 @@ if ( !( isset($_POST['applnTypeName']) && isset($_POST['submit']) ) )
 }
 
 
+$html = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
+a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/
+a:hover   {color:white;  text-decoration:none}/*link color when try to click the link*/
+a:active  {color:red; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
+
+button,select
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+body {
+	
+    font-size:30px;
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+
+<body>
+<center><b><i>
+HTML;
+
+echo $html;
+
+
+
 
 $applnType  = $_POST['applnTypeName'];
  
@@ -160,5 +198,5 @@ echo "<a href='createApplnType.php'>CREATE ANOTHER</a><br>";
 echo "<a href='../../'>HOME</a><br>";
 
 
-
+echo"</center></body></html>";
 ?>

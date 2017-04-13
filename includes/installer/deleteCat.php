@@ -49,11 +49,37 @@ if ($res->num_rows == 0)
 
 
 $html = <<<HTML
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Delete Category(s)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
+a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/
+a:hover   {color:white;  text-decoration:none}/*link color when try to click the link*/
+a:active  {color:red; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
+
+button,select
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+body {
+	
+    font-size:30px;
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
 </head>
+
 <body>
+<center><b><i><br><br><br><br><br><br>
 <p>Select the category/branch(s) of a category to be deleted</p><br><br>
 <div id="deleteOptions">
 HTML;

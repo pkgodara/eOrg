@@ -108,11 +108,42 @@ for ( $i = 0 ; $i < count ( $lev ) ; $i++ )
 	}
 }
 
+
+$html = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
+a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/
+a:hover   {color:white;  text-decoration:none}/*link color when try to click the link*/
+a:active  {color:red; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
+
+body {
+	
+    font-size:30px;
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+
+<body>
+<center><b><i><br><br><br><br><br><br>
+HTML;
+echo $html;
+
 echo "The entered broad categories has been updated in the database successfully<br>";
 
 echo "for further categorisation please click <a href='addNewCat.php'>here</a><br>";
 
-echo "<br>GO HOME<br>";
+echo "<br><a href='../../'>GO HOME</a><br>";
 
 
 

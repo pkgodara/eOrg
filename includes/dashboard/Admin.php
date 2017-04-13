@@ -45,7 +45,8 @@ th {
 
 button
 {
-	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px;
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
 }
 </style>
 <title>Admin</title>
@@ -73,38 +74,20 @@ $html2 = <<<HTML
 </h2>
 <br><br><br><br>
 
-
 <button onclick="document.location.href='../modifyCat.php'" > Modify category(s) </button>
-
 <button onclick="document.location.href='../Post/CreatePost.php' "> Create Post </button>
-
 <button onclick="document.location.href='../Post/DeletePost.php' "> Delete Post </button>
-
 <button onclick="document.location.href='../application/createApplnType.php'" > Create a type of application </button>
-
 <button onclick="document.location.href='../application/ApplnPaths.php'" > Create path(s) of Application </button>
-
+<br><br>
 <button onclick="document.location.href='../AssignPost.php'"> Assign a POST </button>
-
-
-
 <button onclick="document.location.href='../AddUser.php'" > Add User </button>
-
 <button onclick="document.location.href='../EditUser.php'"> Edit User </button>
-
 <button onclick="document.location.href='../RemoveUser.php'"> Remove User </button>
-
-<br><br><br>
-
-
+<br><br>
 <button onclick="document.location.href='../Logout.php'"> Log out ! </button>
-
-<br><br><br><br>
-
 HTML;
 
-
-   
 echo $html2;
 echo "<h2><br><br><br>The available users are :<br><br>";
 

@@ -13,6 +13,43 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 	die();
 }
 
+
+$change = <<<HTML
+<!DOCTYPE html >
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style> 
+
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+
+body {
+	
+    font-size:30px;
+    color:white;
+    background-image: url("../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+</style>
+</head>
+<body ><center><b><i>
+<br><br><br>
+<button onclick="document.location.href='../'" > HOME</button><br><br>
+<button onclick="document.location.href='EditUser.php'" > Edit Another User</button><br><br>
+
+HTML;
+echo $change;
+
 if( isset( $_POST['submit']) )
 {
 	$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
@@ -45,5 +82,5 @@ else
 	die();
 }
 
-
-?>i
+echo "</body></html>";
+?>
