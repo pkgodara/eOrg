@@ -32,7 +32,8 @@ body {
     background-size: cover;
 }
 table, td, th {
-    border: 1px solid black;
+	text-align:center;
+	border: 1px solid black;
 }
 
 table {
@@ -43,6 +44,10 @@ table {
 
 th {
     height: 50px;
+}
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px;
 }
 
 </style>
@@ -62,13 +67,13 @@ echo " ".$_SESSION['Name'];
 $html2 = <<<HTML
 </h1>
 
-<button onclick="document.location.href='../application/LeaveAppl.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Generate Leave Application </button>
+<button onclick="document.location.href='../application/LeaveAppl.php'" > Generate Leave Application </button>
 
-<button onclick="document.location.href='../application/handleAppl.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Handle Applications </button>
+<button onclick="document.location.href='../application/handleAppl.php'" > Handle Applications </button>
 
-<button onclick="document.location.href='../application/ShowApplCount.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Application Count </button>
+<button onclick="document.location.href='../application/ShowApplCount.php'" > Application Count </button>
 
-<button onclick="document.location.href='../Logout.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px "> Log out ! </button>
+<button onclick="document.location.href='../Logout.php' "> Log out ! </button>
 
 HTML;
 
@@ -81,7 +86,7 @@ echo $html2;
 require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 
-$user= str_replace('.','$',$_SESSION['Username'] );
+
 
 $sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
 
@@ -134,6 +139,8 @@ HTML;
 
 
 $stmt->close();
+
+$user= str_replace('.','$',$_SESSION['Username'] );
 
 $qry = "SELECT * FROM $user";
 $stmt = $sqlConn->prepare($qry);

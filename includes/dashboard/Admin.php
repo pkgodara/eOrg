@@ -17,6 +17,8 @@ $html1 = <<<HTML
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+
+
 body {
     color:white;
     background-image: url("../../image/adminpic.jpg");
@@ -28,6 +30,7 @@ body {
     background-repeat: no-repeat;
 }
 table, td, th {
+    text-align:center;
     border: 1px solid black;
 }
 
@@ -38,6 +41,11 @@ table {
 
 th {
     height: 50px;
+}
+
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px;
 }
 </style>
 <title>Admin</title>
@@ -66,28 +74,29 @@ $html2 = <<<HTML
 <br><br><br><br>
 
 
-<button onclick="document.location.href='../modifyCat.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Modify category(s) </button>
+<button onclick="document.location.href='../modifyCat.php'" > Modify category(s) </button>
 
-<button onclick="document.location.href='../Post/CreatePost.php' "style=" cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Create Post </button>
+<button onclick="document.location.href='../Post/CreatePost.php' "> Create Post </button>
 
-<button onclick="document.location.href='../application/createApplnType.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Create a type of application </button>
+<button onclick="document.location.href='../application/createApplnType.php'" > Create a type of application </button>
 
-<button onclick="document.location.href='../application/ApplnPaths.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Create path(s) of Application </button>
+<button onclick="document.location.href='../application/ApplnPaths.php'" > Create path(s) of Application </button>
 
-<button onclick="document.location.href='../AssignPost.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Assign a POST </button>
+<button onclick="document.location.href='../AssignPost.php'"> Assign a POST </button>
 
 
 
-<button onclick="document.location.href='../AddUser.php'" style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Add User </button>
+<button onclick="document.location.href='../AddUser.php'" > Add User </button>
 
-<button onclick="document.location.href='../EditUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Edit User </button>
+<button onclick="document.location.href='../EditUser.php'"> Edit User </button>
 
-<button onclick="document.location.href='../RemoveUser.php'"style=" cursor: pointer;font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Remove User </button>
+<button onclick="document.location.href='../RemoveUser.php'"> Remove User </button>
 
 <br><br><br>
 
 
-<button onclick="document.location.href='../Logout.php'"style="cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px "> Log out ! </button>
+<button onclick="document.location.href='../Logout.php'"> Log out ! </button>
+
 <br><br><br><br>
 
 HTML;
@@ -112,6 +121,7 @@ $i = 1;
 
 $html = <<<HTML
 <table>
+
 <tr>
 <th>Sr. No.</th>
 <th>User ID</th>
