@@ -13,10 +13,7 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['
 	echo "To access this page you need to login as Admin. Please log in first.";
 	die();
 }
-else if (true)
-{
-	echo "yaha par wo dena hai<br>";
-}
+
 
 
 require_once "../../LocalSettings.php";

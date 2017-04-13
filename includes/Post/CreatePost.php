@@ -17,16 +17,6 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION
 	die();
 }
 
-else 
-{
-
-
-echo "yha per uska dena hi";
-
-
-
-
-}
 
 require '../Globals.php';
 require '../../LocalSettings.php';
