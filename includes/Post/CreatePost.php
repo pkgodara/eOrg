@@ -24,6 +24,7 @@ require '../../LocalSettings.php';
 $html = <<< html
 <!DOCTYPE html >
 <head>
+
 </head>
 
 <body style ="background-color:#6699FF">
