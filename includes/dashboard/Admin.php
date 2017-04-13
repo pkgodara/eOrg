@@ -97,20 +97,45 @@ if( $sqlConn->connect_errno )
 }
 
 $i = 1;
-echo "<pre>	User ID			Name			Sex 		Designation(s)<br><br></pre>";
+
+$html = <<<HTML
+<table>
+<tr>
+<th>Sr. No.</th>
+<th>User ID</th>
+<th>Name</th>
+<th>Sex</th>
+<th>Designation(s)</th>
+</tr>
+HTML;
+
+echo $html;
+
+
 $qry = "SELECT * FROM $loginDB " ;
 $stmt = $sqlConn->prepare ( $qry );
 $stmt->execute ( );
 $result = $stmt->get_result();
 while ( $row = mysqli_fetch_row ( $result ) )
 {
-	echo "<pre>$i.	$row[0]			$row[2]			$row[3]			$row[4]<br></pre>";
+
+$html = <<<HTML
+<tr>
+<td>$i.</td>
+<td>$row[0]</td>
+<td>$row[2]</td>
+<td>$row[3]</td>
+<td>$row[4]</td>
+</tr>
+HTML;
+
+	echo $html;
 	$i = $i + 1;
 }
 $stmt->close();
 $sqlConn->close();
 
 
-echo "</center></body> </html>";
+echo "</table></center></body> </html>";
 
 ?>
