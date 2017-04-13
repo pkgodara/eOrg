@@ -20,6 +20,33 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION
 
 
 
+$html = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
+a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/
+a:hover   {color:white;  text-decoration:none}/*link color when try to click the link*/
+a:active  {color:red; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
+
+body {
+    
+    background-image: url("../../image/image11.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+
+<body>
+HTML;
+
+echo $html;
 
 require '../Globals.php';
 require '../../LocalSettings.php';
@@ -104,7 +131,7 @@ echo $a."<br>";
 
 	else
 	{
-		echo "Error IN creating Post Try Again hjhj";
+		echo "Error IN creating Post Try Again";
 		die();
 	}
 
@@ -140,26 +167,26 @@ if(!$stmt->execute())
 
 
 
-/*
+$post = $_POST['Pname'];
 
-$qry = "SELECT * FROM $eorgDBname where $NameOfThePost regexp \"^$_POST['Pname']$\"";
+$qry = "SELECT * FROM $PostTable WHERE $NameOfThePost regexp \"^$post$\"";//checking if the post is already exists or no not
 
 	$stmt = $sqlConn->prepare($qry);
 	$stmt->execute();
+	
 	$result = $stmt->get_result();
 	if($result->num_rows != 0)
 	{
-		echo " $_POST['Pname'] Post  already exists .";
-		//echo "<br><br><a href = '../dashboard/.php'>HOME</a>";
-		//echo "<br><br><a href = 'dashboard/Admin.php'>CREATE ANOTHER POST</a>";
+		echo "<br><br><h3 style = 'color:white ;'> $post Post  already exists .</h3>";
+		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die ();
 	}
 
 
 
 
-*/
-//
+
 
 //creating table for post dash board
 
@@ -186,9 +213,11 @@ $stmt->bind_param('sssssss' ,$_POST['Pname'], $_POST['add_user'], $_POST['delete
 
 if($stmt->execute())
 {
-	echo"POST CREATED SUCCESSFULLY";
-	die();
 
+	echo"<br><br><h3 style = 'color:white ;'>POST CREATED SUCCESSFULLY</h3>";
+	echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
+	echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
+	die();
 }	
 else
 {
@@ -196,6 +225,6 @@ else
 	die();
 }
 
-
+echo"</body></html>";
 
 ?>

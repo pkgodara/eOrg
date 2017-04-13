@@ -31,7 +31,7 @@ $html = <<< html
 <center>
 <form action ="HandalFinaleDataOfCreatePost.php" method ="post" >
 <br><br><br><br><br><br>
-<i><b>POST NAME : <input type = "text"  name ="Pname"><br><br>
+<i><b>POST NAME : <input type = "text"  name ="Pname" pattern='[A-Za-z0-9. ]{1,}'  title='only alphabets, numbers and spaces and dot are allowed' required autofocus><br><br>
 
 CAN ADD USER ? : <input type="radio" name="add_user" value="yes" >Yes
 <input type="radio" name="add_user" value="no">No<br><br>
