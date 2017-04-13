@@ -25,8 +25,14 @@ $html1 = <<<HTML
 
 body {
     
-    background-image: url("../../photo14.jpg");
+    background-image: url("../../image/photo14.jpg");
+    
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 </style>
@@ -44,9 +50,9 @@ $POST = $_SESSION['PostName'];
 require '../Globals.php';
 require '../../LocalSettings.php';
 
+echo"";
+echo "<center><b><i><h1 style = 'font-size:60px'>Hello $POST <h1></i></b><br>";
 
-echo "<center><b><i><h1>Hello $POST<h1><br>";
-echo "";//session post name latter
 
 
 $sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
@@ -67,7 +73,6 @@ if( $sqlConn->connect_errno )
 $qry = "SELECT * FROM $PostTable WHERE $NameOfThePost = ?" ;
 $stmt = $sqlConn->prepare( $qry );
 $stmt->bind_param('s',$POST);
-//$stmt->bind_param('s',$_POST['postName']);
 $stmt->execute();
 
 $result = $stmt->get_result();

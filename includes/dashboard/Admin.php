@@ -18,8 +18,13 @@ $html1 = <<<HTML
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 body {
-color:white;
-    background-image: url("../../adminpic.jpg");
+    color:white;
+    background-image: url("../../image/adminpic.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
     background-repeat: no-repeat;
 }
 </style>

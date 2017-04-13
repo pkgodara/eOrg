@@ -27,8 +27,12 @@ $html = <<<HTML
 
 body {
     
-    background-image: url("nat.jpg");
+    background-image: url("image/nat.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 </style>
@@ -43,16 +47,16 @@ echo $html;
 include 'dashboard/Watch.php';
 $html = <<<HTML
 <center>
-<h2>Please Enter your Login credentials.</h2>
+<h2 style ="font-size:50px;color:white">Please Enter your Login credentials.</h2>
 
 <form action="includes/dashboard/Dashboard.php" method="post">
 
 
 <table border = "15">
 
-<caption style ="color:blue;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
-<tr><th style = "color:white">Username  :</th><td> <input type="text" name="User" required/> </td></tr>
-<tr><th style = "color:white">Password  : </th><td><input type="password" name="Passwd" required/> </td></tr>
+<caption style ="color:white;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
+<tr><th style = "background-color:#b3003b ;color:white">Username  :</th><td> <input type="text" name="User" required/> </td></tr>
+<tr><th style = "background-color:#b3003b ; color:white">Password  : </th><td><input type="password" name="Passwd" required/> </td></tr>
 
 </table>
 <br><br><br><br>

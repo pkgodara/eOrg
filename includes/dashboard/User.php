@@ -18,9 +18,25 @@ $html1 = <<<HTML
 <head>
 <title>Student</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    
+    background-image: url("../../image/image1.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+</style>
+
 </head>
 
-<body style ="background-color:MediumAquaMarine ;font-size:30px">
+<body style ="font-size:30px">
 HTML;
 
 echo $html1;

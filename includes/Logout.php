@@ -20,8 +20,13 @@ a:active  {color:white; background-color:transparent; text-decoration:none}/*lin
 
 
 body {
-text-align:center;
+    text-align:center;
     background-image: url("../stones.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>
 <title>Logged-out !</title>
