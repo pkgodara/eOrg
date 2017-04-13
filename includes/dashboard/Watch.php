@@ -2,11 +2,11 @@
 
 echo <<<HTML
 
-
+<div align="right">
 <canvas id="canvas" width="160" height="160"
 style="background-color:black">
 </canvas>
-</center>
+</div>
 <script>
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
