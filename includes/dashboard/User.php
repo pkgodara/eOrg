@@ -128,13 +128,30 @@ $stmt->execute();
 $result = $stmt->get_result();
 $i=1;
 
-echo "<pre>  Aplication-id     Aplication-Type<br><br></pre>";
+$html = <<<HTML
+<table>
+<tr>
+<th>Sr. No.</th>
+<th>Application-id</th>
+<th>Application-Type</th>
+</tr>
+HTML;
+
+echo $html;
 
 while($row = mysqli_fetch_row($result))
 {
 
-echo "<pre>$i. $row[0]               $row[1]<br><br></pre>";
-$i=$i+1;
+$html = <<<HTML
+<tr>
+<td>$i.</td>
+<td>$row[0]</td>
+<td>$row[1]</td>
+</tr>
+HTML;
+
+	echo $html;
+	$i=$i+1;
 
 }
 
@@ -143,6 +160,6 @@ $sqlConn->close();
 
 
 
-echo "</i></b></center></body></html>";
+echo "</table></i></b></center></body></html>";
 
 ?>
