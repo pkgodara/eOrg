@@ -28,7 +28,7 @@ $user = $_SESSION['Username'];
 
 if ($new != $cnfNew)
 {
-	echo "Sorry, password are not matching<br>";
+	echo "<br>Sorry, password are not matching<br>";
 	die ();
 }
 
@@ -50,7 +50,7 @@ $qry = "SELECT * FROM $loginDB WHERE $UName = \"$user\"" ;
 $stmt = $sqlConn->prepare ( $qry );
 if ( !$stmt->execute ( ))
 {
-	echo "Sorry, proble in database<br>";
+	echo "Sorry, problem in database<br>";
 	die();
 }
 $result = $stmt->get_result();
@@ -77,9 +77,8 @@ if ( !$stmt->execute ( ))
 
 $stmt->close();
 
-echo "Successfully updated<br><br>";
+echo "<br><br>Successfully Updated.<br><br>";
 
-echo "<a href='../../'>HOME</a><br>";
 
 
 

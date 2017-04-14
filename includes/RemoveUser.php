@@ -19,10 +19,6 @@ $html = <<<HTML
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
-a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/
-a:hover   {color:white;  text-decoration:none}/*link color when try to click the link*/
-a:active  {color:red; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
 
 button,select
 table,th,td{
@@ -56,7 +52,20 @@ body {
 <body >
 <center>
 <br><br><br>
-<button onclick="document.location.href='../'" > HOME</button><br>
+
+HTML;
+echo"$html";
+
+if ( $_SESSION['Username'] == 'admin')
+{
+echo "<button onclick=\"document.location.href='../' \"> HOME </button> ";
+}
+else
+{
+echo "<button onclick=\"document.location.href='dashboard/PostDashBoard.php'\"> HOME </button>";
+}
+
+$html = <<<HTML
 <h2>Please Enter Credentials.</h2>
 
 <form action="UserDelete.php" method="post">

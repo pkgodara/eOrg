@@ -61,7 +61,7 @@ else
 
 
 echo "<select name = 'level' onclick = 'DocumentForCanAcceptAppl_button( this.value )' >";
-echo "<option value = ''  > </option>";
+echo "<option value = ''  > SELECT</option>";
 
 while ($r = mysqli_fetch_row($result))
 

@@ -41,21 +41,21 @@ if( $date != "" )
 	if( $choice == 'day' )
 	{
 		$result = countApplnOnDay( $user, $dt[2] , $dt[1] , $dt[0] );
-		echo "<caption style =\"color:blue;text-align:center\">[ $user ] application count On Day ".$dt[2] ."-". $dt[1] ."-". $dt[0]."</caption>";
+		echo "<br><caption >[ $user ] application count On Day ".$dt[2] ."-". $dt[1] ."-". $dt[0]."</caption><br>";
 	}
 	else if( $choice == 'month' )
 	{
 		$result = countApplnInMonth( $user , $dt[1] , $dt[0] );
-		echo "<caption style =\"color:blue;text-align:center\">[ $user ] Application Count In Month ".$dt[1]."-".$dt[0]."</caption>";
+		echo "<br><caption >[ $user ] Application Count In Month ".$dt[1]."-".$dt[0]."</caption><br>";
 	}
 	else if( $choice == 'year' )
 	{
 		$result = countApplnInYear( $user , $dt[0] );
-		echo "<caption style =\"color:blue;text-align:center\">[ $user ] Application Count In Year ".$dt[0]."</caption>";
+		echo "<br><caption >[ $user ] Application Count In Year ".$dt[0]."</caption><br>";
 	}
 	else
 	{
-		echo "date format not correct. Date should be: yyyy OR yyyy-mm OR yyyy-mm-dd";
+		echo "<br>Date format not correct. Date should be: yyyy-mm-dd<br>";
 	}
 
 	echo "<tr><td>Application type</td><td>Total No of App.</td></tr>";

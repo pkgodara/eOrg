@@ -20,6 +20,48 @@ if( !isset( $_POST['appln'] ) )
 }
 else
 {
+
+$html =<<<HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Add User</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
+	border: 0.25px solid white;
+}
+</style>
+
+</head>
+
+<body ><br>
+<button onclick="document.location.href='dashboard/User.php'">HOME</button>
+<button onclick="document.location.href='application/LeaveAppl.php'">BACK</button>
+<center><b><i><br><br><br>
+
+
+HTML;
+echo $html;
+
+
 	$user = $_SESSION['Username'];
 	
 	$appln = $_POST['appln'];
@@ -34,13 +76,7 @@ else
 	
 	// finding approvers and acceptors
 	//
-/*	$appr = 'user2';
-	$dest = 'user3';
 	
-	$status = $user.",G;".$appr.",P;"."$dest,P" ; // initial status for application.*/
-	
-	
-
 	// Connect to mysql
 	//
 	$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
@@ -49,12 +85,11 @@ else
 	{
 		echo "Server error.";
 		die();
-	}
-	
+	}	
+
 	//generates application status
+	//
 	require "DetermineApplnPath.php";
-	
-	echo "processing............";
 	
 	// create application table if not exists
 	//
@@ -103,7 +138,7 @@ else
 
 	// Add Application id in sender's database
 	//
-	echo "updating application for $user";
+	//echo "Updating application for $user.  ";
 	
 	$userDB = str_replace('.','$',$user);
 	$stmt = $sqlConn->prepare("INSERT INTO $userDB VALUES (?,?)");
@@ -111,7 +146,7 @@ else
 
 	if( ! $stmt->execute() )
 	{
-		echo "Error updating your database.";
+		echo "Error updating your database. ";
 		die();
 	}
 
@@ -120,7 +155,7 @@ else
 	$appr = explode(';',$status)[1];
 	$appr = explode(',',$appr)[0];
 	
-	echo "Sending application to $appr";
+	//echo "Sending application to $appr";
 	
 	$destDB = str_replace('.','$',$appr);
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
@@ -131,6 +166,10 @@ else
 		echo "Error sending application.";
 		die();
 	}
+	
+
+
+
 
 	echo "Application successfully generated.";
 }

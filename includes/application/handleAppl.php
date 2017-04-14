@@ -39,8 +39,44 @@ $html = <<<HTML
 <html>
 <head>
 	<title>Handling Applications</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+table, td, th {
+    text-align:center;
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-color: white;
+}
+
+th {
+    height: 50px;
+}
+
+input[type=submit],button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
+	border: 0.25px solid white;
+}
+</style>
 </head>
-<body>
+<body><button onclick="document.location.href='../../'" > HOME </button>
+<center><b><i><br><br><br<br><br<br><br><br<br><br<br><br><br<br><br<br>
 Hello $NAME <br><br>
 
 <table>
@@ -101,31 +137,7 @@ HTML;
 	{
 		
 		showStatus( $Status ); // print complete status
-		/*
-		if ( str_isApproved ( $Status, $approver = whoIsApprover ( $ROW[0] , $ROW[1] ) ) )
-		{
-			echo "<td><b>APPROVED</b> by $approver </td>";
-		}
-		else
-		{
-			echo "<td><b>PENDING</b> for approval </td>";
-		}
-
-
-		if ( str_isAccepted ( $Status, $accepter = whoIsAccepter ( $ROW[0] , $ROW[1] ) ) )
-		{
-			echo "<td><b>ACCEPTED</b> by $accepter</td>";
-		}
-		else
-		{
-			echo "<td><b>PENDING</b> for acceptence</td>";
-		}
 		
-		if ( str_isRejected ( $Status, $accepter = whoIsAccepter ( $ROW[0] , $ROW[1] ) ) )
-		{
-			echo "<td><b>REJECTED</b> by $accepter</td>";
-		}
-		*/
 	}
 	else if ( ($Status = isApprover ( $ROW[0], $ROW[1] , $UID )) != false )
 	{

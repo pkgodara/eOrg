@@ -98,7 +98,7 @@ $result = $stmt->get_result();
 
 
 echo "<select name = 'level' id = '$table'  onclick = 'DocumentForCanAccessDatabaseOfUser_button1( this.id ,this.value )' >";
-echo "<option value = ''  > </option>";
+echo "<option value = ''  > SELECT</option>";
 while ($r = mysqli_fetch_row($result))
 
                 {

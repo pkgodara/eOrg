@@ -8,13 +8,62 @@
 
 session_start();
 
-if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION['Username'] == 'admin' || isset($_SESSION['PostName']) ) ) )
 {
 	echo "session id :".session_id()." ,You need to login as Admin to add users. Please log in as/contact Admin.";
 	die();
 }
 
 
+
+$html1 = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+</style>
+<title>Admin</title>
+
+</head>
+
+<body><br><br>
+
+HTML;
+echo"$html1";
+
+if ( $_SESSION['Username'] == 'admin')
+{
+echo "<button onclick=\"document.location.href='../' \"> HOME </button> ";
+}
+else
+{
+echo "<button onclick=\"document.location.href='dashboard/PostDashBoard.php'\"> HOME </button>";
+}
+
+$html = <<<HTML
+<button onclick="document.location.href='AddUser.php'"> Add Another User </button>
+<center>
+HTML;
+
+echo $html;
 
 if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) && isset($_POST['LastValue'])  && isset($_POST['sex']) )
 {
@@ -62,8 +111,6 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	if( ! $stmt->execute() )
 	{
 		echo "<h1 style ='color:red'>Error updating database information, Try another username because same user name already exists</h1>";
-		echo "<br><br><h3><a href = 'AddUser.php'>Add Another User</a>";
-		echo "<br><a href = 'dashboard/Admin.php'>HOME</a></h3>";
 		die();
 	}
 
@@ -135,14 +182,13 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	if( ! $stmt->execute() )
 	{
 		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
-		echo "Error creating count database for user, contact Admin";
+		echo "Error in creating count database for user, contact Admin.";
 		die();
 	}
 
 	$sqlConn->close();
 
-	echo "<h2>User Added Successfully";
-	echo"<br><br><a href = 'AddUser.php'>CREAT ANOTHER USER</a> <br> <a href = '../'>HOME</a><br>";
+	echo "<h2>User Added Successfully.";
 	die();
 }
 else

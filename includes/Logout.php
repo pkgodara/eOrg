@@ -21,7 +21,7 @@ a:active  {color:white; background-color:transparent; text-decoration:none}/*lin
 
 body {
     text-align:center;
-    background-image: url("../stones.jpg");
+    background-image: url("../image/stones.jpg");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;

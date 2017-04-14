@@ -5,9 +5,9 @@
 
 session_start();
 
-if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && $_SESSION['Username'] == 'admin' ) )
+if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION['Username'] == 'admin' || isset($_SESSION['PostName']) ) ) )
 {
-	echo "session id :".session_id()." ,You need to login as Admin to remove users. Please log in as/contact Admin.";
+	echo "session id :".session_id()." ,You need to login as Admin to add users. Please log in as/contact Admin.";
 	die();
 }
 
@@ -38,9 +38,19 @@ body {
 </style>
 </head>
 <body >
-<center><br><br><br>
+<br><br><br>
 HTML;
 echo $html;
+if ($_SESSION['Username'] == 'admin')
+{
+echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a><br>";
+}
+else
+{
+echo "<a href = 'dashboard/PostDashBoard.php'><h2><b><i>HOME</i></b></h2></a>";
+}
+echo "<a href = 'RemoveUser.php'>Delete another user.</a><br><center>";
+
 
 if( isset( $_POST['user'] ) )
 {
@@ -53,8 +63,6 @@ if( isset( $_POST['user'] ) )
 	{
 	
 	echo "YOU CAN'T DELETE ADMIN<br><br>";
-	echo "<a href = 'RemoveUser.php'>Delete another user.</a>";
-	echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a>";
 	die ();
 	
 	}
@@ -76,8 +84,6 @@ $qry = "SELECT * FROM $loginDB where $UName regexp \"^$userN$\"";
 	if($result->num_rows == 0)
 	{
 		echo "User $userN does not exists.";
-		echo "<br><br><a href = 'RemoveUser.php'>Delete another user.</a>";
-		echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a>";
 		die ();
 	}
 else
@@ -89,10 +95,7 @@ $qry = "DELETE FROM $loginDB WHERE $UName = ?" ;
 	
 	if (  $stmt->execute() )
 	{
-	 	
-		echo "<br><br><a href = 'RemoveUser.php'>Delete another user.</a>";
-		echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a>";
-		echo "<br><br>user $userN has been successfully deleted";
+	 	echo "<br><br>user $userN has been successfully deleted";
 	}
 	$stmt->close();
 
@@ -115,8 +118,6 @@ $qry = "DELETE FROM $loginDB WHERE $UName = ?" ;
 else
 {
 	echo "Please fill the details first.";
-	echo "<br><br><a href = 'RemoveUser.php'>Delete another user.</a>";
-	echo "<br><br><a href = 'dashboard/Admin.php'>HOME</a>";
 	die ();
 }
 

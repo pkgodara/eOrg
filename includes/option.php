@@ -21,7 +21,23 @@ $html = <<<HTML
 
 <body style ="background-color:LightSlateGray" >
 
-<h1 style = "text-align:center">Please Enter Credentials.</h1>
+<br><br>
+HTML;
+echo"$html";
+
+if ( $_SESSION['Username'] == 'admin')
+{
+echo "<button onclick=\"document.location.href='../' \"style='cursor: pointer; height:40px; width:100px'> HOME </button>";
+
+}
+
+else
+{
+echo "<button onclick=\"document.location.href='dashboard/PostDashBoard.php'\"style='cursor: pointer; height:40px; width:100px'> HOME </button>";
+}
+$html = <<<HTML
+<h1 style = "text-align:center">
+Please Enter Credentials.</h1>
 <center>
 <form action="UserAdd.php" method="post">
 
@@ -29,7 +45,7 @@ $html = <<<HTML
 <table border = "15">
 
 <caption style ="color:blue;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
-<tr><th>Username :</th><td> <input type="text" name="user" required/> </td></tr>
+<tr><th>Username :</th><td> <input type="text" name="user" required autofocus/> </td></tr>
 <tr><th>Password : </th><td><input type="text" name="passwd" required/> </td></tr>
 <tr><th>Full Name : </th><td><input type="text" name="fname" required/> </td></tr>
 </table>

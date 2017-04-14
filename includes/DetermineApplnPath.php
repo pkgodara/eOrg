@@ -69,7 +69,7 @@ for ($i = (count($levelIdArr) - 1) ; $i >= 0 ; $i--)
 		}
 		else
 		{
-			echo "Sorry, there is some problem<br>";
+			echo "Sorry, ,there is some problem<br>";
 			die();
 		}
 		break;
@@ -79,7 +79,7 @@ for ($i = (count($levelIdArr) - 1) ; $i >= 0 ; $i--)
 
 if ($flag == 0)
 {
-	echo "Sorry, there is some problem<br>";
+	echo "Sorry, ..there is some problem<br>";
 	die();
 }
 

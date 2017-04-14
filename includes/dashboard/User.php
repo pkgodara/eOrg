@@ -47,6 +47,7 @@ th {
 }
 button
 {
+	border: 2.0px solid white;
 	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px;
 }
 
@@ -65,18 +66,13 @@ echo"<center><b><i><h1>Hello";
 echo " ".$_SESSION['Name'];
 
 $html2 = <<<HTML
-</h1>
-
+</h1><br><br>
 <button onclick="document.location.href='../application/LeaveAppl.php'" > Generate Leave Application </button>
-
 <button onclick="document.location.href='../application/handleAppl.php'" > Handle Applications </button>
-
 <button onclick="document.location.href='../application/ShowApplCount.php'" > Application Count </button>
-
 <button onclick="document.location.href='resetPassword.php'" > Reset Password </button>
-
 <button onclick="document.location.href='../Logout.php' "> Log out ! </button>
-
+<br><br>
 HTML;
 
 
@@ -109,7 +105,7 @@ $res = $stmt->get_result();
 
 if ($res->num_rows != 0)
 {
-	echo "<select name='posts' id='posts' onchange='callForChange(this)' style='cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px '>";
+	echo "<select name='posts' id='posts' onchange='callForChange(this)' style='cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#004d33;color:white ;border:10px'>";
 	echo "<option value=''>Select the post(s)</option>";
 	while($row = mysqli_fetch_row ($res))
 	{

@@ -45,11 +45,52 @@ else
 <head>
 <title>Add User</title>
 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+table, td, th {
+    font-size:25px;
+    text-align:center;
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-color: white;
+}
+
+th {
+    height: 50px;
+}
+
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
+	border: 0.25px solid white;
+}
+</style>
 </head>
 
-<body >
+<body ><br<br><br<br><br><br<br><br<br>
+<button onclick="document.location.href='../../'" > HOME </button>
+<button onclick="document.location.href='handleAppl.php'" > BACK </button>
+<center><b><i><br><br><br<br><br<br><br>
 
-<h2>Application #[ $id ].</h2>
+<center><i>
+
+<h2 style = "font-size:35px"><b>Application #[ $id ].</b></h2>
 
 <table border = "15">
 

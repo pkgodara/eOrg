@@ -20,6 +20,52 @@ require_once "../LocalSettings.php";
 require_once "Globals.php";
 
 
+$html = <<<HTML
+<html>
+<head>
+<title>Assign Post(s)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   font-size:30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+input[type=text] {
+    width: 200px;
+   height:35px;
+   font-size:25px;
+}
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+</style><br>
+</head>
+<body>
+HTML;
+
+echo $html;
+
+if ( $_SESSION['Username'] == 'admin')
+{
+echo "<button onclick=\"document.location.href='../' \"> HOME </button> ";
+}
+else
+{
+echo "<button onclick=\"document.location.href='dashboard/PostDashBoard.php'\"> HOME </button>";
+}
+
+echo "<center><b><i>";
+
 
 $sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
 
@@ -97,10 +143,7 @@ echo $row[0]."<br>";
 	}
 }
 
-echo "Assigned successfully<br><br>";
-echo "<a href='AssignPost.php'>CREATE ANOTHER</a><br>";
-echo "<a href='../'>HOME</a><br>";
-
-
+echo "<br>Assigned successfully.<br><br>";
+echo "<button onclick=\"document.location.href='AssignPost.php'\"> CREATE ANOTHER </button><br>";
 
 ?>

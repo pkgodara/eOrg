@@ -51,13 +51,20 @@ echo $html;
 require '../Globals.php';
 require '../../LocalSettings.php';
 
+if ($_SESSION['Username'] == 'admin')
+{
+echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
+}
+else
+{
+echo "<a href = '../dashboard/PostDashBoard.php'><h1><b><i>HOME</i></b></h1></a>";
+}
+echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
 
 if (  !(isset ($_POST['Pname']) &&  isset ($_POST['add_user']) && isset ($_POST['delete_user']) && isset ($_POST['assign_post']) && isset ($_POST['handle_post']) && isset ($_POST['accept_application']) && isset ($_POST['canAccessDatabase']) )  )
 {
 
 		echo "<br><br><h3 style = 'color:white ;'>Error IN creating Post Try Again.</h3>";
-		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 
 }
@@ -88,8 +95,6 @@ if ($_POST['accept_application'] == "yes" )
 	{
 		
 		echo "<br><br><h3 style = 'color:white ;'>Error IN creating Post Try Again.</h3>";
-		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 	}
 }
@@ -117,8 +122,6 @@ if (($_POST['canAccessDatabase']) == "yes" )
 	else
 	{
 		echo "<br><br><h3 style = 'color:white ;'> Error IN creating Post Try Again.</h3>";
-		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 	}
 
@@ -154,8 +157,6 @@ $qry = "SELECT * FROM $PostTable WHERE $NameOfThePost regexp \"^$post$\"";//chec
 	if($result->num_rows != 0)
 	{
 		echo "<br><br><h3 style = 'color:white ;'> $post Post  already exists .</h3>";
-		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die ();
 	}
 
@@ -167,8 +168,6 @@ $stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $userPost ( $UserAppId BIG
 	if( ! $stmt->execute() )
 	{
 		echo"<br><br><h3 style = 'color:white ;'>Error creating database for user, contact Admin</h3>";
-		echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 		die();
 	}
 	
@@ -184,15 +183,11 @@ $stmt->bind_param('sssssss' ,$_POST['Pname'], $_POST['add_user'], $_POST['delete
 if($stmt->execute())
 {
 	echo"<br><br><h3 style = 'color:white ;'>POST CREATED SUCCESSFULLY</h3>";
-	echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-	echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 	die();
 }	
 else
 {
 	echo"<br><br><h3 style = 'color:white ;'>ERROR IN CREATING POST TRY AGAIN</h3>";
-	echo "<br><br><a href = 'CreatePost.php'><h1><b><i>CREATE ANOTHER POST.</i></b></h1></a>";
-	echo "<a href = '../dashboard/Admin.php'><h1><b><i>HOME</i></b></h1></a>";
 	die();
 }
 

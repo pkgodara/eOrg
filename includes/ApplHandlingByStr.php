@@ -15,10 +15,11 @@ function showStatus( $stat_str )
 	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
 	{
 		$str = explode ( ',', $STR[$i] );
+		$usr = $str[0];
 		
 		if( $str[1] == 'P' )
 		{
-			echo "<td><b>PENDING</b></td>";
+			echo "<td><b>PENDING</b> by $usr</td>";
 		}
 		else if( $str[1] == 'A' )
 		{

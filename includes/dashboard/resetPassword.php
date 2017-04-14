@@ -18,14 +18,44 @@ $html = <<<HTML
 <html>
 <head>
 <title>Reset Password</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+input[type=password] {
+    width: 200px;
+   height:35px;
+   font-size:25px;
+   autofocus;
+}
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+</style><br>
+
 </head>
 <body>
+<button onclick="document.location.href='../../'"> HOME </button>
+<center><b><i>
 <p>For reseting, you have to enter the previous password. Enter the password and verify</p>
 <br><br>
 <div id="oldPsswd">
 Old Password :  <input id='oldPass' type='password' name='oldPassword' required>
 <button type='button' name='verify' onclick='verifyPass(document.getElementById("oldPass").value)'>Verify</button>
-</div>
+</div><br><br>
 <div id='errMsg'>
 </div><br><br>
 <div id='askNew'>
@@ -46,7 +76,7 @@ askNewPassword () ;
 }
 else if (this.responseText === "0")
 {
-document.getElementById("errMsg").innerHTML = "Sorry, your password didn't match. Enter again and click verify";
+document.getElementById("errMsg").innerHTML = "<br>Sorry, your password didn't match. Enter again and click verify<br>";
 }
 else
 {
@@ -63,7 +93,7 @@ function askNewPassword ()
 $("#oldPsswd").hide();
 $("#errMsg").hide();
 document.getElementById("askNew").innerHTML = "New Password : <input id='newPass' type='password' name='newPassword' required><br>Confirm new Password : <input id='cnfNew' type='password' name='cnfNewPassword' required><br>";
-$("#askNew").append("<button type='button' onclick='carryForward()'>Change password</button>");
+$("#askNew").append("<br><br><button type='button' onclick='carryForward()'>Change password</button>");
 }
 function carryForward()
 {

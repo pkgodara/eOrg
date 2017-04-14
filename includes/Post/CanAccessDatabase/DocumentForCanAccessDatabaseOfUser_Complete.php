@@ -19,7 +19,6 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION
 $done = $_REQUEST['q'];
 
 
-//echo "<input  type = 'radio' name = 'Can_accept[]'  value =  '$done' checked>Complete<br>";
 echo"Want to add another path";
 echo "<input type ='radio' name = 'y' value = '$done'  onclick = 'DocumentForCanAccessDatabaseOfUser_newPath(this.value)' > Yes";
 echo "<input type ='radio' name = 'y' value = '$done' onclick = 'DocumentForCanAccessDatabaseOfUser_terminate(this.value)' > NO ";

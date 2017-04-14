@@ -22,25 +22,68 @@ $html = <<<HTML
 <head>
 <title>Add User</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+table, td, th {
+    font-size:25px;
+    text-align:center;
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-color: white;
+}
+
+th {
+    height: 50px;
+}
+input[type=text] {
+    width: 100%;
+   height:50px;
+   font-size:25px;
+   autofocus;
+}
+
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
+	border: 0.25px solid white;
+}
+</style>
+
 </head>
 
 <body >
+<button onclick="document.location.href='../dashboard/User.php' ">HOME</button>
+<center>
 
 <h2>Please Enter Credentials.</h2>
 
 <form action="../AppLeave.php" method="post">
 
-<table border = "15">
 
-<caption style ="color:blue;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
+
 HTML;
 
 
 
 $html2 = <<<HTML
 </table>
-
-<input type="submit" name="submit" value="Submit Application !" />
+<br><br>
+<button type = "submit" >SUBMIT</button>
 </form>
  
 </body>
@@ -54,8 +97,8 @@ $count = array();
 
 $res = $sqlconn->query("SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = \"$applnDB\"");
 
-echo "<tr><th>Type Of Application :</th><td><select id=\"appln\" name=\"appln\">";
-echo "<option value=\"null\" selected> </option>"; 
+echo "<tr><th>Type Of Application :</th><td><select id=\"appln\" name=\"appln\" style = \"cursor:pointer; font-size : 25px; height:auto; width:auto ;background-color:black;color:white ;border:10px\">";
+echo "<option value=\"null\" selected desebled>SELECT </option>"; 
 
 while( $row = mysqli_fetch_row($res) )
 {
@@ -64,7 +107,7 @@ while( $row = mysqli_fetch_row($res) )
 	echo "<option value=".$row[0]."> $r </option>";
 }
 
-echo "</select> </td></tr></table>";
+echo "</select>";
 
 echo <<<HTML
 <table border = "15" id = "table">

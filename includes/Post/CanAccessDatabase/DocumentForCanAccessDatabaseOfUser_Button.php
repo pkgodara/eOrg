@@ -75,7 +75,7 @@ else
 
 {
 
-echo "<button type='button' name =  '$TableName' id ='1' value =  '$levelStr'   onclick= 'DocumentForCanAccessDatabaseOfUser_FurtherExplore(this.name ,this.value)' >  FURTHER EXPLORE </button>";
+echo "<button type='button' name =  '$TableName' id ='1' value =  '$levelStr'   onclick= 'DocumentForCanAccessDatabaseOfUser_FurtherExplore(this.name ,this.value)'  >  FURTHER EXPLORE </button>";
 echo "<input type ='button' name = '$levelStr' value = 'DONE'  onclick = 'DocumentForCanAccessDatabaseOfUser_Done(this.name)' >";
 
 }

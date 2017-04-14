@@ -21,13 +21,37 @@ if( !( isset( $_SESSION['Username'] ) && isset($_SESSION['Name']) && ( $_SESSION
 require '../Globals.php';
 require '../../LocalSettings.php';
 
-$html = <<< html
+$html = <<<html
 <!DOCTYPE html >
 <head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+button,input[type=button],select
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#6699FF;color:white ;
+	border: 0.25px solid white;
+}
+</style><br
 </head>
 
-<body style ="background-color:#6699FF">
+<body style ="background-color:#6699FF"><br><br>
+
+html;
+
+echo"$html";
+
+if ( $_SESSION['Username'] == 'admin')
+{
+echo "<button onclick=\"document.location.href='../../'\" style='cursor: pointer; height:40px; width:150px;color:white ;background-color:#4B0082;font-size : 30px;' > HOME </button>";
+
+}
+else
+{
+echo "<button onclick=\"document.location.href='../dashboard/PostDashBoard.php'\" style='cursor: pointer; height:40px; width:150px;color:white ;background-color:#4B0082;font-size : 30px;' > HOME </button>";
+
+}
+
+$html = <<<HTML
 <center>
 <form action ="HandleFinalDataOfCreatePost.php" method ="post" >
 <br><br><br><br><br><br>
@@ -525,7 +549,7 @@ document.getElementById("DocumentForCanAccessDatabaseOfUser_termination").innerH
 </form->
 </center></body>
 </html>
-html;
+HTML;
 
 echo "$html";
 
