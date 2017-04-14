@@ -73,6 +73,8 @@ $html2 = <<<HTML
 
 <button onclick="document.location.href='../application/ShowApplCount.php'" > Application Count </button>
 
+<button onclick="document.location.href='resetPassword.php'" > Reset Password </button>
+
 <button onclick="document.location.href='../Logout.php' "> Log out ! </button>
 
 HTML;

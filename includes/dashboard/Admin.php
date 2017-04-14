@@ -78,6 +78,8 @@ $html2 = <<<HTML
 
 <button onclick="document.location.href='../Post/CreatePost.php' "> Create Post </button>
 
+<button onclick="document.location.href='../Post/DeletePost.php' "> Delete Post </button>
+
 <button onclick="document.location.href='../application/createApplnType.php'" > Create a type of application </button>
 
 <button onclick="document.location.href='../application/ApplnPaths.php'" > Create path(s) of Application </button>
