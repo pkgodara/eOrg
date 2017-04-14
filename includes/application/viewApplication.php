@@ -83,8 +83,20 @@ button
 </style>
 </head>
 
-<body ><br<br><br<br><br><br<br><br<br>
-<button onclick="document.location.href='../../'" > HOME </button>
+<body ><br<br><br<br><br><br<br><br><br>
+HTML;
+
+echo "$html";
+
+if ($_SESSION['PostName'])
+{
+echo "<button onclick=\"document.location.href='../dashboard/PostDashBoard.php'\" > HOME </button> ";
+}
+else
+echo "<button onclick=\"document.location.href='../../'\" > HOME </button> ";
+
+
+$html = <<<HTML
 <button onclick="document.location.href='handleAppl.php'" > BACK </button>
 <center><b><i><br><br><br<br><br<br><br>
 
@@ -95,6 +107,8 @@ button
 <table border = "15">
 
 HTML;
+echo "$html";
+
 	
 	if ( ! $stmt->execute() )
 	{

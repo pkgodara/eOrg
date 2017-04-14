@@ -35,17 +35,24 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
+	border: 0.25px solid white;
+}
 </style>
 </head>
 
 <body>
+<br><br>
+<button onclick="document.location.href='../../'"> BACK </button>
 <center>
 <br><br><br><br><br><br><br>
 <form action = "DeletePost.php" method = "post">
 <var style ="color:white"><b><i>Type the name of POST::</i></b></var>
 <input type = "text" name = "delete" pattern='[A-Za-z0-9. ]{1,}'  title='only alphabets, numbers and spaces and dot are allowed' required autofocus>
 <br><br>
-<button type = "submit" style = "cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;border:10px" >DELETE</button>
+<button type = "submit"  >DELETE</button>
 </form>
 
 HTML;
@@ -93,14 +100,12 @@ function DeletePost ( $DeleteThisPost)
 
 		echo "<br><br><h1 style = 'color:white'><b><i>POST $userN has been successfully deleted.</b></i></h1>";
 		echo "<br><br><a href = 'DeletePost.php'><h1>Delete another user.</h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1>HOME</h1></a>";
 		die();
 	}
 	else
 	{
 		echo "<h1 style = 'color:white'><b><i>ERROR IN DELETE POST TRY AGAIN!!</b></i></h1>";
 		echo "<br><br><a href = 'DeletePost.php'><h1>Delete another user.</h1></a>";
-		echo "<a href = '../dashboard/Admin.php'><h1>HOME</h1></a>";
 		die(); 
 	}
 	$stmt->close();

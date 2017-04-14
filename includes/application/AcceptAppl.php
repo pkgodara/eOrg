@@ -12,6 +12,35 @@ if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $
 	die();
 }
 
+$html = <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+button
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
+	border: 0.25px solid white;
+}
+</style>
+</head>
+
+<body style = "color:white">
+<button onclick="document.location.href='handleAppl.php'"> BACK </button>
+<center><b><i>
+HTML;
+echo $html;
+
 
 require "../ApplHandlingByID.php";
 require "../ApplHandlingByStr.php";

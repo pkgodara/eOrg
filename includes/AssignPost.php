@@ -80,30 +80,27 @@ $html = <<<HTML
 <p>Assign the available post(s) to the usernames. Make sure that the username you provide must exist in the existing users otherwise it may causes problems in the future.<br> However you can left some of the entries blank by now and assign them in future.<br><br></p>
 <form action="AssignPostTable.php" method="post">
 HTML;
-
 echo $html;
-
 $stmt = $sqlConn->prepare("SELECT $NameOfThePost FROM $PostTable");
 
 if ( ! $stmt->execute() )
 {
-	echo"there is a problem with database<br>";
+	echo"there is a problem with database";
 	die ();
 }
 
 $res = $stmt->get_result();
-
 if ($res->num_rows == 0)
 {
-	echo "No POST(s) are available, create post(s) first.<br>";
+	echo "No POST(s) are available, create post(s) first.";
 	die();
 }
-
+echo "<table>";
 while($row = mysqli_fetch_row($res))
 {
-	echo "$row[0] : <input type='text' name=$row[0]  autofocus><br>";
+	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=$row[0] autofocus ></td></tr> <br>";
 }
-
+echo "</table>";
 $stmt->close();
 
 $html = <<<HTML

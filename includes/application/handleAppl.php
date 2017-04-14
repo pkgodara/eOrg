@@ -75,8 +75,21 @@ input[type=submit],button
 }
 </style>
 </head>
-<body><button onclick="document.location.href='../../'" > HOME </button>
-<center><b><i><br><br><br<br><br<br><br><br<br><br<br><br><br<br><br<br>
+<body><br><br>
+HTML;
+
+echo "$html";
+
+if ($_SESSION['PostName'])
+{
+echo "<button onclick=\"document.location.href='../dashboard/PostDashBoard.php'\" > HOME </button>";
+}
+else
+echo "<button onclick=\"document.location.href='../../'\" > HOME </button>";
+
+
+$html = <<<HTML
+<center><b><i><br><br>
 Hello $NAME <br><br>
 
 <table>
