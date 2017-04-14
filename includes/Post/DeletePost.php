@@ -81,6 +81,15 @@ function DeletePost ( $DeleteThisPost)
 		$stmt = $sqlConn->prepare ( "DROP TABLE $DeleteThisPost");
 
 		$stmt->execute();
+		
+		$stmt = $sqlConn->prepare ("DELETE FROM $assignPostTable WHERE $postTitle REGEXP \"^$userN\"");
+		
+		if ( ! $stmt->execute() )
+		{
+			echo "there is a problem with database<br>";
+			die ();
+		}
+		$stmt->close();
 
 		echo "<br><br><h1 style = 'color:white'><b><i>POST $userN has been successfully deleted.</b></i></h1>";
 		echo "<br><br><a href = 'DeletePost.php'><h1>Delete another user.</h1></a>";
