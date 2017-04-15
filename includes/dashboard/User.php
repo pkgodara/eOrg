@@ -1,7 +1,7 @@
 <?php
 
 /*     
- * dashboard for user
+ * dashboard for a ganeral user 
  */
 
 session_start();
