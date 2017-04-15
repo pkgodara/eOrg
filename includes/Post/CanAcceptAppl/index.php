@@ -4,6 +4,6 @@
  * fake index 
  */
 
-header('Location:../');
+header('Location:../../../');
 
 ?>
