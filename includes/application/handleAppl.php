@@ -98,6 +98,7 @@ Hello $NAME <br><br>
 <td>Sr. no</td>
 <td>Application ID</td>
 <td>Application type</td>
+<td>Generation Date</td>
 </tr>
 HTML;
 
@@ -112,7 +113,7 @@ if ( $sqlConn->connect_errno )
 }
 
 //$qry = "SELECT * FROM $USER";
-$stm = $sqlConn->prepare("SELECT * FROM $USER");
+$stm = $sqlConn->prepare("SELECT * FROM $USER ORDER BY $AppDate DESC");
 
 if ( ! $stm->execute() )
 {
@@ -130,10 +131,12 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 {
 	$app_id = $ROW[0];
 	$app_type = $ROW[1];
+	$genDate = $ROW[2];
 	$html = <<<HTML
 <tr> <td>$i</td>
 <td>$app_id</td>
 <td>$app_type</td>
+<td>$genDate</td>
 	
 <td>
 <form action="viewApplication.php" method="post">
@@ -145,6 +148,7 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 HTML;
 	
 	echo $html;
+	
 	
 	if ( ($Status = isGenerator ( $ROW[0], $ROW[1], $UID )) != false )
 	{

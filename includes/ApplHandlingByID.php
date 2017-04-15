@@ -109,7 +109,7 @@ function approve ( $id, $type, $user )
 		die();
 	}
 
-	$qry = "SELECT $stat FROM $type WHERE $AppId = ?";
+	$qry = "SELECT $stat, $AppDate FROM $type WHERE $AppId = ?";
 	$stmt = $sqlconn->prepare ( $qry );
 
 	$stmt->bind_param ( 's', $id );
@@ -151,8 +151,8 @@ function approve ( $id, $type, $user )
 			}
 			$next = explode ( ',', $status[ $flag + 1 ] );
 			$NEXT = str_replace('.','$', $next[0] );
-			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?, ? )" );
-			$STMT->bind_param ( 'ss', $id, $type );
+			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?,?,? )" );
+			$STMT->bind_param ( 'sss', $id, $type, $row[1] );
 			if ( ! $STMT->execute() )
 			{
 				echo " Unable to perform the task, internal server error.<br>";
