@@ -29,3 +29,8 @@ STEP 3.> If your directory is not placed in /var/www/html then you need to creat
 STEP 4.> Open it in your browser , And it will lead you to installation. Fill appropriate informations and setup admin user.
 
 All set. Now it is ready to be used.
+
+
+# Want To Contribute
+
+Fork the repository and commit/create pull requests in develop branch of eOrg.
