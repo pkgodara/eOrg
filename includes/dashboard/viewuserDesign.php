@@ -16,6 +16,8 @@ require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 
 
+$_POST['desigId'] = "L_1;L_1_5;L_1_5_1;L_1_5_1_1";
+
 if (!isset ($_POST['desigId']) )
 {
 	echo "Sorry, there is some proble<br>";
@@ -33,7 +35,7 @@ if( $sqlConn->connect_errno )
 
 $desigArr = array();
 $desigArr = explode (';', $_POST['desigId']);
-$finalStr = "";
+$finalStr = "->";
 
 $qry = "SELECT TABLE_NAME FROM information_schema.tables WHERE table_schema = ?";
 $stmt = $sqlConn->prepare( $qry );
@@ -68,7 +70,8 @@ while ($row = mysqli_fetch_row ($res))
 	$row2 = mysqli_fetch_row ( $res2 );	
 	if ( $row2[0] == $desigArr[0] )
 	{
-		$tab = $newRow;
+		$tab = $row[0];
+		$finalStr = $finalStr.$newRow."->";
 		break;
 	}
 	$stmt2->close();
@@ -82,10 +85,29 @@ if (empty($tab))
 	die();
 }
 
-for ($i = 0 ; $i < count($desigArr) ; $i++ )
+for ($i = 1 ; $i < count($desigArr) ; $i++ )
 {
-	$stmt = $sqlConn->prepare ();
+	$stmt = $sqlConn->prepare ("SELECT * FROM $tab WHERE $levels REGEXP \"^$desigArr[$i]$\"");
+	if ( ! $stmt->execute () )
+	{
+		echo "Sorry problem with database<br>";
+		die ();
+	}
+	$res = $stmt->get_result ();
+	if ($res->num_rows == 0)
+	{
+		echo "Sorry problem with database<br>";
+		die ();
+	}
+	$row = mysqli_fetch_row ( $res );
+	$finalStr = $finalStr.$row[1]."->";
+	
+	$stmt->close();
+	
 }
+
+echo $finalStr;
+
 
 
 
