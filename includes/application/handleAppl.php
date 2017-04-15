@@ -155,6 +155,39 @@ HTML;
 		
 		showStatus( $Status ); // print complete status
 		
+		$curDate = date('Y-m-d'); 
+		
+		if( ( strtotime($curDate) - strtotime($genDate) ) > 10*24*60*60 )
+		{
+			$pending = false;
+			
+			$st = explode(';',$Status);
+			
+			for( $i = 1 ; $i < count($st) ; $i++ )
+			{
+				$val = explode(',',$st[$i])[1];
+				if( $val == 'P' )
+				{
+					$pending = true;
+					break;
+				}
+			}
+			
+			if( $pending == true )
+			{
+				echo <<<HTML
+<td>
+<form action="forwardApplication.php" method="post">
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value=$Status style="visibility: hidden; display: none;" readonly>
+<input type="submit" value="Forward">
+</form>
+</td>
+HTML;
+			}
+		}
+		
 	}
 	else if ( ($Status = isApprover ( $ROW[0], $ROW[1] , $UID )) != false )
 	{

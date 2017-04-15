@@ -40,6 +40,43 @@ function showStatus( $stat_str )
 	}
 }
 
+function needAcceptor($status)
+{
+	$str = explode ( ';', $status );
+	for ( $i =  1;  $i < count ( $str )-1 ; $i++ )
+	{
+		$st = explode ( ',', $str[$i] )[1];
+		
+		if( $st == 'P' )
+		{
+			return false;
+		}
+	}
+	
+	if( explode(',', $str[ count($str)-1 ] )[1] == 'P' )
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+function needApprover($status)
+{
+	$str = explode ( ';', $status );
+	for ( $i =  1;  $i < count ( $str )-1 ; $i++ )
+	{
+		$st = explode ( ',', $str[$i] )[1];
+		
+		if( $st == 'P' )
+		{
+			return true;
+		}
+	}
+	
+	return false;
+}
+
 
 function str_isApproved ( $stat_str, $user )
 {
