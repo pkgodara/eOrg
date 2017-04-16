@@ -159,7 +159,26 @@ $qry = "SELECT * FROM $PostTable WHERE $NameOfThePost regexp \"^$post$\"";//chec
 		echo "<br><br><h3 style = 'color:white ;'> $post Post  already exists .</h3>";
 		die ();
 	}
-
+	
+	// create table for asigning posts
+	$stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $assignPostTable ($postTitle VARCHAR(100) NOT NULL, $assignedUser VARCHAR(100), INDEX idx USING BTREE ($postTitle))");
+	if ( ! $stmt->execute() )
+	{
+		echo"there is a problem with database<br>";
+		die ();
+	}
+	
+	$stmt->close();
+	
+	// asign post ''
+	$stmt2 = $sqlConn->prepare("INSERT INTO $assignPostTable VALUES (?,\"\")");
+	$stmt2->bind_param ('s', $post );
+	if ( ! $stmt2->execute() )
+	{
+		echo"there is a problem with database<br>";
+		die ();
+	}
+	$stmt2->close();
 
 //creating table for post applications
 
