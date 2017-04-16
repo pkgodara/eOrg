@@ -81,7 +81,7 @@ $html = <<<HTML
 <form action="AssignPostTable.php" method="post">
 HTML;
 echo $html;
-$stmt = $sqlConn->prepare("SELECT $NameOfThePost FROM $PostTable");
+$stmt = $sqlConn->prepare("SELECT * FROM $assignPostTable");
 
 if ( ! $stmt->execute() )
 {
@@ -98,7 +98,7 @@ if ($res->num_rows == 0)
 echo "<table>";
 while($row = mysqli_fetch_row($res))
 {
-	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=$row[0] autofocus ></td></tr> <br>";
+	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=$row[0] value=$row[1] autofocus ></td></tr> <br>";
 }
 echo "</table>";
 $stmt->close();
