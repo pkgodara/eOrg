@@ -60,7 +60,7 @@ $html = <<<HTML
 <table border = "15">
 
 <caption style ="color:white;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
-<tr><th style = "background-color:#b3003b ;color:white">Username  :</th><td> <input type="text" name="User" required/> </td></tr>
+<tr><th style = "background-color:#b3003b ;color:white">Username  :</th><td> <input type="text" name="User" required autofocus/> </td></tr>
 <tr><th style = "background-color:#b3003b ; color:white">Password  : </th><td><input type="password" name="Passwd" required/> </td></tr>
 
 </table>
