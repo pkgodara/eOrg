@@ -1,3 +1,5 @@
+![eOrg logo](https://github.com/pkgodara/eOrg/blob/develop/image/gogreen.jpg)
+
 #                     eOrg
 
           [...Go Paperless, Go Green ]
