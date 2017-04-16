@@ -5,7 +5,7 @@
 	  Make Offices Digital and Efficient
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/pkgodara/eOrg/blob/master/LICENSE) 
-[![Release](https://img.shields.io/badge/release-latest-blue.svg)](https://github.com/pkgodara/eOrg/releases/latest)
+[![Release](https://img.shields.io/badge/release-latest-green.svg)](https://github.com/pkgodara/eOrg/releases/latest)
 
 eOrg is a free open source software intended to reduce loads of paperwork done inter-organisational office-work.
 
