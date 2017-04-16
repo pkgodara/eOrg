@@ -32,7 +32,7 @@ All set. Now it is ready to be used.
 
 
 # License
-eOrg is distributed under the MIT License.
+eOrg is distributed under the [MIT License](http://opensource.org/licenses/MIT).
 
 
 # Want To Contribute
