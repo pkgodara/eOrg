@@ -6,7 +6,7 @@
 
 session_start();
 
-if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) && isset( $_SESSION['PostName'] ) ) )
+if ( !( isset( $_SESSION['Username'] ) && isset( $_SESSION['Name'] ) ) )
 {
 	echo "session id :".session_id()." ,You must login first to visit this page.";
 	die();
@@ -58,7 +58,6 @@ else
 	$app_type = $_POST['app_type'];
 	$status = $_POST['status'];
 	
-	$UID = $_SESSION['PostName'];
 	
 	if( needApprover($status) )
 	{
@@ -66,17 +65,19 @@ else
 <form action="forwardApprover.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
 <input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="submit" value="Forward to Next Person">
+<input type="submit" value="Forward to Next Person"><br><br><br>
 </form>
 HTML;
 	}
-	else if( needAccepter($status) )
+	else if( needAcceptor($status) )
 	{
 		echo <<<HTML
+
+<br><br>
 <form action="forwardAcceptor.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
 <input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="text" name="nextUser" >
+Forward To : <input type="text" name="nextUser" > <br>
 <input type="submit" value="Forward">
 </form>
 HTML;

@@ -90,7 +90,7 @@ echo "<button onclick=\"document.location.href='../../'\" > HOME </button>";
 
 $html = <<<HTML
 <center><b><i><br><br>
-Hello $NAME <br><br>
+Hello $UID <br><br>
 
 <table>
 <caption style="font-size:200%;align-text:center"> Your Applications</caption>
@@ -113,7 +113,7 @@ if ( $sqlConn->connect_errno )
 }
 
 //$qry = "SELECT * FROM $USER";
-$stm = $sqlConn->prepare("SELECT * FROM $USER ORDER BY $AppDate DESC");
+$stm = $sqlConn->prepare("SELECT * FROM $USER ORDER BY $AppDate DESC, $AppId DESC");
 
 if ( ! $stm->execute() )
 {
@@ -199,6 +199,10 @@ HTML;
 		{
 			echo "<td>You have <b>Rejected</b> it</td>";
 		}
+		else if( str_isForwarded( $Status, $UID ) )
+		{
+			echo "<td>You have <b>FORWARDED</b> it</td>";
+		}
 		else 
 		{
 			echo <<<HTML
@@ -209,6 +213,7 @@ HTML;
 <input type="submit" value="approve now">
 </form>
 </td>
+
 <td>
 <form action="RejectAppl.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
@@ -216,6 +221,16 @@ HTML;
 <input type="submit" value="reject it">
 </form>
 </td>
+
+<td>
+<form action="forwardApplication.php" method="post">
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value=$Status style="visibility: hidden; display: none;" readonly>
+<input type="submit" value="Forward">
+</form>
+</td>
+
 <td>
 <form action="getApplnCount.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
@@ -236,6 +251,10 @@ HTML;
 		{
 			echo "<td>You have <b>Rejected</b> it</td>";
 		}
+		else if( str_isForwarded( $Status, $UID ) )
+		{
+			echo "<td>You have <b>FORWARDED</b> it</td>";
+		}
 		else
 		{
 			echo <<<HTML
@@ -246,6 +265,7 @@ HTML;
 <input type="submit" value="accept now">
 </form>
 </td>
+
 <td>
 <form action="RejectAppl.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
@@ -253,6 +273,16 @@ HTML;
 <input type="submit" value="reject it">
 </form>
 </td>
+
+<td>
+<form action="forwardApplication.php" method="post">
+<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value=$Status style="visibility: hidden; display: none;" readonly>
+<input type="submit" value="Forward">
+</form>
+</td>
+
 <td>
 <form action="getApplnCount.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>

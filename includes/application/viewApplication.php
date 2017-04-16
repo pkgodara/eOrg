@@ -26,6 +26,7 @@ else
 
 	require_once "../../LocalSettings.php";
 	require_once "../Globals.php";
+	require "../ApplHandlingByStr.php";
 	
 	$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
 
@@ -127,7 +128,16 @@ echo "$html";
 		
 		while( $col = $cols->fetch_array() )
 		{	
-			echo "<tr> <th>$col[0]</th> <td>".$row[$i]."</td> </tr>";
+			if( $col[0] == $stat )
+			{
+				echo "<tr> <th>$col[0]</th>";
+				showFullStatus( $row[$i] );
+				echo "</tr>";
+			}
+			else
+			{
+				echo "<tr> <th>$col[0]</th> <td>".$row[$i]."</td> </tr>";
+			}
 			$i++;
 		}
 	}
