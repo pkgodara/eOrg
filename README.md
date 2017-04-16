@@ -31,6 +31,10 @@ STEP 4.> Open it in your browser , And it will lead you to installation. Fill ap
 All set. Now it is ready to be used.
 
 
+# License
+eOrg is distributed under the MIT License.
+
+
 # Want To Contribute
 
 Fork the repository and commit/create pull requests in develop branch of eOrg.
