@@ -161,9 +161,9 @@ $qry = "SELECT * FROM $PostTable WHERE $NameOfThePost regexp \"^$post$\"";//chec
 	}
 
 
-//creating table for post dash board
+//creating table for post applications
 
-$stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $userPost ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(255), INDEX idx USING BTREE($UserAppId), INDEX idx1 USING BTREE($UserAppTy) )" );
+$stmt = $sqlConn->prepare("CREATE TABLE IF NOT EXISTS $userPost ( $UserAppId BIGINT UNSIGNED NOT NULL, $UserAppTy VARCHAR(255), $AppDate VARCHAR(10) NOT NULL, INDEX idx USING BTREE($UserAppId), INDEX idx1 USING BTREE($UserAppTy) , INDEX idx2 USING BTREE($AppDate) )" );
 
 	if( ! $stmt->execute() )
 	{

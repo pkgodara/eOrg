@@ -6,9 +6,14 @@ session_start();
 
 if( isset( $_SESSION['Username'] ) )
 {
+	
 	if( $_SESSION['Username'] == 'admin' )
 	{
 		header("Location:includes/dashboard/Admin.php");
+	}
+	else if( isset( $_SESSION['PostName'] ) )
+	{
+		header("Location:includes/dashboard/PostDashBoard.php");
 	}
 	else
 	{

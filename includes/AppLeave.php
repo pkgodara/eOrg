@@ -94,7 +94,10 @@ echo $html;
 	// create application table if not exists
 	//
 	$qry = "CREATE TABLE IF NOT EXISTS $appTy ($AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, $AppDate VARCHAR(10) NOT NULL, ";
+	
+	// current server date
 	$date = date('Y-m-d');
+	
 	$qry1 = "Insert INTO $appTy VALUES (NULL,\"$date\",";
 	
 	foreach( $_POST as $key => $value )
@@ -141,8 +144,8 @@ echo $html;
 	//echo "Updating application for $user.  ";
 	
 	$userDB = str_replace('.','$',$user);
-	$stmt = $sqlConn->prepare("INSERT INTO $userDB VALUES (?,?)");
-	$stmt->bind_param('ss',$id,$type);
+	$stmt = $sqlConn->prepare("INSERT INTO $userDB VALUES (?,?,?)");
+	$stmt->bind_param('sss',$id,$type,$date);
 
 	if( ! $stmt->execute() )
 	{
@@ -158,8 +161,8 @@ echo $html;
 	//echo "Sending application to $appr";
 	
 	$destDB = str_replace('.','$',$appr);
-	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?)");
-	$stmt->bind_param('ss',$id,$appTy);
+	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?,?)");
+	$stmt->bind_param('sss',$id,$appTy,$date);
 
 	if( ! $stmt->execute() )
 	{

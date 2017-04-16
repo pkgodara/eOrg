@@ -141,7 +141,7 @@ $stmt->close();
 
 $user= str_replace('.','$',$_SESSION['Username'] );
 
-$qry = "SELECT * FROM $user";
+$qry = "SELECT * FROM $user ORDER BY $AppDate DESC";
 $stmt = $sqlConn->prepare($qry);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -153,6 +153,7 @@ $html = <<<HTML
 <th>Sr. No.</th>
 <th>Application-id</th>
 <th>Application-Type</th>
+<th>Generation Date</th>
 </tr>
 HTML;
 
@@ -166,6 +167,7 @@ $html = <<<HTML
 <td>$i.</td>
 <td>$row[0]</td>
 <td>$row[1]</td>
+<td>$row[2]</td>
 </tr>
 HTML;
 
