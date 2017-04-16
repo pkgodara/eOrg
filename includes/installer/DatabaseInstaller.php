@@ -31,7 +31,7 @@ function form() {
 <tr><th>Database Server :</th><td> <input type="text" name="dbserver" value="localhost:3306" required/> </td></tr>
 <tr><th>Database Name   : </th><td><input type="text" name="dbname" value="eorgDB" required/></td> </tr>
 <tr><th>MySql Username  :</th><td> <input type="text" name="mysqlUser" value="root" required/> </td></tr>
-<tr><th>MySql Password  : </th><td><input type="password" name="mysqlPasswd" required/> </td></tr>
+<tr><th>MySql Password  : </th><td><input type="password" name="mysqlPasswd" required autofocus/> </td></tr>
 
 </table>
 

@@ -106,7 +106,7 @@ $res = $stmt->get_result();
 
 while ($row = mysqli_fetch_row($res))
 {
-	if( ! empty($_POST[$row[0]]) )
+	if( isset($_POST[$row[0]]) )
 	{
 echo $row[0]."<br>";
 		$stmtCheck = $sqlConn->prepare("SELECT $postTitle FROM $assignPostTable WHERE $postTitle = \"$row[0]\"");
