@@ -35,6 +35,8 @@ $html = <<<HTML
 <head>
 <title>Assign Post(s)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../image/gogreen.jpg" />
 <style>
 
 
@@ -98,7 +100,9 @@ if ($res->num_rows == 0)
 echo "<table>";
 while($row = mysqli_fetch_row($res))
 {
-	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=$row[0] value=\"$row[1]\" ></td></tr> <br>";
+	$newRow = preg_replace('/\s+/', '_', $row[0]);
+	$newRow = str_replace('.', '$', $newRow);
+	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=\"$newRow\" value=\"$row[1]\" ></td></tr> <br>";
 }
 echo "</table>";
 $stmt->close();

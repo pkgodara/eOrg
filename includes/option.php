@@ -16,7 +16,8 @@ $html = <<<HTML
 <html lang="en">
 <head>
 <title>Add User</title>
-
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../image/gogreen.jpg" />
 </head>
 
 <body style ="background-color:LightSlateGray" >

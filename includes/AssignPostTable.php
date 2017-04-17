@@ -24,6 +24,8 @@ $html = <<<HTML
 <html>
 <head>
 <title>Assign Post(s)</title>
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../image/gogreen.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
@@ -106,7 +108,9 @@ $res = $stmt->get_result();
 
 while ($row = mysqli_fetch_row($res))
 {
-	if( isset($_POST[$row[0]]) )
+	$newRow = preg_replace('/\s+/', '_', $row[0]);
+	$newRow = str_replace('.', '$', $newRow);
+	if( isset($_POST[$newRow]) )
 	{
 echo $row[0]."<br>";
 		$stmtCheck = $sqlConn->prepare("SELECT $postTitle FROM $assignPostTable WHERE $postTitle = \"$row[0]\"");
@@ -120,7 +124,7 @@ echo $row[0]."<br>";
 		if($resCheck->num_rows == 0)
 		{
 			$stmt2 = $sqlConn->prepare("INSERT INTO $assignPostTable VALUES (?,?)");
-			$stmt2->bind_param ('ss', $row[0], $_POST[$row[0]] );
+			$stmt2->bind_param ('ss', $row[0], $_POST[$newRow] );
 			if ( ! $stmt2->execute() )
 			{
 				echo"there is a problem with database<br>";
@@ -131,7 +135,7 @@ echo $row[0]."<br>";
 		else
 		{
 			$stmt2 = $sqlConn->prepare("UPDATE $assignPostTable SET $assignedUser = ? WHERE $postTitle = \"$row[0]\"");
-			$stmt2->bind_param ('s', $_POST[$row[0]] );
+			$stmt2->bind_param ('s', $_POST[$newRow] );
 			if ( ! $stmt2->execute() )
 			{
 				echo"there is a problem with database<br>";
