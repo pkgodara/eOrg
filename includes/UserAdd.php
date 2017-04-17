@@ -20,6 +20,8 @@ $html1 = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../image/gogreen.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 

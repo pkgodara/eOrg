@@ -20,6 +20,8 @@ $html = <<<HTML
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../../image/gogreen.jpg" />
 <style>
 a:link    {color:red;  text-decoration:none}/*link color when not visited anytime*/
 a:visited {color:red;  text-decoration:none}/*link coloe after visiting*/

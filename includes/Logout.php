@@ -11,6 +11,8 @@ $thankhtml = <<<HTML
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=2.0">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../image/gogreen.jpg" />
 <style>
 
 a:link    {color:black;  text-decoration:none}/*link color when not visited anytime*/

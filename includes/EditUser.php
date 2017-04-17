@@ -20,6 +20,8 @@ $html = <<<HTML
 <head>
 <title>Edit User</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../image/gogreen.jpg" />
 <style>
 
 button

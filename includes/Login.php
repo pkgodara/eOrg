@@ -26,10 +26,11 @@ $html = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="image/gogreen.jpg" />
+<title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=.5">
 <style>
-
-
 body {
     
     background-image: url("image/nat.jpg");
