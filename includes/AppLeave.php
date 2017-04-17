@@ -161,6 +161,7 @@ echo $html;
 	//echo "Sending application to $appr";
 	
 	$destDB = str_replace('.','$',$appr);
+	$destDB = str_replace(' ','_',$destDB);
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?,?)");
 	$stmt->bind_param('sss',$id,$appTy,$date);
 
