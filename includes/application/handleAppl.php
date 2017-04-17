@@ -31,6 +31,7 @@ else
 	$UID = $_SESSION['Username'];
 }
 $USER= str_replace('.','$',$UID );
+$USER= str_replace(' ','_',$USER );
 
 
 
@@ -181,7 +182,7 @@ HTML;
 <form action="forwardApplication.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
 <input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="text" name="status" value=$Status style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value="$Status" style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="Forward">
 </form>
 </td>
@@ -227,7 +228,7 @@ HTML;
 <form action="forwardApplication.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
 <input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="text" name="status" value=$Status style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value="$Status" style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="Forward">
 </form>
 </td>
@@ -279,7 +280,7 @@ HTML;
 <form action="forwardApplication.php" method="post">
 <input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
 <input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="text" name="status" value=$Status style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value="$Status" style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="Forward">
 </form>
 </td>

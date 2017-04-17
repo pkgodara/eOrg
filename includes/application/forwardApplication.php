@@ -59,7 +59,7 @@ else
 	$app_id = $_POST['app_id'];
 	$app_type = $_POST['app_type'];
 	$status = $_POST['status'];
-	
+	 
 	
 	if( needApprover($status) )
 	{
