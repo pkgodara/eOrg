@@ -49,6 +49,8 @@ $thankhtml = <<<HTML
 <div style = 'font-size:30px'>
 <a href="../"> <h1 ><b><i>Login</i></b></h1> </a>
 </div>
+<a href = "AboutUs.php"><h1><b>About Us</a>
+
 </body>
 </html>
 HTML;

@@ -41,6 +41,11 @@ body {
     background-size: cover;
 }
 
+a:link    {color:black;  text-decoration:none}/*link color when not visited anytime*/
+a:visited {color:white;  text-decoration:none}/*link coloe after visiting*/
+a:hover   {color:red;  text-decoration:none}/*link color when try to click the link*/
+a:active  {color:white; background-color:transparent; text-decoration:none}/*link color juat after clicking if active*/
+
 </style>
 <title>Login!</title>
 
@@ -58,7 +63,7 @@ $html = <<<HTML
 <form action="includes/dashboard/Dashboard.php" method="post">
 
 
-<table border = "15">
+<table style ="border-width:5px; border-style:double ;border-color:white ;padding: 8px;">
 
 <caption style ="color:white;text-align:center"><h1><b>WELCOME</b></h1></CAPTION>
 <tr><th style = "background-color:#b3003b ;color:white">Username  :</th><td> <input type="text" name="User" required autofocus/> </td></tr>
@@ -66,9 +71,12 @@ $html = <<<HTML
 
 </table>
 <br><br><br><br>
-<input  type="submit" name="login" value="Login!" style="cursor: pointer; font-size : 30px; height:auto; width:auto ;background-color: 	#000080 ;border:15px ;color:white" />
+<input  type="submit" name="login" value="Login!" style="cursor: pointer; font-size : 30px; height:auto; width:auto ;background-color: 	transparent ;border:1px solid white;color:white" />
 </form>
 </centre>
+<br><br><br>
+
+<a href = "includes/AboutUs.php"><h1><b>ABOUT US</a>
 </body>
 </html>
 HTML;

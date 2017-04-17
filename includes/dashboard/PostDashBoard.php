@@ -16,13 +16,11 @@ $html1 = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PostDashBoard</title>
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="shortcut icon" type="image/png" href="../../image/gogreen.jpg" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-
-
 body {
     
     background-image: url("../../image/photo14.jpg");
@@ -93,6 +91,7 @@ echo "<button  onclick=\"document.location.href='../application/getUserApplnCoun
 
 
 echo "<br><br><br><br><br><button  onclick=\"document.location.href='../postLogout.php' \">Log-Out !</button> ";
+echo "<button  onclick=\"document.location.href='../AboutUs.php' \">ABOUT US</button> ";
 echo "</center></body> </html>";
 
 ?>
