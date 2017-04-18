@@ -16,6 +16,7 @@ $html1 = <<<HTML
 <html lang="en">
 <head>
 <title>Admin</title>
+
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="shortcut icon" type="image/png" href="../../image/gogreen.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +47,7 @@ th {
     height: 50px;
 }
 
-button
+button, select
 {
 	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
 	border: 0.25px solid white;
@@ -56,7 +57,7 @@ button
 
 </head>
 
-<body>
+<body style = "font-size:25px">
 
 HTML;
 echo $html1;
@@ -89,63 +90,105 @@ $html2 = <<<HTML
 <button onclick="document.location.href='../RemoveUser.php'"> Remove User </button>
 <br><br>
 <button onclick="document.location.href='../Logout.php'"> Log out ! </button>
+<button onclick='showTheUsers()'>View Users</button>
+<div id='showHere'></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function showTheUsers()
+{
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+if (this.readyState == 4 && this.status == 200)
+{
+document.getElementById("showHere").innerHTML = this.responseText;
+}
+};
+xhttp.open("POST", "viewUsers.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send();
+}
+function viewUserDesign(userId, groupId)
+{
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+if (this.readyState == 4 && this.status == 200)
+{
+document.getElementById(userId).innerHTML = this.responseText;
+}
+};
+xhttp.open("POST", "viewuserDesign.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("desigId="+groupId);
+}
+function startAskingOptions (opted)
+{
+$("#backGround").hide();
+var result = opted.split(",");
+document.getElementById("backGround").innerHTML = result[1]+";";
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+if (this.readyState == 4 && this.status == 200)
+{
+document.getElementById("askUserOptions").innerHTML = this.responseText;
+}
+};
+xhttp.open("POST", "FurtherUserOptions.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("tab="+result[0]+"&levelId="+result[1]);
+}
+function continueAskingOptions(table, levId)
+{
+$("#backGround").hide();
+$("#backGround").append(levId+";");
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+if (this.readyState == 4 && this.status == 200)
+{
+document.getElementById("askUserOptions").innerHTML = this.responseText;
+}
+};
+xhttp.open("POST", "FurtherUserOptions.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("tab="+table+"&levelId="+levId);
+}
+function showSelectedGroup (opted)
+{
+if( opted && opted != "\\n" )
+{
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function()
+{
+if (this.readyState == 4 && this.status == 200)
+{
+document.getElementById("users").innerHTML = this.responseText;
+}
+};
+xhttp.open("POST", "showSelectedGroup.php", true);
+xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhttp.send("groupId="+opted);
+}
+else
+{
+$("#askUserOptions").append("You need to select somthing first. ");
+}
+}
+</script>
 HTML;
 
 echo $html2;
-echo "<h2><br><br><br>The available users are :<br><br>";
-
-require_once "../../LocalSettings.php";
-require_once "../Globals.php";
-
-$sqlConn = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $eorgDBname );
-
-if( $sqlConn->connect_errno ) 
-{
-		echo "Internal Server Error, Contact Administrator.";
-			die();
-}
-
-$i = 1;
-
-$html = <<<HTML
-<table>
-
-<tr>
-<th>Sr. No.</th>
-<th>User ID</th>
-<th>Name</th>
-<th>Sex</th>
-<th>Designation(s)</th>
-</tr>
-HTML;
-
-echo $html;
 
 
-$qry = "SELECT * FROM $loginDB " ;
-$stmt = $sqlConn->prepare ( $qry );
-$stmt->execute ( );
-$result = $stmt->get_result();
-while ( $row = mysqli_fetch_row ( $result ) )
-{
-
-$html = <<<HTML
-<tr>
-<td>$i.</td>
-<td>$row[0]</td>
-<td>$row[2]</td>
-<td>$row[3]</td>
-<td>$row[4]</td>
-</tr>
-HTML;
-
-	echo $html;
-	$i = $i + 1;
-}
-$stmt->close();
-$sqlConn->close();
 
 
-echo "</table></i></b></center></body> </html>";
+echo "</i></b></center></body> </html>";
 
 ?>
