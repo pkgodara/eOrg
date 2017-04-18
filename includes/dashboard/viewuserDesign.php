@@ -16,7 +16,7 @@ require_once "../../LocalSettings.php";
 require_once "../Globals.php";
 
 
-$_POST['desigId'] = "L_1;L_1_5;L_1_5_1;L_1_5_1_1";
+
 
 if (!isset ($_POST['desigId']) )
 {

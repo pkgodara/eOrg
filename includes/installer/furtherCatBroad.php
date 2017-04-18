@@ -49,11 +49,41 @@ if ( $res->num_rows == 0 )
 
 
 $html = <<<HTML
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>Further Categorization</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.png" type="image/png">
+<link rel="shortcut icon" type="image/png" href="../../image/gogreen.jpg" />
+<style>
+body {
+    
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+input[type=text] {
+    
+    width: 400px;
+   height:35px;
+  font-size:25px;
+}
+button
+
+{
+	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:#000000;color:white ;
+	border: 0.25px solid white;
+}
+</style>
 </head>
-<body>
+
+
+
+<body style = "color:white ;font-size:25px"><center><br><br><br><br><br><br>
 <p>Please select an item to categorize :<br><br></p>
 HTML;
 
