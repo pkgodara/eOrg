@@ -36,26 +36,7 @@ echo <<<HTML
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="shortcut icon" type="image/png" href="../../image/gogreen.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
 
-
-body {
-    color:white;
-    background-image: url("../../image/image4.jpg");
-     min-height: 500px;
-    background-attachment: fixed;
-    background-position: center;
-   
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-table, td, th {
-    text-align:center;
-    border: 1px solid black;
-}
-
-<<<<<<< HEAD
-=======
 <link rel="shortcut icon" href="/favicon.png" type="image/png">
 <link rel="shortcut icon" type="image/png" href="../../image/gogreen.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,13 +58,31 @@ table, td, th {
     border: 1px solid black;
 }
 
->>>>>>> a852fdbe82bb0fad2c9f01e8d02085b311781d5a
+
+<style>
+
+
+body {
+    color:white;
+    background-image: url("../../image/image4.jpg");
+     min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+table, td, th {
+    text-align:center;
+    border: 1px solid black;
+}
+
+
 table {
     width: 100%;
     border-color: white;
 }
-<<<<<<< HEAD
-=======
+
 
 th {
     height: 50px;
@@ -100,37 +99,7 @@ button{
 	border: 0.25px solid white;
 }
 
-
-
-
 </style>
-
-
-</head>
->>>>>>> a852fdbe82bb0fad2c9f01e8d02085b311781d5a
-
-th {
-    height: 50px;
-}
-
-
-input[type=button],select
-{
-	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:black;color:white ;
-	border: 0.25px solid white;
-}
-button{
-	cursor: pointer; font-size : 25px; height:auto; width:auto ;background-color:transparent;color:white ;
-	border: 0.25px solid white;
-}
-
-
-
-
-</style>
-
-
-
 
 </head>
 <body ><br><br>
