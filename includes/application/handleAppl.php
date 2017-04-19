@@ -125,7 +125,7 @@ if ( ! $stm->execute() )
 
 $res = $stm->get_result();
 
-$i = 1;
+$cnt = 1;
 
 
 
@@ -135,7 +135,7 @@ while ( $ROW = mysqli_fetch_row ( $res ) )
 	$app_type = $ROW[1];
 	$genDate = $ROW[2];
 	$html = <<<HTML
-<tr> <td>$i</td>
+<tr> <td>$cnt</td>
 <td>$app_id</td>
 <td>$app_type</td>
 <td>$genDate</td>
@@ -159,7 +159,26 @@ HTML;
 		
 		$curDate = date('Y-m-d'); 
 		
-		if( ( strtotime($curDate) - strtotime($genDate) ) > 10*24*60*60 )
+		$sqlconn = new mysqli ( $eorgDBserver, $eorgDBuser, $eorgDBpasswd, $eorgDBname );
+
+		if ( $sqlconn->connect_errno )
+		{
+			echo "Internal Server Error, Sorry for inconvenience.";
+			die();
+		}
+
+		$stmt = $sqlconn->prepare("SELECT * FROM $settings WHERE $setKey =\"Time before users can forward applications in days\"");
+
+		if ( ! $stmt->execute() )
+		{
+			echo "there is a problem in the database , inconvinence caused is deeply regreted.";
+			die();
+		}
+
+		$resl = $stmt->get_result();
+		$row = $resl->fetch_array();
+		
+		if( ( strtotime($curDate) - strtotime($genDate) ) >= $row[1]*24*60*60 )
 		{
 			$pending = false;
 			
@@ -189,6 +208,7 @@ HTML;
 HTML;
 			}
 		}
+		$sqlconn->close();
 		
 	}
 	else if ( ($Status = isApprover ( $ROW[0], $ROW[1] , $UID )) != false )
@@ -298,7 +318,7 @@ HTML;
 
 
 	echo "</tr>";
-	$i++;
+	$cnt++;
 }
 
 $html = <<<HTML

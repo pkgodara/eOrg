@@ -150,4 +150,6 @@ echo $row[0]."<br>";
 echo "<br>Assigned successfully.<br><br>";
 echo "<button onclick=\"document.location.href='AssignPost.php'\"> CREATE ANOTHER </button><br>";
 
+echo "</body></html>";
+
 ?>

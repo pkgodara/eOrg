@@ -89,8 +89,9 @@ $html2 = <<<HTML
 <button onclick="document.location.href='../EditUser.php'"> Edit User </button>
 <button onclick="document.location.href='../RemoveUser.php'"> Remove User </button>
 <br><br>
-<button onclick="document.location.href='../Logout.php'"> Log out ! </button>
 <button onclick='showTheUsers()'>View Users</button>
+<button onclick="document.location.href='../adminSettings.php'"> Settings </button>
+<button onclick="document.location.href='../Logout.php'"> Log out ! </button>
 <div id='showHere'></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
