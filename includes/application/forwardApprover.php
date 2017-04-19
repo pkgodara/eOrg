@@ -51,7 +51,7 @@ echo $html;
 
 if ( ! isset (  $_POST['app_id'] ) )
 {
-	echo "Sorry, there was a problem.<br>";
+	echo "Sorry, there was a problem, post data.<br>";
 	die();
 }
 else
@@ -63,20 +63,38 @@ else
 	if( isset( $_SESSION['PostName'] ) )
 	{
 		$UID = $_SESSION['PostName'];
+		if ( forwardApprover( $app_id ,$app_type, $UID ) == true )
+		{
+			echo "The application has been successfully FORWARDED to next Post<br>";
+		}
+		else
+		{
+			echo "Sorry, there was a problem updating<br>";
+			die();
+		}
 	}
 	else
 	{
 		$UID = $_SESSION['Username'];
-	}
-	
-	if ( forwardApprover( $app_id ,$app_type, $UID ) == true )
-	{
-		echo "The application has been successfully FORWARDED to next Post<br>";
-	}
-	else
-	{
-		echo "Sorry, there was a problem<br>";
-		die();
+		
+		$status = $_POST['status'];
+		
+		$User = findPending($status);
+		
+		if( $User == null )
+		{
+			echo "Error forwarding";
+			die();
+		}
+		else if ( forwardApprover( $app_id ,$app_type, $User ) == true )
+		{
+			echo "The application has been successfully FORWARDED to next Post<br>";
+		}
+		else
+		{
+			echo "Sorry, there was a problem updating<br>";
+			die();
+		}
 	}
 }
 

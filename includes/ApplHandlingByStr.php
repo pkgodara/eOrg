@@ -15,11 +15,11 @@ function showStatus( $stat_str )
 	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
 	{
 		$str = explode ( ',', $STR[$i] );
-		$usr = $str[0];
+		
 		
 		if( $str[1] == 'P' )
 		{
-			echo "<td><b>PENDING</b> by $usr</td>";
+			echo "<td><b>PENDING</b> by ".$str[0]."</td>";
 			break;
 		}
 		else if( $str[1] == 'A' )
@@ -49,14 +49,14 @@ function showStatus( $stat_str )
 function showFullStatus( $stat_str )
 {
 	$STR = explode ( ';', $stat_str );
-	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
+	for ( $i =  0;  $i < count ( $STR ) ; $i++ )
 	{
 		$str = explode ( ',', $STR[$i] );
-		$usr = $str[0];
+		
 		
 		if( $str[1] == 'P' )
 		{
-			echo "<td><b>PENDING</b> by $usr</td>";
+			echo "<td><b>PENDING</b> by ".$str[0]."</td>";
 		}
 		else if( $str[1] == 'A' )
 		{
@@ -74,9 +74,29 @@ function showFullStatus( $stat_str )
 		{
 			echo "<td><b>FORWARDED</b> from ".$str[0]."</td>";
 		}
+		else if( $str[1] == 'G' )
+		{
+			echo "<td><b>GENERATED</b> by ".$str[0] ."</td>";
+		}
 		else
 		{
 			echo "<td><b>Unknown Status</b></td>";
+		}
+	}
+}
+
+
+function findPending( $stat_str )
+{
+	$STR = explode ( ';', $stat_str );
+	for ( $i =  1;  $i < count ( $STR ) ; $i++ )
+	{
+		$str = explode ( ',', $STR[$i] );
+		$usr = $str[0];
+		
+		if( $str[1] == 'P' )
+		{
+			return $usr;
 		}
 	}
 }

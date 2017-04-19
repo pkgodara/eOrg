@@ -59,5 +59,10 @@ $assignPostTable = 'AssignPostTable';
 $postTitle = 'PostTitle';
 $assignedUser = 'AssignedUser';
 
+// admin settings
+$settings = 'AdminSettings';
+	$setKey = 'setting';
+	$setValue = 'settingValue';
+
 
 ?>

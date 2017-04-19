@@ -106,7 +106,13 @@ if( !isset( $_SESSION['Username'] ) || !isset($_SESSION['Name']) )
 		$_SESSION['Username'] = "admin";
 		$_SESSION['Name'] = "admin";
 	}
+	
 
+// Admin Settings
+//
+require "initSettings.php";
+
+// categries of users.
 
 require "catUsers.php";
 //echo "<a href='catUsers.php'>click here</a><br>";
