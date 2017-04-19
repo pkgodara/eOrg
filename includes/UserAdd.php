@@ -102,7 +102,8 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 	}
 
 	$hash = password_hash( $_POST['passwd'] , PASSWORD_BCRYPT );
-
+	
+	$flag = 0;
 
 
 	// insert login data into database
@@ -115,6 +116,12 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 		echo "<h1 style ='color:red'>Error updating database information, Try another username because same user name already exists</h1>";
 		die();
 	}
+	
+	else
+	{
+		$flag = 1 ;
+	}
+	
 
 	$stmt->close();
 
@@ -147,11 +154,18 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	if( ! $stmt->execute() )
 	{
-		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
-		echo "Error creating database for user, contact Admin";
+		
+		if($flag == 1)
+	{
+		echo "User Successfully created. ";
+		die();
+	}	
+	else
+	{
+		echo "Error creating database for user, contact Admin ";
 		die();
 	}
-	
+	}
 	$sqlConn->close();
 	
 	// create separate database to count applications.
@@ -183,11 +197,10 @@ if( isset($_POST['user']) && isset($_POST['passwd']) && isset($_POST['fname']) &
 
 	if( ! $stmt->execute() )
 	{
-		//echo "Error : $sqlConn->errno : $sqlConn->error <br>";
 		echo "Error in creating count database for user, contact Admin.";
 		die();
 	}
-
+	
 	$sqlConn->close();
 
 	echo "<h2>User Added Successfully.";
