@@ -91,7 +91,7 @@ function DeletePost ( $DeleteThisPost)
 
 		$stmt->execute();
 		
-		$stmt = $sqlConn->prepare ("DELETE FROM $assignPostTable WHERE $postTitle REGEXP \"^$userN\"");
+		$stmt = $sqlConn->prepare ("DELETE FROM $assignPostTable WHERE $postTitle REGEXP \"^$userN$\"");
 		
 		if ( ! $stmt->execute() )
 		{
