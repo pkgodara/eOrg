@@ -102,7 +102,7 @@ while($row = mysqli_fetch_row($res))
 {
 	$newRow = preg_replace('/\s+/', '_', $row[0]);
 	$newRow = str_replace('.', '$', $newRow);
-	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=\"$newRow\" value=\"$row[1]\" ></td></tr> <br>";
+	echo "<tr><td><h2>$row[0] :</h2></td><td> <input type='text' name=\"$newRow\" value=\"$row[1]\" ></td></tr>";
 }
 echo "</table>";
 $stmt->close();
