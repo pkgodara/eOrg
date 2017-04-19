@@ -18,7 +18,7 @@ require_once "../Globals.php";
 
 
 
-echo "<p>To vied the users groupwise, select the group and click 'view selected group'</p><br><br>";
+echo "<p>To view the users groupwise, select the group and click 'view selected group'</p><br><br>";
 
 
 $sqlConnCat = new mysqli( $eorgDBserver , $eorgDBuser , $eorgDBpasswd , $catDB );
