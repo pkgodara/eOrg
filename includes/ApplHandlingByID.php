@@ -151,6 +151,7 @@ function approve ( $id, $type, $user )
 			}
 			$next = explode ( ',', $status[ $flag + 1 ] );
 			$NEXT = str_replace('.','$', $next[0] );
+			$NEXT = str_replace(' ','_', $NEXT );
 			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?,?,? )" );
 			$STMT->bind_param ( 'sss', $id, $type, $row[1] );
 			if ( ! $STMT->execute() )
@@ -354,6 +355,7 @@ function forwardApprover ( $id, $type, $user )
 			}
 			$next = explode ( ',', $status[ $flag + 1 ] );
 			$NEXT = str_replace('.','$', $next[0] );
+			$NEXT = str_replace(' ','_', $NEXT );
 			$STMT  = $sqlconn->prepare ( "INSERT INTO $NEXT VALUES ( ?,?,? )" );
 			$STMT->bind_param ( 'sss', $id, $type, $row[1] );
 			if ( ! $STMT->execute() )
@@ -434,11 +436,13 @@ function forwardAcceptor ( $id, $type, $user, $next )
 				die();
 			}
 			
+			$next = str_replace('.','$',$next);
+			$next = str_replace(' ','_',$next);
 			$STMT  = $sqlconn->prepare ( "INSERT INTO $next VALUES ( ?,?,? )" );
 			$STMT->bind_param ( 'sss', $id, $type, $row[1] );
 			if ( ! $STMT->execute() )
 			{
-				echo " Unable to perform the task, internal server error.<br>";
+				echo " Unable to forward. Please confirm POST name.<br>";
 				die();
 			}
 			$STMT->close();

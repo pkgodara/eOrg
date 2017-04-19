@@ -66,6 +66,7 @@ for ($i = (count($levelIdArr) - 1) ; $i >= 0 ; $i--)
 		{
 			$flag = 1;
 			$postStr = $row2[0];
+			break;
 		}
 	}
 	$stmt2->close();

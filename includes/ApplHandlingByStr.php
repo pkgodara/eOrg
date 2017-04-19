@@ -96,6 +96,7 @@ function findPending( $stat_str )
 		
 		if( $str[1] == 'P' )
 		{
+		echo $usr;
 			return $usr;
 		}
 	}

@@ -97,7 +97,7 @@ Now click 'Add a field' again and again to start naming the input field(s) or 'D
 <script>
 function askInputField ()
 {
-$("#inputFields").append("The name of this input field : <input type='text' name='inputFields[]' required><br>");
+$("#inputFields").append("The name of this input field : <input type='text' name='inputFields[]' pattern='[A-Za-z0-9 _]{1,}' title='only alphabets, numbers and under_score are allowed' required><br>");
 }
 </script>
 <br><br><br><br><br><br></body>

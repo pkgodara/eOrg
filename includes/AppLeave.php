@@ -92,6 +92,8 @@ echo $html;
 	//
 	require "DetermineApplnPath.php";
 	
+	
+	
 	// create application table if not exists
 	//
 	$qry = "CREATE TABLE IF NOT EXISTS $appTy ($AppId BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, $AppDate VARCHAR(10) NOT NULL, ";
@@ -120,6 +122,8 @@ echo $html;
 	$qry = $qry." $stat VARCHAR(255) NOT NULL , PRIMARY KEY($AppId) , INDEX idx USING BTREE($AppDate) )";
 	$qry1 = $qry1."\"$status\")";
 	
+	
+	
 	$stmt = $sqlConn->prepare( $qry );
 	
 	if( !$stmt->execute() )
@@ -145,6 +149,7 @@ echo $html;
 	//echo "Updating application for $user.  ";
 	
 	$userDB = str_replace('.','$',$user);
+	echo $userDB;
 	$stmt = $sqlConn->prepare("INSERT INTO $userDB VALUES (?,?,?)");
 	$stmt->bind_param('sss',$id,$type,$date);
 
@@ -163,6 +168,7 @@ echo $html;
 	
 	$destDB = str_replace('.','$',$appr);
 	$destDB = str_replace(' ','_',$destDB);
+	
 	$stmt = $sqlConn->prepare("INSERT INTO $destDB VALUES (?,?,?)");
 	$stmt->bind_param('sss',$id,$appTy,$date);
 

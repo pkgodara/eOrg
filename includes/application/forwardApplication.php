@@ -67,8 +67,8 @@ else
 		{
 			echo <<<HTML
 <form action="forwardApprover.php" method="post">
-<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
-<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_id" value="$app_id" style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value="$app_type" style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="Forward to Next Person"><br><br><br>
 </form>
 HTML;
@@ -77,9 +77,9 @@ HTML;
 		{
 			echo <<<HTML
 <form action="forwardApprover.php" method="post">
-<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
-<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="text" name="status" value=$status style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_id" value="$app_id" style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value="$app_type" style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value="$status" style="visibility: hidden; display: none;" readonly>
 <input type="submit" value="Forward to Next Person"><br><br><br>
 </form>
 HTML;
@@ -92,8 +92,8 @@ HTML;
 			echo <<<HTML
 <br><br>
 <form action="forwardAcceptor.php" method="post">
-<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
-<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_id" value="$app_id" style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value="$app_type" style="visibility: hidden; display: none;" readonly>
 Forward To : <input type="text" name="nextUser" > <br>
 <input type="submit" value="Forward">
 </form>
@@ -104,9 +104,9 @@ HTML;
 			echo <<<HTML
 <br><br>
 <form action="forwardAcceptor.php" method="post">
-<input type="text" name="app_id" value=$app_id style="visibility: hidden; display: none;" readonly>
-<input type="text" name="app_type" value=$app_type style="visibility: hidden; display: none;" readonly>
-<input type="text" name="status" value=$status style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_id" value="$app_id" style="visibility: hidden; display: none;" readonly>
+<input type="text" name="app_type" value="$app_type" style="visibility: hidden; display: none;" readonly>
+<input type="text" name="status" value="$status" style="visibility: hidden; display: none;" readonly>
 Forward To : <input type="text" name="nextUser" > <br>
 <input type="submit" value="Forward">
 </form>

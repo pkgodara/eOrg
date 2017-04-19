@@ -81,7 +81,7 @@ else
 		
 		$User = findPending($status);
 		
-		if( $User == null )
+		if( $User == '' )
 		{
 			echo "Error forwarding";
 			die();
