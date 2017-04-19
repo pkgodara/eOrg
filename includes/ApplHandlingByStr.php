@@ -33,6 +33,7 @@ function showStatus( $stat_str )
 		else if( $str[1] == 'R' )
 		{
 			echo "<td><b>REJECTED</b> by ".$str[0] ."</td>";
+			break;
 		}
 		else if( $str[1] == 'F' )
 		{
@@ -69,6 +70,7 @@ function showFullStatus( $stat_str )
 		else if( $str[1] == 'R' )
 		{
 			echo "<td><b>REJECTED</b> by ".$str[0] ."</td>";
+			break;
 		}
 		else if( $str[1] == 'F' )
 		{
