@@ -67,12 +67,6 @@ for ($i = (count($levelIdArr) - 1) ; $i >= 0 ; $i--)
 			$flag = 1;
 			$postStr = $row2[0];
 		}
-		else
-		{
-			echo "Sorry, ,there is some problem<br>";
-			die();
-		}
-		break;
 	}
 	$stmt2->close();
 }
