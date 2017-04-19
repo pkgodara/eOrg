@@ -75,6 +75,27 @@ echo $html;
 	require_once "../LocalSettings.php";
 	require_once "Globals.php";
 	
+	// validate dates
+	//
+	$dtnow = date('Y-m-d');
+	if( isset( $_POST['Start_Date'] ) )
+	{
+		if( strtotime($_POST['Start_Date']) < strtotime($dtnow) )
+		{
+			echo "ERROR: Start Date cannot be less than Current Date";
+			die();
+		}
+	}
+	
+	if( isset( $_POST['Start_Date'] ) && isset( $_POST['End_Date'] ) )
+	{
+		if( strtotime($_POST['Start_Date']) > strtotime($_POST['End_Date']) )
+		{
+			echo "ERROR: End date must not be less than Start date";
+			die();
+		}
+	}
+	
 	// finding approvers and acceptors
 	//
 	

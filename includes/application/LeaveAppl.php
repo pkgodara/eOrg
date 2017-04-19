@@ -82,12 +82,14 @@ HTML;
 
 
 $html2 = <<<HTML
-</table>
 <br><br>
-<button type = "submit" >SUBMIT</button>
+<button type = "submit" onclick="return validate()" >SUBMIT</button>
 </form>
+
+
  
 </body>
+
 </html>
 HTML;
 
@@ -114,6 +116,7 @@ echo <<<HTML
 <table border = "15" id = "table">
 
 <caption style ="color:blue;text-align:center"><h1><b></b></h1></CAPTION>
+</table>
 HTML;
 
 $sqlconn->close();
