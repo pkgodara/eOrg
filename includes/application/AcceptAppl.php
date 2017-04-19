@@ -125,7 +125,7 @@ else
 			}
 			else
 			{
-				$days = ( strtotime($enD) - strtotime($stD) )/ (60*60*24);
+				$days = ( strtotime($enD) - strtotime($stD) )/ (60*60*24) + 1;
 				echo "days : $days";
 				updateCount( $userdb , $type , $enD , $days );
 			}
