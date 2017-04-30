@@ -7,7 +7,7 @@
 	  Make Offices Digital and Efficient
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/pkgodara/eOrg/blob/master/LICENSE) 
-[![Release](https://img.shields.io/badge/release-v2.1-green.svg)](https://github.com/pkgodara/eOrg/releases/latest)
+[![Release](https://img.shields.io/badge/release-v2.3.0-green.svg)](https://github.com/pkgodara/eOrg/releases/latest)
 
 eOrg is a free open source software intended to reduce loads of paperwork done inter-organisational office-work.
 
@@ -27,15 +27,15 @@ STEP 1.> Download the latest software from github And place in an appropriate di
 
 For Linux Users :
 
-STEP 2.> Move the directory to /var/lib or any directory you want.
+STEP 2.>> Move the directory to /var/lib or any directory you want.
 
-STEP 3.> If your directory is not placed in /var/www/html then you need to create a shortcut in your /var/www/html pointing to the software directory using following command : sudo ln -s 'path to eOrg folder' 'shortcut name' .
+STEP 3.>> If your directory is not placed in /var/www/html then you need to create a shortcut in your /var/www/html pointing to the software directory using following command : < sudo ln -s 'path to eOrg folder' 'shortcut name' > .
 
-STEP 4.> Provide write permissions for others in the directory.
+STEP 4.>> Provide write permissions for others in the directory.
 
-STEP 5.> Open it in your browser , And it will lead you to installation. Fill appropriate informations and setup admin user.
+STEP 5.>> Open it in your browser , And it will lead you to installation. Fill appropriate informations and setup admin user.
 
-STEP 6.> Now you can again change your permissions to read only after settings up admin.
+STEP 6.>> Now you can again change your permissions to read only after settings up admin.
 
 All set. Now it is ready to be used.
 
