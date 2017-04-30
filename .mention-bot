@@ -1,0 +1,10 @@
+{
+	"maxReviewers": 3, // Maximum  number of people to ping in the PR message, default is 3
+	"numFilesToCheck": 5, // Number of files to check against, default is 5
+	"message": "Hi @pullRequester, thanks for PR! Hello @reviewers, please review this.", // custom message using @pullRequester and @reviewers
+	"findPotentialReviewers": true, // mention-bot will try to find potential reviewers based on files history
+	"skipAlreadyAssignedPR": true, // mention-bot will ignore already assigned PR's
+	"skipAlreadyMentionedPR": true, // mention-bot will ignore if there is already existing an exact mention
+	"assignToReviewer": true, // mention-bot assigns the most appropriate reviewer for PR
+	"skipCollaboratorPR": false // mention-bot will ignore if PR is made by collaborator
+}
